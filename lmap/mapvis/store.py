@@ -19,7 +19,7 @@ class StoreNodes(object) :
 	def coords_callback(self, coords) :
 		for osmid, lng, lat in coords :
 			node = Node(osmid ,lng ,lat)
-			self.nodes [osmid] = node
+			self.nodes[osmid] = node
 			self.bounds["min_lat"] = min( self.bounds["min_lat"], lat)
 			self.bounds["min_lng"] = min( self.bounds["min_lng"], lng)
 			self.bounds["max_lat"] = max( self.bounds["max_lat"], lat)
@@ -63,14 +63,3 @@ class ClipNodes :
 		print 'Running nodes_print()'
 		for node in self.nodes :
 			print str(self.nodes[node].id) + '\t' + str(self.nodes[node].lng) + '\t' + str(self.nodes[node].lat)
-
-
-# minlat = 58.3984 
-# maxlat = 58.3990 
-# minlng = 15.5733 
-# maxlng = 15.5760
-
-# raw_nodes = StoreNodes('map.osm')
-# raw_nodes.coords_print()
-# clipnodes = ClipNodes(raw_nodes.return_nodes(), minlat, maxlat, minlng, maxlng)
-# clipnodes.coords_print()

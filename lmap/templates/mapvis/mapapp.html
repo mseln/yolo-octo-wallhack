@@ -26,6 +26,7 @@
 				});
 
 				displayMarkers(map);
+				displayRoads(map);
 			}
 
 			google.maps.event.addDomListener(window, 'load', initialize);
@@ -45,6 +46,23 @@
 																									 ""+{{coord.id}});
 				{% endfor %}
 			}
+
+			function createPolyline(map, path){
+				var polyline = new google.maps.Polyline({
+					path: path,
+					map: map
+				});
+			}
+
+			function displayRoads(map) {
+				var coord = new array();
+				coord = COORDS;
+				{% for road in ROADS %}
+					var points = new google.maps.MVCArray();
+					{% for node in road}
+						points.push(new google.maps.LatLng({{ coords[node].lat }}, {{ coords
+			}
+
 
 		</script>
 	</head>

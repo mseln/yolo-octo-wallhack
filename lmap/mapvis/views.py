@@ -6,6 +6,7 @@ from django.shortcuts import render, render_to_response
 from django.template import Template, Context
 
 from store import StoreNodes, ClipNodes
+from datatypes import Road, StoreRoads
 
 import datetime
 
@@ -17,6 +18,7 @@ def hello(request):
 def mapapp(request):
 	data = StoreNodes ( os.environ['HOME'] + '/Desktop/TDDD63/lmap/mapvis/linkoping_map.osm')
 	nodes = ClipNodes ( data.nodes , 58.3984 , 58.3990 ,15.5733 , 15.5760 )
-	c = Context( {'GMAPS_API_KEY': 'AIzaSyDUVb0C40shGs7dL4jC9pdCeBNUDlrt4YA', 'COORDS': nodes.nodes.values()} ,)
+	roads = StoreRoads( os.environ['HOME'] + '/Desktop/TDDD63/lmap/mapvis/linkoping_map.osm')
+	c = Context( {'GMAPS_API_KEY': 'AIzaSyDUVb0C40shGs7dL4jC9pdCeBNUDlrt4YA', 'COORDS': nodes.nodes.values() , 'ROADS': roads.roads.values()} )
 
 	return render_to_response('mapvis/mapapp.html', c)
