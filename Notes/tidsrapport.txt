@@ -3,4 +3,5 @@ Datum:          Tid:    Beskrivning:
 2013-06-11      3h      Gjort färdigt del 3.1.
 2013-07-01      2h      Färdig med Introductory Phase
 2013-07-06      2h      Parsa punkter från osm till kartan
-2013-07-13      4h      Jobbat med parsing av vägar
+2013-07-08      3h      Jobbat med parsing av vägar
+2013-07-13      2h      Utritning av vägar finns nu, en del noder kommer dock i fel ordning

@@ -21,8 +21,8 @@ def mapapp(request):
 	nodes = ClipNodes ( data.nodes , 58.3984 , 58.3990 ,15.5733 , 15.5760 )
 	
 	roads = StoreRoads( os.environ['HOME'] + '/Desktop/TDDD63/lmap/mapvis/linkoping_map.osm')
-	way_points = roads.return_waypoints(data.return_nodes())
+	way_points = roads.return_waypoints(nodes.return_nodes())
 
-	c = Context( {'GMAPS_API_KEY': 'AIzaSyDUVb0C40shGs7dL4jC9pdCeBNUDlrt4YA', 'COORDS': nodes.nodes.values() , 'ROADS': roads})
+	c = Context( {'GMAPS_API_KEY': 'AIzaSyDUVb0C40shGs7dL4jC9pdCeBNUDlrt4YA', 'COORDS': nodes.nodes.values() , 'ROADS': way_points})
 
 	return render_to_response('mapvis/mapapp.html', c)

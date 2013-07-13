@@ -29,6 +29,7 @@ class StoreNodes(object) :
 		for node in self.nodes :
 			print str(self.nodes[node].id) + '\t' + str(self.nodes[node].lng) + '\t' + str(self.nodes[node].lat)
 
+	
 	def return_nodes(self) :
 		return self.nodes
 
@@ -63,3 +64,6 @@ class ClipNodes :
 		print 'Running nodes_print()'
 		for node in self.nodes :
 			print str(self.nodes[node].id) + '\t' + str(self.nodes[node].lng) + '\t' + str(self.nodes[node].lat)
+	
+	def return_nodes(self) :
+		return self.nodes
