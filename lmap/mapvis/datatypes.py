@@ -27,3 +27,11 @@ class StoreRoads:
 	def print_roads(self) :
 		for road in self.roads :
 			print str(self.roads[road].id) + '\t' + str(self.roads[road].tag) + '\n' + str(self.roads[road].nodes) + '\n\n'
+
+	def return_waypoints(self, all_nodes) :
+		nodes = dict()
+		for road in self.roads :
+			for node in all_nodes[self.roads[road].nodes] :
+				print node.lng
+
+		return nodes
