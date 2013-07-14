@@ -15,8 +15,8 @@
 
 			function initialize(){
 				var mapOptions = {
-					center: new google.maps.LatLng(58.40, 15.61),
-					zoom: 12,
+					center: new google.maps.LatLng(58.39867, 15.57451),
+					zoom: 18,
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				};
 				map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
@@ -55,12 +55,13 @@
 			}
 
 			function displayRoads(map) {
-				var coord = new array();
-				coord = COORDS;
-				{% for road in ROADS %}
-					var points = new google.maps.MVCArray();
-					{% for node in road}
-						points.push(new google.maps.LatLng({{ coords[node].lat }}, {{ coords
+				{% for road in ROADS.values %}
+				  var points = new google.maps.MVCArray();
+					{% for node in road.values %}
+						points.push(new google.maps.LatLng({{node.lat}}, {{node.lng}}));
+					{% endfor %}
+					createPolyline(map, points);
+				{% endfor %}
 			}
 
 
