@@ -67,3 +67,12 @@ class ClipNodes :
 	
 	def return_nodes(self) :
 		return self.nodes
+
+	def return_node_refs(self) :
+		node_refs = dict()
+		it = 0
+		for node in self.nodes.values() :
+			node_refs[it] = node.id
+			it += 1
+
+		return node_refs

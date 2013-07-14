@@ -1,6 +1,6 @@
 # A simple road class
 
-from node import Node
+from node import Node, Edge
 from imposm.parser import OSMParser
 
 class Road:
@@ -38,7 +38,22 @@ class StoreRoads:
 		for roadkey, road in node_refs.items() :
 			nodes[roadkey] = dict()
 			for node in road :
-					if node in all_nodes :
-						nodes[roadkey][node] = all_nodes[node]
+				if node in all_nodes :
+					nodes[roadkey][node] = all_nodes[node]
 
 		return nodes
+
+	def return_edges(self, defined_nodes):
+		edges = dict()
+		it = 0
+		for road in self.roads.values() :
+			for a, b in zip(road.nodes, road.nodes[1:]):
+				if a in defined_nodes and b in defined_nodes :
+					edges[it] = Edge(a, b)
+					it+=1
+		
+		return edges
+
+
+
+

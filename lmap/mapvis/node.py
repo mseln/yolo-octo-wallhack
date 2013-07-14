@@ -5,3 +5,8 @@ class Node:
 		self.lng = lng
 		self.lat = lat
 
+class Edge:
+	def __init__(self, f, t):
+		self.f = f
+		self.t = t
+

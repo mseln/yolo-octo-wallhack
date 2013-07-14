@@ -8,6 +8,7 @@ from django.core import serializers
 
 from store import StoreNodes, ClipNodes
 from datatypes import Road, StoreRoads
+from adj_matrix import AdjMatrix
 
 import datetime
 
@@ -22,6 +23,9 @@ def mapapp(request):
 	
 	roads = StoreRoads( os.environ['HOME'] + '/Desktop/TDDD63/lmap/mapvis/linkoping_map.osm')
 	way_points = roads.return_waypoints(nodes.return_nodes())
+
+	adj_matrix = AdjMatrix(nodes.return_node_refs(), nodes.return_nodes(), roads.return_edges(nodes.return_nodes()))
+	adj_matrix.print_adjmat()
 
 	c = Context( {'GMAPS_API_KEY': 'AIzaSyDUVb0C40shGs7dL4jC9pdCeBNUDlrt4YA', 'COORDS': nodes.nodes.values() , 'ROADS': way_points})
 
