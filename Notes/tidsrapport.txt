@@ -1,5 +1,5 @@
 Datum:					Tid: 		Beskrivning:
 												
 2013-06-11 			3h   		Gjort färdigt del 3.1.
-2013-07-01			2h			Färdig med Introductory Phase
-2013-07-06      1h      Änsålänge
+2013-07-01			2h			Färdig med Introductory Phase.
+2013-07-06      3h      Jobbat med datastrukturer för roads, ska se till så att referenserna till noderna fungerar i JSet.
