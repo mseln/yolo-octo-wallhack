@@ -1,0 +1,8 @@
+Här kommer lite saker att göra/läsa som jag tycker underlättade arbetet.
+Ingen speciell ordning änsålänge.
+
+* Jag hade väldigt stora problem med att få imposm att fungera på mac. Försök inte förlänge med det men säg gärna till om ni lyckas.
+* Använd git (underlättar när ni flyttar mellan datorer/personer)
+* Läs igenom tutorialen om templates: https://docs.djangoproject.com/en/dev/topics/templates/
+* Informaton om imposm: https://github.com/omniscale/imposm-parser/blob/master/doc/source/concepts.rst
+
