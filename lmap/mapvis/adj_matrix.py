@@ -32,6 +32,12 @@ class AdjMatrix:
 			txt_f.write('\n')
 		txt_f.close()
 
+	def get_shortest_path(self, a, b) :
+		if a in self.dist :
+			if b in self.dist[a] :
+				return self.dist[a][b]
+		return None
+
 	def perform_floyd_warshall(self) :
 		# calculate all the shortest path between all nodes
 		# distance between node a and b will be dist[a.index][b.index]

@@ -49,6 +49,10 @@ def mapapp(request):
 		target_node = find_closest_node(target, nodes.return_nodes())
 	print 'target: ' + str(target_node) + ' ' + str(lat2) + ' ' + str(lng2)
 
+	if start_node != None and target_node != None :
+		print adj_matrix.get_shortest_path(start_node, target_node)
+
+
 	c = RequestContext(request, 
 			               {'GMAPS_API_KEY': 'AIzaSyDUVb0C40shGs7dL4jC9pdCeBNUDlrt4YA',
 											'COORDS': nodes.nodes.values() , 
