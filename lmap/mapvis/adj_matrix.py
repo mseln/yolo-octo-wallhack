@@ -1,5 +1,3 @@
-from haversine import length_haversine
-
 INF = 1000000000
 
 class AdjMatrix:

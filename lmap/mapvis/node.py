@@ -1,5 +1,3 @@
-from haversine import length_haversine
-
 #simple node class
 class Node:
 	def __init__(self, id, lng, lat) :

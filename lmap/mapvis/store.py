@@ -1,6 +1,6 @@
 from imposm.parser import OSMParser
 from node import Node, Edge
-from haversine import length_haversine
+from my_func import length_haversine
 
 # This class reads an OSM file and stores its nodes in memory
 class StoreNodes(object) :

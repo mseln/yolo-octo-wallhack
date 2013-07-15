@@ -7,4 +7,5 @@ Datum:          Tid:    Beskrivning:
 2013-07-13      2h      Utritning av vägar finns nu, en del noder kommer dock i fel ordning
 2013-07-14      2h      Adjency matrisen verkar fungera som den ska
 2013-07-14      1h      Implementerat floyd warshall samt lagt till html-formulär för input av koordinater
-2013-07-15      6h      Kan nu hämta information från html-formulär, kommenterat och strukturerat kod
+2013-07-15      6h      Kan nu hämta information från html-formulär, kommenterat och strukturerat kod,
+                        hitta närmaste nod ifrån var man klickade
