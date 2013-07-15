@@ -3,7 +3,7 @@ from math import sqrt , radians , sin , cos , asin
 def length_haversine ( p1 , p2 ) :
 	# calculate distance using the haversine formula ,
 	# which incorporates earth curvature
-	# see http :// en . wikipedia . org / wiki / Haversine_formula
+	# see http ://en.wikipedia.org/wiki/Haversine_formula
 	lat1 = p1.lat
 	lng1 = p1.lng
 	lat2 = p2.lat
