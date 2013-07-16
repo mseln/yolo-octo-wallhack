@@ -30,11 +30,24 @@ def mapapp(request):
 	lng2 = request.POST.get('lng2', 'unknown')
 
 	data = StoreNodes (os.environ['HOME'] + '/Desktop/TDDD63/lmap/mapvis/linkoping_map.osm')
-	nodes = ClipNodes (data.nodes, 58.3984, 58.3990, 15.5733, 15.5760)
+	nodes = ClipNodes ( data.nodes, 58.3984, 58.4002, 15.5733, 15.5760 )
+
 	roads = StoreRoads(os.environ['HOME'] + '/Desktop/TDDD63/lmap/mapvis/linkoping_map.osm')
 	way_points = roads.return_waypoints(nodes.return_nodes())
 
+	
 	adj_matrix = AdjMatrix(nodes.return_node_refs(), nodes.return_nodes(), roads.return_edges(nodes.return_nodes()))
+	
+	n = dict()
+	edges = roads.return_edges(nodes.return_nodes())
+	for ekey, e in edges.items() :
+		# print ekey
+		# print str(e.f) + '\t' + str(e.t) + '\t' + str(e.w)
+		n[ekey] = {nodes.return_node(e.f), nodes.return_node(e.t)}
+
+	for i in n.values() :
+		print i
+
 
 	start_node = None
 
@@ -49,14 +62,37 @@ def mapapp(request):
 		target_node = find_closest_node(target, nodes.return_nodes())
 	print 'target: ' + str(target_node) + ' ' + str(lat2) + ' ' + str(lng2)
 
+
+	print adj_matrix.get_length_of_shortest_path(start_node, target_node)
+	shortest_path = None
 	if start_node != None and target_node != None :
-		print adj_matrix.get_shortest_path(start_node, target_node)
+		shortest_path = adj_matrix.get_shortest_path(start_node, target_node)
+
+	if shortest_path != None :
+		shortest_path = [start_node] + shortest_path + [target_node]
+	print shortest_path
+	nodes_in_shortest_path = dict()
+	it = 0
+	if shortest_path != None :
+		for node in shortest_path :
+			nodes_in_shortest_path[it] = nodes.nodes[node]
+			it += 1
 
 
-	c = RequestContext(request, 
-			               {'GMAPS_API_KEY': 'AIzaSyDUVb0C40shGs7dL4jC9pdCeBNUDlrt4YA',
-											'COORDS': nodes.nodes.values() , 
-											'ROADS': way_points}
-										)
+	if (len(nodes_in_shortest_path.keys()) != 0) :
+		for node in nodes_in_shortest_path.values() :
+			print str(node.id) + '\t' + str(node.lat) + ' ' + str(node.lng)
+		c = RequestContext(request, 
+				               {'GMAPS_API_KEY': 'AIzaSyDUVb0C40shGs7dL4jC9pdCeBNUDlrt4YA',
+												'COORDS': nodes.nodes.values() , 
+												'ROAD': nodes_in_shortest_path}
+											 )
+	else :
+	
+		c = RequestContext(request, 
+				               {'GMAPS_API_KEY': 'AIzaSyDUVb0C40shGs7dL4jC9pdCeBNUDlrt4YA',
+												'COORDS': nodes.nodes.values() ,
+												'ROADS': n.values()}
+											 )
 
 	return render_to_response('mapvis/mapapp.html', c)

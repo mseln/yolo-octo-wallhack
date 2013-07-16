@@ -4,10 +4,13 @@ class AdjMatrix:
 	def __init__(self, node_refs, nodes, edges):
 		self.node_refs = node_refs
 		self.dist = dict()
+		self.path = dict()
 		# initialize a matrix and fill the diagonal with zeroes and the rest with infinity
 		for i in self.node_refs.values() :
 			self.dist[i] = dict()
+			self.path[i] = dict()
 			for j in self.node_refs.values() :
+				self.path[i][j] = None
 				if i == j :
 					self.dist[i][j] = 0
 				else :
@@ -32,11 +35,24 @@ class AdjMatrix:
 			txt_f.write('\n')
 		txt_f.close()
 
-	def get_shortest_path(self, a, b) :
+	def get_length_of_shortest_path(self, a, b) :
+		# simply returns the length of the shortest path between a and b
 		if a in self.dist :
 			if b in self.dist[a] :
 				return self.dist[a][b]
 		return None
+
+	def get_shortest_path(self, i, j) :
+		path = []
+		if self.dist[i][j] == INF :
+			path.append["no path"]
+			return path
+
+		intermediate = self.path[i][j]
+		if intermediate == None :
+			return []   # the direct edge from i to j gives the shortest path
+		else :
+		  return self.get_shortest_path(i, intermediate) + [intermediate] + self.get_shortest_path(intermediate, j)
 
 	def perform_floyd_warshall(self) :
 		# calculate all the shortest path between all nodes
@@ -46,4 +62,6 @@ class AdjMatrix:
 		for k in self.node_refs.values() :
 			for i in self.node_refs.values() :
 				for j in self.node_refs.values() :
-					self.dist[i][j] = min(self.dist[i][k] + self.dist[k][j], self.dist[i][j])
+					if self.dist[i][j] > self.dist[i][k] + self.dist[k][j] :
+						self.dist[i][j] = self.dist[i][k] + self.dist[k][j]
+						self.path[i][j] = k

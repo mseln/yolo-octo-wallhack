@@ -9,3 +9,5 @@ Datum:          Tid:    Beskrivning:
 2013-07-14      1h      Implementerat floyd warshall samt lagt till html-formulär för input av koordinater
 2013-07-15      7h      Kan nu hämta information från html-formulär, kommenterat och strukturerat kod,
                         hitta närmaste nod ifrån var man klickade samt hitta kortaste mellan två noder man kan välja
+2013-07-16      6h      Kanterna mellan noderna printades ut i fel ordning på en väg samt i kortaste vägen, nu fixat.
+                        Man kan nu välja två noder och programmet ritar ut kortaste vägen mellan dem.

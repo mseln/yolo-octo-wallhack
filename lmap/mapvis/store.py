@@ -71,6 +71,10 @@ class ClipNodes :
 	def return_nodes(self) :
 		return self.nodes
 
+	def return_node(self, key) :
+		if key in self.nodes :
+			return self.nodes[key]
+
 	def return_node_refs(self) :
 		# return a list of all node ids
 		node_refs = dict()
@@ -113,22 +117,36 @@ class StoreRoads:
 		# return all nodes that all roads contain that are in the
 		# area that ClipNodes defines
 
+		whitelist = ['footway', 'service']
 		node_refs = dict()
 		for road in self.roads.values() :
 			# check whether road or not
 			if 'highway' in road.tag:
+				# if road.tag['highway'] in whitelist :
+					# if road.id == 4531867 :
+				# print road.id
+				# print road.tag
+				# print road.nodes
+				# print '\n'
 				# get all nodes that the road contains
 				node_refs[road] = road.nodes
 
+		"""
+		for road in node_refs :
+			for node in road.nodes :
+				print node
+		"""
 		nodes = dict()
-		for roadkey, road in node_refs.items() :
-			nodes[roadkey] = dict()
-			for node in road :
+		for road in node_refs :
+			nodes[road] = dict()
+			it = 0
+			for node in road.nodes :
 				# must check if node is in define_nodes, since the 
 				# whole road may not be in the area ClipNodes defines
 				if node in defined_nodes :
-					nodes[roadkey][node] = defined_nodes[node]
-
+					nodes[road][it] = defined_nodes[node]
+				it += 1
+		# for road in nodes
 		return nodes
 
 	def return_edges(self, defined_nodes):
@@ -140,9 +158,11 @@ class StoreRoads:
 		it = 0
 
 		for road in self.roads.values() :
+			print 'New road!'
 			# b.index is equal to a.index+1
 			# loop from the first node to the second last node
 			for a, b in zip(road.nodes, road.nodes[1:]):
+				print str(a) + '\t' +  str(b)
 				# must check if node is in define_nodes, since the 
 				# whole road may not be in the area ClipNodes defines
 				if a in defined_nodes and b in defined_nodes :
