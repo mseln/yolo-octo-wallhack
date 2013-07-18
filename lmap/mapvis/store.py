@@ -71,6 +71,16 @@ class ClipNodes :
 	def return_nodes(self) :
 		return self.nodes
 
+	def get_nodes(self, refs) :
+		nodes = dict()
+		it = 0
+		if refs != None :
+			for node in refs :
+				nodes[it] = self.nodes[node]
+				it += 1
+		return nodes
+
+
 	def return_node(self, key) :
 		if key in self.nodes :
 			return self.nodes[key]

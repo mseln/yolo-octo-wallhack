@@ -83,10 +83,12 @@
 				{% endfor %}
 			}
 
-			function createPolyline(map, path, title){
+			function createPolyline(map, path, color, opac){
 				var polyline = new google.maps.Polyline({
 					path: path,
 					map: map,
+					strokeColor: color,
+					strokeOpacity: opac,
 				});
 			}
 
@@ -96,7 +98,7 @@
 					{% for node in road %}
 						points.push(new google.maps.LatLng({{node.lat}}, {{node.lng}}));
 					{% endfor %}
-					createPolyline(map, points, name);
+					createPolyline(map, points, "#CC33FF", 0.5);
 				{% endfor %}
 			}
 
@@ -106,7 +108,7 @@
 				{% for node in ROAD.values %}
 					points.push(new google.maps.LatLng({{node.lat}}, {{node.lng}}));
 				{% endfor %}
-				createPolyline(map, points);
+				createPolyline(map, points, "#000000", 1.0);
 			}
 
 

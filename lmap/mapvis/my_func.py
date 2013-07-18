@@ -33,7 +33,7 @@ def is_number(s):
 	return False
 
 def find_closest_node(pos, nodes) :
-	if is_number(pos.lat) and is_number(pos.lng) :
+	if pos.lat and pos.lng :
 		pos.lat = float(pos.lat)
 		pos.lng = float(pos.lng)
 		min_d = INF
