@@ -4,13 +4,10 @@ class AdjMatrix:
 	def __init__(self, node_refs, nodes, edges):
 		self.node_refs = node_refs
 		self.dist = dict()
-		self.path = dict()
 		# initialize a matrix and fill the diagonal with zeroes and the rest with infinity
 		for i in self.node_refs.values() :
 			self.dist[i] = dict()
-			self.path[i] = dict()
 			for j in self.node_refs.values() :
-				self.path[i][j] = None
 				if i == j :
 					self.dist[i][j] = 0
 				else :
@@ -24,7 +21,10 @@ class AdjMatrix:
 			self.dist[i.t][i.f] = i.w
 
 		# calculate all shortest paths between all edges
-		self.perform_floyd_warshall()
+		# self.perform_floyd_warshall()
+	
+	def get_matrix(self) :
+		return self.dist
 
 	def print_adjmat(self) :
 		# write the whole adjency matrix to the file adj_mat.txt

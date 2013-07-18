@@ -158,11 +158,11 @@ class StoreRoads:
 		it = 0
 
 		for road in self.roads.values() :
-			print 'New road!'
+			# print 'New road!'
 			# b.index is equal to a.index+1
 			# loop from the first node to the second last node
 			for a, b in zip(road.nodes, road.nodes[1:]):
-				print str(a) + '\t' +  str(b)
+				# print str(a) + '\t' +  str(b)
 				# must check if node is in define_nodes, since the 
 				# whole road may not be in the area ClipNodes defines
 				if a in defined_nodes and b in defined_nodes :
@@ -176,4 +176,3 @@ class StoreRoads:
 					it+=1
 
 		return edges
-

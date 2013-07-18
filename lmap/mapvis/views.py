@@ -10,7 +10,8 @@ from django.core.context_processors import csrf
 from store import *
 from adj_matrix import AdjMatrix
 from node import Node
-from my_func import find_closest_node
+from my_func import *
+from dijkstra import dijkstra
 
 import datetime
 
@@ -38,60 +39,35 @@ def mapapp(request):
 	
 	adj_matrix = AdjMatrix(nodes.return_node_refs(), nodes.return_nodes(), roads.return_edges(nodes.return_nodes()))
 	
-	n = dict()
 	edges = roads.return_edges(nodes.return_nodes())
-	for ekey, e in edges.items() :
-		# print ekey
-		# print str(e.f) + '\t' + str(e.t) + '\t' + str(e.w)
-		n[ekey] = {nodes.return_node(e.f), nodes.return_node(e.t)}
+	n = attach_edges_with_nodes(edges, nodes.return_nodes())
 
-	for i in n.values() :
-		print i
+	start_node = find_closest_node(Node(None, lng1, lat1), nodes.return_nodes())
+	target_node = find_closest_node(Node(None, lng2, lat2), nodes.return_nodes())
 
-
-	start_node = None
-
-	if lat1 != 'unknown' and lng1 != 'unknown' :
-		start = Node(None, float(lng1), float(lat1))
-		start_node = find_closest_node(start, nodes.return_nodes())
-	print 'start: ' + str(start_node) + ' ' + str(lat1) + ' ' + str(lng1)
-
-	target_node = None	
-	if lat2 != 'unknown' and lng2 != 'unknown' :
-		target = Node(None, float(lng2), float(lat2))
-		target_node = find_closest_node(target, nodes.return_nodes())
-	print 'target: ' + str(target_node) + ' ' + str(lat2) + ' ' + str(lng2)
-
-
-	print adj_matrix.get_length_of_shortest_path(start_node, target_node)
 	shortest_path = None
-	if start_node != None and target_node != None :
-		shortest_path = adj_matrix.get_shortest_path(start_node, target_node)
-
-	if shortest_path != None :
-		shortest_path = [start_node] + shortest_path + [target_node]
-	print shortest_path
 	nodes_in_shortest_path = dict()
+	if start_node and target_node :
+		shortest_path = dijkstra(adj_matrix.get_matrix(), start_node, target_node)
+
+	print shortest_path
+
 	it = 0
 	if shortest_path != None :
 		for node in shortest_path :
 			nodes_in_shortest_path[it] = nodes.nodes[node]
 			it += 1
-
-
+	
 	if (len(nodes_in_shortest_path.keys()) != 0) :
-		for node in nodes_in_shortest_path.values() :
-			print str(node.id) + '\t' + str(node.lat) + ' ' + str(node.lng)
 		c = RequestContext(request, 
 				               {'GMAPS_API_KEY': 'AIzaSyDUVb0C40shGs7dL4jC9pdCeBNUDlrt4YA',
 												'COORDS': nodes.nodes.values() , 
 												'ROAD': nodes_in_shortest_path}
 											 )
-	else :
-	
+	else :	
 		c = RequestContext(request, 
 				               {'GMAPS_API_KEY': 'AIzaSyDUVb0C40shGs7dL4jC9pdCeBNUDlrt4YA',
-												'COORDS': nodes.nodes.values() ,
+												'COORDS': nodes.nodes.values(), 
 												'ROADS': n.values()}
 											 )
 

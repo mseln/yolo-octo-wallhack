@@ -16,16 +16,42 @@ def length_haversine(p1, p2) :
 	c = 2 * asin(sqrt(a))
 	return 6372797.560856 * c # return distance in m
 
-def find_closest_node(pos, nodes) :
-	min_d = INF
-	best_node = None
-
-	# simple linear search
-	for nodekey, node in nodes.items() :
-		d = length_haversine(pos, node)
-		if min_d > d:
-			min_d = d
-			best_node = nodekey
+def is_number(s):
+	try:
+		float(s)
+		return True
+	except ValueError:
+		pass
 	
-	return best_node
+	try:
+		import unicodedata
+		unicodedata.numeric(s)
+		return True
+	except (TypeError, ValueError):
+		pass
+
+	return False
+
+def find_closest_node(pos, nodes) :
+	if is_number(pos.lat) and is_number(pos.lng) :
+		pos.lat = float(pos.lat)
+		pos.lng = float(pos.lng)
+		min_d = INF
+		best_node = None
+
+		# simple linear search
+		for nodekey, node in nodes.items() :
+			d = length_haversine(pos, node)
+			if min_d > d:
+				min_d = d
+				best_node = nodekey
+		return best_node
+	else :
+		return None
+
+def attach_edges_with_nodes(edges, nodes) :
+	edgenodes = dict()
+	for ekey, e in edges.items() :
+		edgenodes[ekey] = {nodes[e.f], nodes[e.t]}
+	return edgenodes
 
