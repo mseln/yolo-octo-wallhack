@@ -16,7 +16,7 @@ def length_haversine(p1, p2) :
 	c = 2 * asin(sqrt(a))
 	return 6372797.560856 * c # return distance in m
 
-def is_number(s):
+def is_float(s):
 	try:
 		float(s)
 		return True

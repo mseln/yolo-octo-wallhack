@@ -1,6 +1,6 @@
 from imposm.parser import OSMParser
-from node import Node, Edge
 from my_func import length_haversine
+import graph
 
 # This class reads an OSM file and stores its nodes in memory
 class StoreNodes(object) :
@@ -19,7 +19,7 @@ class StoreNodes(object) :
 	
 	def coords_callback(self, coords) :
 		for osmid, lng, lat in coords :
-			node = Node(osmid ,lng ,lat)
+			node = graph.Node(osmid ,lng ,lat)
 			self.nodes[osmid] = node
 			self.bounds["min_lat"] = min( self.bounds["min_lat"], lat)
 			self.bounds["min_lng"] = min( self.bounds["min_lng"], lng)
@@ -53,8 +53,8 @@ class ClipNodes :
 		self.bounds["min_lng"] = 9999
 		self.bounds["max_lng"] = -9999
 		for node in nodes.values() :
-			if self.minlng < node.lng and node.lng < self.maxlng and self.minlat < node.lat and node.lat < self.maxlat :
-				new_node = Node(node.id, node.lng, node.lat)
+			if self.minlng <= node.lng and node.lng <= self.maxlng and self.minlat <= node.lat and node.lat <= self.maxlat :
+				new_node = graph.Node(node.id, node.lng, node.lat)
 				self.nodes[node.id] = node
 
 				# update bounds
@@ -112,12 +112,14 @@ class StoreRoads:
 
 		p = OSMParser(ways_callback = self.ways_callback)
 		p.parse(osmfile)
-	
+
 	# callback function for imposm 
 	def ways_callback(self, ways) :
+		whitelist = ['highway']
 		for osmid, tags, refs in ways :
-			road = Road(osmid, tags, refs)
-			self.roads[osmid] = road
+			if 'highway' in tags :
+				road = Road(osmid, tags, refs)
+				self.roads[osmid] = road
 
 	def print_roads(self) :
 		for road in self.roads :
@@ -127,25 +129,19 @@ class StoreRoads:
 		# return all nodes that all roads contain that are in the
 		# area that ClipNodes defines
 
-		whitelist = ['footway', 'service']
+		whitelist = []
 		node_refs = dict()
 		for road in self.roads.values() :
 			# check whether road or not
 			if 'highway' in road.tag:
-				# if road.tag['highway'] in whitelist :
-					# if road.id == 4531867 :
+				if road.tag['highway'] in whitelist :
 				# print road.id
 				# print road.tag
 				# print road.nodes
 				# print '\n'
 				# get all nodes that the road contains
-				node_refs[road] = road.nodes
+					node_refs[road] = road.nodes
 
-		"""
-		for road in node_refs :
-			for node in road.nodes :
-				print node
-		"""
 		nodes = dict()
 		for road in node_refs :
 			nodes[road] = dict()
@@ -176,7 +172,7 @@ class StoreRoads:
 				# must check if node is in define_nodes, since the 
 				# whole road may not be in the area ClipNodes defines
 				if a in defined_nodes and b in defined_nodes :
-					edges[it] = Edge(a, b)
+					edges[it] = graph.Edge(a, b)
 					
 					# calculate the distance (weight) between node a and b
 

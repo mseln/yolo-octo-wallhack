@@ -20,13 +20,12 @@
 					zoom: 18,
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				};
-				// state = 0;
 				map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 
 				google.maps.event.addListener(map, 'click', function(event){
 						on_click(event.latLng, "Click: "+event.latLng);
 				});
-
+				google.maps.event.addListener(map, 'dragend', function(event) { } );
 				var inst_element = document.getElementById('inst');	
 				var lat1_element = document.getElementById('lat1');
 				var lng1_element = document.getElementById('lng1');
@@ -53,6 +52,7 @@
 				var lng1_element = document.getElementById('lng1');
 				var lat2_element = document.getElementById('lat2');
 				var lng2_element = document.getElementById('lng2');
+
 				if (state != 1){
 					lat1_element.value = latLng.lat().toFixed(4);	
 					lng1_element.value = latLng.lng().toFixed(4);	
@@ -67,6 +67,9 @@
 				}
 			}
 
+			function onDrag(){
+
+			}
 			function createMarker(map, latlng, title){
 				var marker = new google.maps.Marker({
 					map: map,

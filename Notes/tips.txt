@@ -5,4 +5,5 @@ Ingen speciell ordning änsålänge.
 * Använd git (underlättar när ni flyttar mellan datorer/personer)
 * Läs igenom tutorialen om templates: https://docs.djangoproject.com/en/dev/topics/templates/
 * Informaton om imposm: https://github.com/omniscale/imposm-parser/blob/master/doc/source/concepts.rst
-
+* Är unit test verkligen värt? Vet inte, det här kanske kan övertyga er (mig) http://stackoverflow.com/questions/67299/is-unit-testing-worth-the-effort
+* Döp inte unittest filen till unittest.py!!! 

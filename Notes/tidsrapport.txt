@@ -11,3 +11,5 @@ Datum:          Tid:    Beskrivning:
                         hitta närmaste nod ifrån var man klickade samt hitta kortaste mellan två noder man kan välja
 2013-07-16      6h      Kanterna mellan noderna printades ut i fel ordning på en väg samt i kortaste vägen, nu fixat.
                         Man kan nu välja två noder och programmet ritar ut kortaste vägen mellan dem.
+2013-07-18      8h      Dijkstra fungerar nu med adjacency list och matris, har läst på och implementerat en del PyUnit tester
+                        har snyggat upp utritning av vägar/kortaste väg och städat upp bland filer och funktioner

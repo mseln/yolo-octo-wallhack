@@ -1,6 +1,6 @@
 INF = 1000000000
 
-def dijkstra_adjmat(G, s, e) :
+def adjmat(G, s, e) :
 	if not e or not s :
 		return None
 
@@ -45,7 +45,7 @@ def dijkstra_adjmat(G, s, e) :
 
 	return shortest_path
 
-def dijkstra_adjlist(G, s, e) :
+def adjlist(G, s, e) :
 	if not e or not s :
 		return None
 
@@ -68,6 +68,7 @@ def dijkstra_adjlist(G, s, e) :
 		if ind is None : return None
 		
 		for neighboor in G[ind] :
+			print neighboor
 			if W[neighboor[0]] > W[ind] + neighboor[1] :
 				W[neighboor[0]] = W[ind] + neighboor[1]
 				P[neighboor[0]] = ind
