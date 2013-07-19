@@ -6,6 +6,7 @@ class OutOfRangeError(NodeError): pass
 class Node:
 	def __init__(self, id, lng, lat) :
 		if not -180 <= lng <= 180 or not -90 <= lat <= 90 :
+			# Make it possible to create nodes with undefined coordinates
 			if lat is not None and lng is not None :
 				raise OutOfRangeError
 		self.id = id
@@ -13,12 +14,12 @@ class Node:
 		self.lat = lat
 
 class Edge:
-	def __init__(self, f, t) :
+	def __init__(self, f, t, w=None) :
 		# f and t are node ids from node f to t 
 		self.f = f
 		self.t = t
 		# w is the weight of the edge
-		self.w = None
+		self.w = w
 
 	def update_weight(self, w) :
 		if self.w is None :
@@ -48,9 +49,6 @@ class AdjMatrix:
 			self.dist[i.f][i.t] = i.w
 			self.dist[i.t][i.f] = i.w
 
-		# calculate all shortest paths between all edges
-		# self.perform_floyd_warshall()
-	
 	def get_matrix(self) :
 		return self.dist
 
@@ -64,11 +62,10 @@ class AdjMatrix:
 		txt_f.close()
 
 class AdjList :
-	def __init__(self, node_refs, nodes, edges) :
+	def __init__(self, nodes, edges) :
 		self.n = dict()
-		for node in node_refs.values() :
-			self.n[node] = []
-
+		for node in nodes.values() :
+			self.n[node.id] = []
 
 		for edge in edges.values() :
 			self.n[edge.t].append([edge.f, edge.w])

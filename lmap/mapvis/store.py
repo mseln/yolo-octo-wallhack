@@ -97,6 +97,19 @@ class ClipNodes :
 
 		return node_refs
 
+	def filter(self, edges) :
+		ok_nodes = dict()
+		it = 0
+		for edge in edges.values() :
+			if edge.t not in ok_nodes :
+				ok_nodes[it] = edge.t
+				it += 1
+			if edge.f not in ok_nodes :
+				ok_nodes[it] = edge.f
+				it += 1
+		for k, v in self.nodes.items() :
+			if v.id not in ok_nodes.values() :
+				del self.nodes[k]
 
 class Road:
 	def __init__(self, id, tag, nodes):
@@ -135,10 +148,6 @@ class StoreRoads:
 			# check whether road or not
 			if 'highway' in road.tag:
 				if road.tag['highway'] in whitelist :
-				# print road.id
-				# print road.tag
-				# print road.nodes
-				# print '\n'
 				# get all nodes that the road contains
 					node_refs[road] = road.nodes
 

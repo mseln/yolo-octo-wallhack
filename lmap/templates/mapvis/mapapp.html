@@ -16,8 +16,13 @@
 
 			function initialize(){
 				var mapOptions = {
-					center: new google.maps.LatLng(58.39867, 15.57451),
-					zoom: 18,
+					{% if MAP_INFO.lat %}
+						center: new google.maps.LatLng({{MAP_INFO.lat}}, {{MAP_INFO.lng}}),
+						zoom: {{MAP_INFO.zoom}},
+					{% else %}
+						center: new google.maps.LatLng(58.39867, 15.57451),
+						zoom: 18,
+					{% endif %}
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				};
 				map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
@@ -25,12 +30,21 @@
 				google.maps.event.addListener(map, 'click', function(event){
 						on_click(event.latLng, "Click: "+event.latLng);
 				});
-				google.maps.event.addListener(map, 'dragend', function(event) { } );
+				google.maps.event.addListener(map, 'dragend', function(event){
+						onDrag(map);	
+				});
+				google.maps.event.addListener(map, 'zoom_changed', function(event){
+						onZoom(map);	
+				});
 				var inst_element = document.getElementById('inst');	
 				var lat1_element = document.getElementById('lat1');
 				var lng1_element = document.getElementById('lng1');
 				var lat2_element = document.getElementById('lat2');
 				var lng2_element = document.getElementById('lng2');
+
+				var zoom_element = document.getElementById('czoom');
+				var clat_element = document.getElementById('clat');
+				var clng_element = document.getElementById('clng');
 
 				inst_element.value = "Enter start position";
 				lat1_element.value = "unknown";
@@ -38,7 +52,10 @@
 				lat2_element.value = "unknown";
 				lng2_element.value = "unknown";
 
-				
+				zoom_element.value = map.getZoom();
+				clat_element.value = map.getCenter().lat().toFixed(4);
+				clng_element.value = map.getCenter().lng().toFixed(4);
+
 				displayMarkers(map);
 				displayRoads(map);
 				displayRoad(map);
@@ -67,8 +84,16 @@
 				}
 			}
 
-			function onDrag(){
+			function onZoom(map){
+				var zoom_element = document.getElementById('czoom');
+				zoom_element.value = map.getZoom();
+			}
 
+			function onDrag(map){
+				var clat_element = document.getElementById('clat');
+				var clng_element = document.getElementById('clng');
+				clat_element.value = map.getCenter().lat().toFixed(4);
+				clng_element.value = map.getCenter().lng().toFixed(4);
 			}
 			function createMarker(map, latlng, title){
 				var marker = new google.maps.Marker({
@@ -120,7 +145,10 @@
 	<body>
 		<div id="map_canvas"></div>
 	</body>
-	<form action="" method="post"> {% csrf_token %} 
+	<form action="" method="post"> {% csrf_token %}
+		Zoom: <input type="text" id="czoom" name="czoom" size = 8>
+		Lat:  <input type="text" id="clat" name="clat" size = 8>
+		Lng:  <input type="text" id="clng" name="clng" size = 8>
 		<input type="text" id="inst" name="inst" size = 16><br>
 		Lat 1: <input type="text" id="lat1" name="lat1" size = 8>
 		Lng 1: <input type="text" id="lng1" name="lng1" size = 8>

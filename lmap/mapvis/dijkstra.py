@@ -46,7 +46,8 @@ def adjmat(G, s, e) :
 	return shortest_path
 
 def adjlist(G, s, e) :
-	if not e or not s :
+	# test if start and end nodes is defined and in G
+	if e not in G.keys() or s not in G.keys() :
 		return None
 
 	Q = G.keys()
@@ -68,7 +69,6 @@ def adjlist(G, s, e) :
 		if ind is None : return None
 		
 		for neighboor in G[ind] :
-			print neighboor
 			if W[neighboor[0]] > W[ind] + neighboor[1] :
 				W[neighboor[0]] = W[ind] + neighboor[1]
 				P[neighboor[0]] = ind
