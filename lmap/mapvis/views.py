@@ -42,14 +42,15 @@ def mapapp(request):
 
 
 	data = StoreNodes (os.environ['HOME'] + '/Desktop/TDDD63/lmap/mapvis/linkoping_map.osm')
-	nodes = ClipNodes ( data.nodes, 58.3900, 58.4000, 15.5700, 15.5800 )
+	nodes = ClipNodes ( data.nodes, 58.3900, 58.4060, 15.5700, 15.5900 )
+	# nodes = ClipNodes ( data.nodes, 58.3980, 58.3990, 15.5740, 15.5750 )
 
 	roads = StoreRoads(os.environ['HOME'] + '/Desktop/TDDD63/lmap/mapvis/linkoping_map.osm')
 
-	adj_list = graph.AdjList(nodes.return_nodes(), roads.return_edges(nodes.return_nodes()))
-	
 	edges = roads.return_edges(nodes.return_nodes())
 	nodes.filter(edges)
+	adj_list = graph.AdjList(nodes.return_nodes(), roads.return_edges(nodes.return_nodes()))
+	
 	n = attach_edges_with_nodes(edges, nodes.return_nodes())
 
 	start_node = find_closest_node(graph.Node(None, lng1, lat1), nodes.return_nodes())
@@ -57,13 +58,15 @@ def mapapp(request):
 
 	shortest_path = dijkstra.adjlist(adj_list.get_list(), start_node, target_node)
 
+
 	nodes_in_shortest_path = dict() 
 	if shortest_path : nodes_in_shortest_path = nodes.get_nodes(shortest_path['path'])
 	
 	c = RequestContext(request, 
 				             {'GMAPS_API_KEY': 'AIzaSyDUVb0C40shGs7dL4jC9pdCeBNUDlrt4YA',
 											'MAP_INFO': curr_map_info,
-											'COORDS': None , # nodes.nodes.values() , 
+											'COORDS': None , 
+											# 'COORDS': nodes.nodes.values() , 
 											'ROAD': nodes_in_shortest_path ,
 											'ROADS': n.values()
 											}
