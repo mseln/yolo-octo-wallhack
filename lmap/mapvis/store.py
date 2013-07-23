@@ -98,6 +98,7 @@ class ClipNodes :
 		return node_refs
 
 	def filter(self, edges) :
+		# Removes all nodes that aren't connected to any edge
 		ok_nodes = dict()
 		it = 0
 		for edge in edges.values() :
@@ -113,7 +114,7 @@ class ClipNodes :
 
 class Road:
 	def __init__(self, id, tag, nodes):
-		self.id = id						# osm id from file
+		self.id = id				# osm id from file
 		self.tag = tag
 		self.nodes = nodes			# list of nodes id
 
@@ -173,11 +174,9 @@ class StoreRoads:
 		it = 0
 
 		for road in self.roads.values() :
-			# print 'New road!'
 			# b.index is equal to a.index+1
 			# loop from the first node to the second last node
 			for a, b in zip(road.nodes, road.nodes[1:]):
-				# print str(a) + '\t' +  str(b)
 				# must check if node is in define_nodes, since the 
 				# whole road may not be in the area ClipNodes defines
 				if a in defined_nodes and b in defined_nodes :

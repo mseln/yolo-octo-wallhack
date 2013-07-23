@@ -13,5 +13,6 @@ Datum:          Tid:    Beskrivning:
                         Man kan nu välja två noder och programmet ritar ut kortaste vägen mellan dem.
 2013-07-18      8h      Dijkstra fungerar nu med adjacency list och matris, har läst på och implementerat en del PyUnit tester
                         har snyggat upp utritning av vägar/kortaste väg och städat upp bland filer och funktioner
-2013-07-19			6h			Lagt till unit tests för dijkstra, modifierat dijkstra till att använda heap istället, gjort så att
+2013-07-19      6h      Lagt till unit tests för dijkstra, modifierat dijkstra till att använda heap istället, gjort så att
                         positionen och zoomnivån inte ändras när man klickar på "Go". 
+2013-07-20		2h		Kommenterat kod, Läst på om templates.

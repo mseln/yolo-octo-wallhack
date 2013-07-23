@@ -17,6 +17,7 @@ def length_haversine(p1, p2) :
 	return 6372797.560856 * c # return distance in m
 
 def is_float(s):
+	# test wheter a value is a float or not
 	try:
 		float(s)
 		return True

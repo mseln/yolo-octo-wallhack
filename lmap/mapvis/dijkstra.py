@@ -1,3 +1,6 @@
+# Read about dijkstra here: http://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+# 
+
 INF = 1000000000
 
 def adjmat(G, s, e) :
