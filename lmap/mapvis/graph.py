@@ -53,7 +53,8 @@ class AdjMatrix:
 		return self.dist
 
 	def print_adjmat_to_file(self, f_name) :
-		# write the whole adjency matrix to the file adj_mat.txt
+		# Write the whole adjacency matrix to the file which is given as f_name
+		# This was the easiest way two display a somewhat big matrix in a readable way.
 		txt_f = open(f_name,'w')
 		for i in self.dist.values() :
 			for j in i.values() :
@@ -61,13 +62,20 @@ class AdjMatrix:
 			txt_f.write('\n')
 		txt_f.close()
 
+# Graph stored as an adjacency list. Each node is referenced by it's id and it 
+# contains a list of all the id's of the neighboors.
+# More information about adjacency lists can be read here http://en.wikipedia.org/wiki/Adjacency_list
 class AdjList :
 	def __init__(self, nodes, edges) :
 		self.n = dict()
 		for node in nodes.values() :
+			# Define all node references as an empty array.
 			self.n[node.id] = []
 
 		for edge in edges.values() :
+			# Make a edge in both directions since you can go either way
+			# on the road. You could add support for one-way roads.
+			# First element is the neigboor and the second is the weight.
 			self.n[edge.t].append([edge.f, edge.w])
 			self.n[edge.f].append([edge.t, edge.w])
 

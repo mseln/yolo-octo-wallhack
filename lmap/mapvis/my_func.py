@@ -1,3 +1,6 @@
+# This file contains different useful functions that 
+# didn't really fit in in any other file.
+
 from math import sqrt , radians , sin , cos , asin
 INF = 1000000000
 
@@ -33,6 +36,7 @@ def is_float(s):
 
 	return False
 
+# This function finds the closest node from a point in a set of nodes.
 def find_closest_node(pos, nodes) :
 	if pos.lat and pos.lng :
 		pos.lat = float(pos.lat)
@@ -50,6 +54,8 @@ def find_closest_node(pos, nodes) :
 	else :
 		return None
 
+# This function takes nodes and edges as parameters and returns nodes in pairs 
+# between which there's an edge.
 def attach_edges_with_nodes(edges, nodes) :
 	edgenodes = dict()
 	for ekey, e in edges.items() :
