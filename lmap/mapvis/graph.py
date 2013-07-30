@@ -25,7 +25,7 @@ class Edge:
 		if self.w is None :
 			self.w = w
 		else :
-			# Dont replace a shorter road with a longer one
+			# Don't replace a shorter road with a longer one
 			# in case of two or more roads between the same nodes
 			self.w = min(w, self.w)
 

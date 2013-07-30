@@ -16,9 +16,9 @@
 
 			function initialize(){
 				var mapOptions = {
-					{% if MAP_INFO.lat %}
-						center: new google.maps.LatLng({{MAP_INFO.lat}}, {{MAP_INFO.lng}}),
-						zoom: {{MAP_INFO.zoom}},
+					{% if MAP_INFO.clat %}
+						center: new google.maps.LatLng({{MAP_INFO.clat}}, {{MAP_INFO.clng}}),
+						zoom: {{MAP_INFO.czoom}},
 					{% else %}
 						center: new google.maps.LatLng(58.39867, 15.57451),
 						zoom: 18,
@@ -106,11 +106,8 @@
 			function displayMarkers(map) {
 				{% for coord in COORDS %}
 					createMarker(map, new google.maps.LatLng({{coord.lat}},
-																									 {{coord.lng}}),
-																									 ""+{{coord.id}});
 				{% endfor %}
 			}
-
 			function createPolyline(map, path, color, opac){
 				var polyline = new google.maps.Polyline({
 					path: path,
