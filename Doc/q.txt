@@ -1,1 +1,0 @@
-Hur anropas count() från NodeCounter?

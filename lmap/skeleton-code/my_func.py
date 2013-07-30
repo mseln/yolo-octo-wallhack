@@ -1,5 +1,5 @@
 # This file contains different useful functions that 
-# didn't really fit in in any other file.
+# didn't really fit in into any other file.
 
 from math import sqrt , radians , sin , cos , asin
 INF = 1000000000
