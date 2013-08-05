@@ -29,7 +29,7 @@ def get_str(request, name) :
 
 class POST_parser :
 	def __init__(self, request) :
-		# You can here chose which variables you wan't to 
+		# You can here chose which variables you want to 
 		# get from POST and what to call them.
 		self.lat1 = get_float(request, 'lat1')
 		self.lng1 = get_float(request, 'lng1')

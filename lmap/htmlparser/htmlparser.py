@@ -1,12 +1,12 @@
 import re
 
 def itemize(s) :
-	return s.group()
-#	print s.group()
-#	s = re.sub(re.compile(r'\\begin{itemize}(.*?)\\end{itemize}', re.S), r'<ul>\1</ul>', s.group())
-#	s = re.sub(re.compile(r'(?:(?!\\item\w).)(.*)', re.S), r'<li>\1</li>\n', s)
-#	print s
-#	return s
+	# return s.group()
+	print s.group()
+	s = re.sub(re.compile(r'\\begin{itemize}(.*?)\\end{itemize}', re.S), r'<ul>\1</ul>', s.group())
+	s = re.sub(re.compile(r'\\item(.*?)\\item', re.S), r'<li>\1</li>', s)
+	print s
+	return s
 #
 f = open('test.tex')
 
