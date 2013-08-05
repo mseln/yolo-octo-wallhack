@@ -130,7 +130,7 @@
 			
 			function displayRoad(map) {
 				var points = new google.maps.MVCArray();
-				{% for node in ROAD.values %}
+				{% for node in SHORTEST_PATH.values %}
 					points.push(new google.maps.LatLng({{node.lat}}, {{node.lng}}));
 				{% endfor %}
 				createPolyline(map, points, "#000000", 1.0);
