@@ -17,3 +17,5 @@ Datum:          Tid:    Beskrivning:
                         positionen och zoomnivån inte ändras när man klickar på "Go". 
 2013-07-20      2h      Kommenterat kod, Läst på om templates.
 2013-07-23      3h      Jobbat med TeX -> HTML parser
+2013-07-30      8h      Fixat till POST-parsern samt dokumenterat den,
+                        lagt till debugexempel och har extraherat en skelettkod.
