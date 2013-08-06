@@ -4,7 +4,7 @@ import sys
 sys.path.append("..")
 
 
-from node import *
+from graph import Node
 from store import *
 
 def node_inside (node, min_lat, max_lat, min_lng, max_lng) :

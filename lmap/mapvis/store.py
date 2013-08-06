@@ -1,5 +1,5 @@
 from imposm.parser import OSMParser
-from my_func import length_haversine
+from algorithms import length_haversine
 import graph
 
 # This class reads an OSM file and stores its nodes in memory
@@ -25,11 +25,11 @@ class StoreNodes(object) :
 			self.bounds["min_lng"] = min( self.bounds["min_lng"], lng)
 			self.bounds["max_lat"] = max( self.bounds["max_lat"], lat)
 			self.bounds["max_lng"] = max( self.bounds["max_lng"], lng)
-
+	"""
 	def coords_print(self) :
 		for node in self.nodes :
 			print str(self.nodes[node].id) + '\t' + str(self.nodes[node].lng) + '\t' + str(self.nodes[node].lat)
-
+	"""
 	
 	def return_nodes(self) :
 		return self.nodes
@@ -62,12 +62,13 @@ class ClipNodes :
 				self.bounds["min_lng"] = min(self.bounds["min_lng"], node.lng)
 				self.bounds["max_lat"] = max(self.bounds["max_lat"], node.lat)
 				self.bounds["max_lng"] = max(self.bounds["max_lng"], node.lng)
-
+	"""
 	def coords_print(self) :
 		print 'Running nodes_print()'
 		for node in self.nodes :
 			print str(self.nodes[node].id) + '\t' + str(self.nodes[node].lng) + '\t' + str(self.nodes[node].lat)
-	
+	"""
+
 	def return_nodes(self) :
 		return self.nodes
 
@@ -134,11 +135,11 @@ class StoreRoads:
 			if 'highway' in tags :
 				road = Road(osmid, tags, refs)
 				self.roads[osmid] = road
-
+	"""
 	def print_roads(self) :
 		for road in self.roads :
 			print str(self.roads[road].id) + '\t' + str(self.roads[road].tag) + '\n' + str(self.roads[road].nodes) + '\n\n'
-
+	"""
 	def return_waypoints(self, defined_nodes) :
 		# return all nodes that all roads contain that are in the
 		# area that ClipNodes defines

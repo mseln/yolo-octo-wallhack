@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response
@@ -7,7 +9,7 @@ from django.core.context_processors import csrf
 
 import datetime
 
-from road_network import RoadNetwork
+from mapvis.road_network import RoadNetwork
 from POST_parser import POST_parser
 
 class MapInfo :

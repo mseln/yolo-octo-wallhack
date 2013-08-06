@@ -1,28 +1,24 @@
 import re
 
-def itemize(s) :
-	# return s.group()
-	print s.group()
-	s = re.sub(re.compile(r'\\begin{itemize}(.*?)\\end{itemize}', re.S), r'<ul>\1</ul>', s.group())
-	s = re.sub(re.compile(r'\\item(.*?)\\item', re.S), r'<li>\1</li>', s)
-	print s
-	return s
-#
-f = open('test.tex')
+f = open('stat.tex')
 
 s = f.read()
-# print s
 
 s = re.sub(r'\\documentclass{(.*?)}', r'', s)
 s = re.sub(r'\\usepackage{(.*?)}', r'', s)
 s = re.sub(r'\\author{(.*?)}', r'', s)
 s = re.sub(r'\\maketitle', r'', s)
+s = re.sub(r'\%.*', r'', s)
 
-s = re.sub(r'\\section{(.*?)}', r'<h1>\1</h1>', s)
-s = re.sub(r'\\subsection{(.*?)}', r'<h2>\1</h2>', s)
+s = re.sub(r'\\section{(.*?)}', r'<h2>\1</h2>', s)
+s = re.sub(r'\\subsection{(.*?)}', r'<h3>\1</h3>', s)
+s = re.sub(r'\\xcise{(.*?)}', r'<h4>\1</h4>', s)
+s = re.sub(r'\\ptask{(.*?)}', r'<h5>\1</h5>', s)
 
+s = re.sub(r'$(.*?)$', r'<i>\1</i>', s)
 s = re.sub(r'\\emph{(.*?)}', r'<b>\1</b>', s)
 s = re.sub(r'\\textbf{(.*?)}', r'<b>\1</b>', s)
+s = re.sub(r'\\texttt{(.*?)}', r'<code>\1</code>', s)
 s = re.sub(r'\\texttt{(.*?)}', r'<code>\1</code>', s)
 
 s = re.sub(r'\\dots', r'...', s)
@@ -31,5 +27,5 @@ s = re.sub(r'\\url{(.*?)}', r'<a href="\1">\1</a>', s)
 s = re.sub(r'\\newline', '<br>', s)
 s = re.sub(r'(\\\\)', r'<br>', s)
 
-s = re.sub(re.compile(r'\\begin{itemize}(.*?)\\end{itemize}', re.S), itemize, s, re.S)
-
+o = open('parsed.html', 'r+')
+o.write(s)
