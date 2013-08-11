@@ -41,6 +41,10 @@
 		content: none;
 		counter-increment: none;
 	}
+	h4.projcount:before {
+		content: "Extension project " counter(h2counter) "." counter(h3counter) "." counter(h4counter) ".\0000a0\0000a0";
+		counter-increment: h4counter;
+	}
 	h4 {
 		counter-reset: h5counter;
 	}
@@ -52,32 +56,81 @@
 		content: none;
 		counter-increment: none;
 	}
+	h2.intro{}
 	p {text-indent:20px;}
-
+	.noindent,
+	p.noindent,
+	{
+    	text-indent:        0;
+	}
+	td { min-width: 50px; }
+	#wrap { width:500px; margin:0 auto; }
+	#main { 
+		overflow:auto;
+		width: 80%;
+    	float: left;
+    	padding:10px;
+	}
+	#sidebar { 
+  		margin-bottom: -5000px; 
+  		padding-bottom: 5000px; 
+  		float:right; 
+  		width: 15%;
+  	    padding:10px;
+  	    height:auto;
+  	    border: solid 2px black;
+  	}
+  	.note { 
+  		padding:.8em 1em .8em; 
+  		margin: 1em 0; 
+  		border:1px 
+  		solid #A6A6FB;
+  	}
 	</style>
 </head>
 
-<body>
+<body bgcolor="#E6E6FA">
+	<div id="sidebar">
+		<h2 class="nocount"> Table of contents </h2>
+		<ol>
+			<li><a href="#intro">Introduction</a></li> 
+			<li><a href="#background">Background</a></li>
+			<li><a href="#project_intro">Project Assignment: Introductory Phase</a></li>
+			<ol>
+				<li><a href="#django">Creating a Web Application with Django</a></li>
+				<li><a href="#gmaps_api">Displaying a Map with the Google Maps API</a></li>
+				<li><a href="#explore_osm">Exploring Data from Open Street Map</a></li>
+				<li><a href="#disp_osm">Displaying Open Street Map Data</a></li>
+			</ol>
+			<li><a href="#project_main">Project Assignment: Main Phase</a></li>
+			<ol>
+				<li><a href="#find_path">Assisting a User to Get From A to B</a></li>
+				<li><a href="#extend">Extending Your Application Further</a></li>
+			</ol>
+		</ol>
+	</div>
+	<div id="main">
 	<h1 class="countheads">TDDD63 Project: Map-based Applications</h1>
-
-
-
-	<h2> Introduction </h2>
+	<h2><a id="intro">Introduction to map based applications</a> </h2>
 	<p>Maps represent the world we live in. They are central in many computer applications. The goal of this project is to create a map-based application including some of the underlying data structures and algorithms. </p>
-	<p>As we all know, the numbering of the houses in Ryd can be quiteconfusing. It has been rumored that there is a research report stating that there is no simple set of rules that describe the numbering.To help you find your way to your friends you need a map application that for example shows the shortest path between your house and your friends houses.  Since you want to become an expert programmer you decide to write your own application to learn more about the data structures, algorithms, and problems involved in map applications.</p>
+	<p>As we all know, the numbering of the houses in Ryd can be quiteconfusing. It has been rumored that there is a research report stating that there is no simple set of rules that describe the numbering. To help you find your way to your friends you need a map application that for example shows the shortest path between your house and your friends houses.  Since you want to become an expert programmer you decide to write your own application to learn more about the data structures, algorithms, and problems involved in map applications.</p>
 	<p>In the first part of the project a basic map application is developed which can then be extended in a number of different directions in the second part.</p>
 
 
 
-	<h2> Background </h2>
+	<h2><a id="background">Background</a></h2>
 	<p>Maps have always played a central role in human society. According to <a href="http://en.wikipedia.org/wiki/Map">Wikipedia</a>, a map is "a visual representation of an area -- a symbolic depiction highlighting relationships between elements of that space such as objects, regions, and themes." </p>
-
+	
 	<p>The earliest known maps are of the heavens, not the earth. 
-	<a href=http://issuu.com/lightmediation/docs/the_lascaux_cave___a_prehistoric_sky-map_3390?mode=embed&documentId=080926150256-7f1d39d0e87c4e28a7515a2712d1e473&layout=grey>Dots dating to 16,500 BCE </a> 
+	<a href="http://issuu.com/lightmediation/docs/the_lascaux_cave___a_prehistoric_sky-map_3390?mode=embed&documentId=080926150256-7f1d39d0e87c4e28a7515a2712d1e473&layout=grey">Dots dating to 16,500 BCE </a> 
 	found on the walls of the 
-	<a href = http://en.wikipedia.org/wiki/Lascaux>Lascaux caves</a>  map out part of the night sky, including the three bright stars Vega,  Deneb, and Altair, as well as the Pleiades star cluster.</p>
+	<a href = "http://en.wikipedia.org/wiki/Lascaux">Lascaux caves</a>  map out part of the night sky, including the three bright stars Vega,  Deneb, and Altair, as well as the Pleiades star cluster.</p>
 
-	<p>Computerized maps have gained popularity especially with the introduction of smart phones with <a href = http://en.wikipedia.org/wiki/GPS_navigation_device>GPS receivers</a>. Equipped with a GPS receiver you know the coordinates of your current location, i.e.~you know where you are (roughly, depending on the accuracy of the receiver).  To make those coordinates much more useful, you also need to know where those coordinates are in the world.  In other words, you need a map. With a map displaying your location, according to the GPS, you can do many things such as finding your way to your friend somewhere in Ryd and find the closest pizza place.</p>
+	<div>
+		<img class="high"  height="60%" width="60%" src="http://image.issuu.com/080926150256-7f1d39d0e87c4e28a7515a2712d1e473/jpg/page_3.jpg" style="display: block;">
+	</div>
+
+	<p>Computerized maps have gained popularity especially with the introduction of smart phones with <a href="http://en.wikipedia.org/wiki/GPS_navigation_device">GPS receivers</a>. Equipped with a GPS receiver you know the coordinates of your current location, i.e.~you know where you are (roughly, depending on the accuracy of the receiver).  To make those coordinates much more useful, you also need to know where those coordinates are in the world.  In other words, you need a map. With a map displaying your location, according to the GPS, you can do many things such as finding your way to your friend somewhere in Ryd and find the closest pizza place.</p>
 	<p>
 	There are many popular map-based applications:
 	<ul>
@@ -85,10 +138,10 @@
 	<li> Data visualization aids to explore and interact with data such
 	as corruption, crimes and natural resources.
 	<li> Use crowd sourcing to monitor elections and support disaster
-	relief, such as <a href=https://crowdmap.com/{Crowdmap} by <a href=http://legacy.ushahidi.com/>Ushahidi</a>.
-	<li> Recreational applications such as <a href=http://www.geocaching.com/>Geocaching, <a href=https://foursquare.com/}{FourSquares}, and
-	<a href=http://www.mapmyrun.com/>MapMyRun</a>.
-	<li> For more examples, see <a href=http://googlemapsmania.blogspot.se>http://googlemapsmania.blogspot.se</a>.
+	relief, such as <a href="https://crowdmap.com/{Crowdmap} by <a href=http://legacy.ushahidi.com/">Ushahidi</a>.
+	<li> Recreational applications such as <a href="http://www.geocaching.com/">Geocaching, <a href="https://foursquare.com/"}{FourSquares}, and
+	<a href="http://www.mapmyrun.com/>MapMyRun"</a>.
+	<li> For more examples, see <a href="http://googlemapsmania.blogspot.se">http://googlemapsmania.blogspot.se</a>.
 	</ul>
 	</p>
 	<p> Google Maps is probably the most popular online map as well as map API. With their many users Apple might manage to catch up. An interesting fact about Apple's maps is that it is partially developed by the Linköping company C3 Technologies which was acquired by Apple. C3 Technologies is a spin-off company from SAAB that generates accurate 3D maps.
@@ -96,13 +149,10 @@
 
 
 
-	<h2> Project Assignment: Introductory Phase </h2>
-	<p>The goal of the introductory phase is to create a web application using the Django framework: </p>
-	<ul><li><a href=https://www.djangoproject.com/> https://www.djangoproject.com/ </a></ul>
-	<p>display a map using the Google Maps API: </p>
-	<ul><li><a href=https://developers.google.com/maps/documentation/javascript/>https://developers.google.com/maps/documentation/javascript/</a></ul>
-	<p>and to explore map data from the Open Street Map project:</p>
-	<ul><li><a href=http://www.openstreetmap.org/>http://www.openstreetmap.org/</a></ul>
+	<h2><a id="project_intro">Project Assignment: Introductory Phase</a></h2>
+	<p>The goal of the introductory phase is to create a web application using the <a href="https://www.djangoproject.com/">Django framework</a>,</p>
+	<p>display a map using the <a href="https://developers.google.com/maps/documentation/javascript/">Google Maps API</a>,</p>
+	<p>and to explore map data from the <a href="http://www.openstreetmap.org/">Open Street Map project</a>.</p>
 	<p>This part of the project is structured around the following four
 	milestones that each consists of a series of exercises. Each exercise
 	has a number of tasks that should be completed. </p>
@@ -114,7 +164,7 @@
 	</ol>
 	<p> When you have reached the last milestone you will have a web application that displays a set of locations from Open Street Map on a map using the Google Maps API. </p>
 
-	<h3> Creating a Web Application with Django </h3>
+	<h3><a id="django">Creating a Web Application with Django</a></h3>
 	<p>The goal of this milestone is to create a basic web application using the Django framework. Django is a Python framework for creating websites. It is very easy to get started with and provides all the functionality needed for this project.</p>
 
 	<h4> (Create a Django Project) </h4>
@@ -182,7 +232,7 @@
 
 	<p>The next step towards a web application is to generate your first web page.  In Django, and in other frameworks based on the Model View Controller (<a href="http://en.wikipedia.org/wiki/Model-view-controller">http://en.wikipedia.org/wiki/Model-view-controller</a>) design pattern, this is done through a <i>view</i>. To make a page available to a user it has to be associated with a URL. From a Django programming perspective, the content of a page is produced by a view function and a URL is specified in a URLconf.</p>
 
-	<p>You can read about views and associating URLs to views here <a href="http://www.djangobook.com/en/2.0/chapter03.html">http://www.djangobook.com/en/2.0/chapter03.html</a>.</p>
+	<p>You can read about views and associating URLs to views <a href="http://www.djangobook.com/en/2.0/chapter03.html">here</a>.</p>
 
 
 
@@ -192,8 +242,16 @@
 
 	<script src="https://gist.github.com/mseln/0153a3e4b65d3c8e6e13.js"></script>
 
-	If you haven't already, read about what this code does here
-	<a href="http://www.djangobook.com/en/2.0/chapter03.html">http://www.djangobook.com/en/2.0/chapter03.html</a>.</p>
+	If you haven't already, read about what this code does
+	<a href="http://www.djangobook.com/en/2.0/chapter03.html">here</a>.</p>
+
+	<div class=note>
+		<h4 class=nocount>Debugging tips:</h4>
+		<p>If something goes wrong you need to find out what the problem is. Often you do that by checking what values the relevant variables have. Using <code>print</code> is a very easy way to debug in python. It simply prints a given value to the console. If you're running the server it will print the output in the same window as the server is running on.</p>
+		<script src="https://gist.github.com/mseln/ced9d25b9ebcc31b9ec7.js"></script>
+
+		<p>As you may already have seen, the django error view contains a lot of info. It contains all variables and their values. You can get this info by just adding <code>assert(False)</code> anywhere in your code. It will cause the program to "crash" and show all info about the current view. Try it out in your hello world view! Add <code>assert(false)</code> just before <code>return HttpResponse("Hello world")</code> and reload the page</p>
+	</div>
 
 	<h5>Connect a URL to your view</h5>
 
@@ -220,7 +278,7 @@
 	<a href="http://www.djangobook.com/en/2.0/chapter03.html">http://www.djangobook.com/en/2.0/chapter03.html</a>.</p>
 
 	<h5>Create a view that generates a page showing the current time</h5>
-	<p>It is important to emphasize that the view function you just created is a plain Python function which generates a string, which is interpreted as a <a href=http://en.wikipedia.org/wiki/HTML>HTML</a> page by your browser.</p>
+	<p>It is important to emphasize that the view function you just created is a plain Python function which generates a string, which is interpreted as a <a href="http://en.wikipedia.org/wiki/HTML">HTML</a> page by your browser.</p>
 
 	<p>The hello view you created returns a static string. Let us make it a bit more interesting by including the current date and time. This means that every time your reload the page a new string is generated (unless you reload it faster than the resolution of the clock, but then you have to be pretty darn fast).</p>
 
@@ -228,6 +286,10 @@
 
 	<p>When you are done your code should look something like this:</p>
 	<script src="https://gist.github.com/mseln/313effe7fcc24619b21a.js"></script>
+
+	<p><i>Note: If you are wondering why the application are showing the wrong time, it is probaly because you haven't set up the right timezone. How to fix that you have to find out yourself, it is a good excercise"</i></p>
+
+	<p>If you still have a hard time understanding what the code snippets above do. Take some time and read through the whole <a href="http://www.djangobook.com/en/2.0/chapter03.html">Views and URLconfs</a> from django book.</p>
 
 	<h5>Play around with your view</h5>
 
@@ -238,9 +300,9 @@
 
 	<h4>Generate a web page using a template</h4>
 
-	<p>In the previous exercise you created a web page by hard coding the content. A much better approach is to use the Django template facility. It allows you to combine hard coded and generated HTML/<a href=http://en.wikipedia.org/wiki/Cascading_Style_Sheets>CSS</a>/<a href=http://en.wikipedia.org/wiki/Javascript>JavaScript</a> in more user friendly manner than creating a very long string by concatenating smaller strings.</p>
+	<p>In the previous exercise you created a web page by hard coding the content. A much better approach is to use the Django template facility. It allows you to combine hard coded and generated HTML/<a href="http://en.wikipedia.org/wiki/Cascading_Style_Sheets">CSS</a>/<a href="http://en.wikipedia.org/wiki/Javascript">JavaScript</a> in more user friendly manner than creating a very long string by concatenating smaller strings.</p>
 
-	<p>You can read more about Django's templates here <a href="http://www.djangobook.com/en/2.0/chapter04.html">http://www.djangobook.com/en/2.0/chapter04.html</a>.</p>
+	<p>You can read more about Django's templates <a href="http://www.djangobook.com/en/2.0/chapter04.html">here</a>.</p>
 
 	<h5>Create a directory for your templates</h5>
 
@@ -281,11 +343,11 @@
 
 	<h5>Play around with views and templates</h5>
 
-	<p>To learn more about vies and templates we suggest that you play around with them for a while. Try to create something impressive and show it to the other groups.</p>
+	<p>To learn more about views and templates we suggest that you play around with them for a while. Try to create something impressive and show it to the other groups.</p>
 
 
 
-	<h3>Displaying a Map with the Google Maps API</h3>
+	<h3><a id="gmaps_api">Displaying a Map with the Google Maps API</a></h3>
 	The goal of this milestone is to extend the web application created to
 	display a map using the Google Maps API. Since this API is written for
 	JavaScript this milestone involves some very simple JavaScript
@@ -325,12 +387,26 @@
 
 	<p>To understand what the code above does, take a look at the Google Maps JavaScript API tutorial <a href="https://developers.google.com/maps/documentation/javascript/tutorial">https://developers.google.com/maps/documentation/javascript/tutorial</a>.</p>
 
+	<div class=note>
+		<h4 class=nocount>Debugging tips:</h4>
+		<p>To debug javascript you need to use some sort of tool, otherwise you would only get a white page if something goes wrong and that doesn't say too much does it?<br>
+
+		One of those tools is <a href="https://getfirebug.com/">firebug</a> which is an both free and open source plugin for browsers. With firebug you can see the source of the page you're visiting. It can also enable javascript's console to get error messages, which makes it a lot easier to find the missing "}" for instance. Firebug will also notify you about errors and warnings when you're browsing any site, if enabled.</p>
+
+		<p>Another way to debug javascript is to use alert which generates a pop-up window containing text. </p> 
+		<script src="https://gist.github.com/mseln/64ec50048eb1a2f43bc2.js"></script>
+		You can paste the code sample above anywhere you want in javascript code and it will make a pop-up window appear when that statement is reached.
+	</div>
+
 	<h5>Create a view that generates the map page</h5>
 
 	<p>To display the map, you also need to update the <code>mapapp</code> view function by including your Google Maps API key in the Context so that it is included in the generated web page. The complete code for the view function is:</p> 
 
 	<script src="https://gist.github.com/mseln/86a2cf2a43dcfb5ac71e.js"></script>
-	
+
+	<p>The <code>Context</code> object works like a dictionary but with some extensions.<br>
+	Read about <a href="https://docs.djangoproject.com/en/dev/ref/templates/api/#django.template.Context"><code>Context</code></a> and <a href="https://docs.djangoproject.com/en/dev/ref/templates/api/">Templates</a> in the documentation.</p>
+
 	<h5>Change the map center</h5>
 
 	<p>Currently the map is centered on Sydney, Australia. This can be changed. The latitude and longitude of Linköping University is 58.3985303, 15.5745319. To change the center of the map, update the value of the mapOptions property center to <code>center: new google.maps.LatLng(58.3985303, 15.5745319),</code>.</p>
@@ -360,7 +436,7 @@
 	<p>To display a marker you need to create a new object of the type <code>google.maps.Marker</code> with a reference to the map, the latitude and longitude of the marker, and the title of the marker. The title is a string that is displayed when the mouse is placed on the marker.</p>
 
 	<p>Copy the following helper function into your template after the line<br> <code>google.maps.event.addDomListener(window, 'load', initialize);</code>:</p>
-
+	<script src="https://gist.github.com/mseln/af4c7a702c97f724c978.js"></script>
 
 	<h5>Create a marker on the click of the mouse</h5>
 
@@ -369,6 +445,7 @@
 	<p>The event handler is the createMarker function you created above.</p>
 
 	<p>To create the event handler, copy the following code to the end of the initialize() function you created before:</p>
+	<script src="https://gist.github.com/mseln/ba45ae5e151dc6efde93.js"></script>
 
 	<p>Test the functionality by reloading the web page and finding the coordinates of for example Zenit, your current location, and your house.</p>
 
@@ -376,7 +453,7 @@
 
 
 
-	<h3>Exploring Data from Open Street Map</h3>
+	<h3><a id="explore_osm">Exploring Data from Open Street Map</a></h3>
 
 	<p>Open Street Map (<a href="http://www.openstreetmap.org/">http://www.openstreetmap.org/</a>) (OSM) is an open source alternative to Google Maps which is created by volunteers, where many people, including members of Lysator, have contributed. Open Street Map contains data about for example nodes, roads and buildings.  A node is a point which is of interest, usually as part of a road or a building.</p>
 
@@ -434,7 +511,7 @@
 
 	<p>Find out what information a <code>way</code> contains.</p>
 
-	<h5>Which information does a <code>relation</code> contain? <h5>
+	<h5>Which information does a <code>relation</code> contain? </h5>
 
 	<p>Find out what information a <code>relation</code> contains.</p>
 
@@ -470,36 +547,24 @@
 
 	<p>We now want you to start processing the OSM data by executing programs you have written yourself. Parsing the rather extensive OML XML format is not an easy task. You will therefore use a ready made parser for at least the introductory phase.</p>
 
-	<p>The OSM parser is part of the <code>imposm.parser</code> Python library (<a href="http://dev.omniscale.net/imposm.parser/">http://dev.omniscale.net/imposm.parser/</a>). This library provides functionality to efficiently parse OpenStreetMap XML data and exposes a very simple API to access the data parsed. The library is installed on the Solaris system; if you use your own computer, you need to follow the instructions on the library web page to install it yourself.</p>
-
-	<h5>Python code</h5>
-
-	<p>The following Python snippet uses the <code>imposm.parser</code> libray to count the number of nodes in the file <code>map.osm</code>:</p>
-	
-	<script src="https://gist.github.com/mseln/9cce3c0c0c35b123bd78.js"></script>
-
 	<p>Hint: You might have to change the directory and file name of the OSM map file to make the code work.</p>
 
 	<h5>How many nodes does your Linköping map data have?</h5>
 
-	<p>Find out how many nodes your Linköping map data contains by writing a program that counts them.</p>
+	<p>Find out how many nodes your Linköping map data contains by writing a program that counts them and how much time it takes.</p>
+
+	<script src="https://gist.github.com/mseln/9cce3c0c0c35b123bd78.js"></script>
 
 	<h5>Learn more about the parser</h5>
 
-	<p>Read the <code>imposm.parser</code> documenation at <a href="http://dev.omniscale.net/imposm.parser/">http://dev.omniscale.net/imposm.parser/</a> and write Python programs to answer the following questions.
+	<p>Write Python programs to answer the following questions. To answer these questions you have to look inside the <code>osm_parser.py</code> file
 	<ol>
-	<li> How many untagged nodes are there in your OSM data?
-	<li> How many <code>ways</code> are there in your OSM data?
-	<li> How many <code>relations</code> are there in your OSM data?
-	<li> How many <code>ways</code> that are tagged as highways are there in your OSM data?
-	<li> How many buildings are there in your OSM data?
-	</ol></p>
-
+	<li> How many <code>edges</code> are there in your OSM data	</ol></p>
 	<h5>Your own investigations</h5>
 
-	<p>Try to come up with at least 3 questions of your own about the map data and answer them by using the <code>imposm.parser</code> library.</p>
+	<p>Try to come up with at least 3 questions of your own about the map data and answer them by using the osm_parser.</p>
 
-	<h3>Displaying Open Street Map Data</h3>
+	<h3><a id="disp_osm">Displaying Open Street Map Data</a></h3>
 
 	<p>Now you will put together all the pieces you have learned so far by extending the web application to display locations from Open Street Map on the map.</p>
 
@@ -508,22 +573,21 @@
 	<h4>Create a data structure to store locations</h4>
 
 	<p>At the moment, all we want to be able to do is to keep all nodes with their longitude and latitude in memory. To do this, we represent nodes with a simple Python class holding the node id and its associated longitude and latitude:</p>
-
-
-
 	<script src="https://gist.github.com/mseln/c08022c23c154c197a66.js"></script>
+	<p> Create a file called <code>store.py</code> and insert the code above there.</p>
 
-	The data structure to store all the nodes will now simply be a
-	dictionary using the node id as key. Using the <code>osm.parser</code> to
-	parse our map data we get the following Python code:
-	
+	<p>The data structure to store all the nodes will now simply be a dictionary using the node id as key and a array <code>bounds</code> to keep track of the boundaries of the nodes.<p>
 	<script src="https://gist.github.com/mseln/64986a9249a910cfa1eb.js"></script>
 
 
+	<p> Using the <code>osm_parser</code> to
+	parse our map data we get the following Python code:</p>
+	<script src="https://gist.github.com/mseln/8160d799385ec9424315.js"></script>
 
-	<h5>Use the <code>StoreNodes</code> class</h5>
 
-	<p>Write Python code that uses the <code>StoreNodes</code> class to read your OSM data and then print out all nodes that are stored in memory.</p>
+	<h5>Use the <code>extract_osm_nodes</code> function</h5>
+
+	<p>Write Python code that uses the <code>extract_osm_nodes</code> function to read your OSM data, store it in the <code>NodeSet</code> class and then print out all nodes that are stored in memory.</p>
 
 	<h4>Only use nodes in a particular rectangular area</h4>
 
@@ -553,6 +617,7 @@
 
 	<p>One of many advantages of Python is that it has a built in unit testing framework which is called <code>unittest</code>. Read more about it here <a href="http://docs.python.org/library/unittest.html">http://docs.python.org/library/unittest.html</a>.</p>
 
+	<p><b><font color="red"> NOT UP TO DATE!</font></b></p>
 	<p>Here is an initial unit test for the <code>ClipNodes</code> class.</p>
 	
 	<script src="https://gist.github.com/mseln/c303fe2f70d243db627f.js"></script>
@@ -590,26 +655,28 @@
 
 	<p>The following code parses the file <code>linkoping_ap.osm</code> in the same directory as the view code, extracts all nodes in a rectangle corresponding to the area between the E-house and the physics building, and adds the list of nodes to the context used to render the map.</p>
 
-
-
 	<script src="https://gist.github.com/mseln/c85864c91042f8acea5f.js"></script>
-
-
 
 	<h5>Extend the template to display a set of markers</h5>
 
 	<p>In the previous task you created a list of node objects and associated them with the identifier <code>COORDS</code> in the context. To display each of these nodes as a marker you can use the excellent Django template functionality. Basically, you can use simplified Python code to loop over a list and extract the attributes of each object. The following Django template code generates a JavaScript function to display all the nodes associated with <code>COORDS</code> as markers. Include the code last in the JavaScript section of the <code>mapapp.html</code> template.</p>
 
+	<script src="https://gist.github.com/mseln/fceea8efff6e9468802e.js"></script>
+
 	<p>To display the markers you also need to call the function (<code>displayMarkers(map);</code>) in the initialize() function, preferably at the end.</p>
 
 
-	<h2> Project Assignment: Main Phase </h2>
+	<h2><a id="project_main">Project Assignment: Main Phase</a></h2>
 
 	<p>Congratulations, you have now learned how to create a web application displaying a map, how to extract data from the Open Street map project, store it in a data structure and display it in your web application.  Equipped with this, you will now create more advanced map-based web applications.
 
 	The first step is to extend your web application to assist a user to find her way between two locations.  This is the basis for direction and route finding applications such as those provided by Google and Apple.</p>
 
-	<h3>Assisting a User to Get From A to B</h3> 
+	<p>The image below is showing how the finished product could look like, of course your are going to be prettier.</p>
+	<div align="center">
+		<img border="0" src="mapapp_overview.png" alt="Web interface" width="1023" height="567">
+	</div>
+	<h3><a id="find_path">Assisting a User to Get From A to B</a></h3> 
 	<p>The first goal of this part of the project is to develop a web application that assists a user to get from a location A to a location B. To achieve this, the application should allow a user to select two locations on a map, compute the shortest path between these locations and display the path on the map.  To compute the shortest path you also need to create a data structure storing information about which locations are connected and the distances between them as well as populate it with real map data.  At the end of this part of the project you will have an application similar to the one in</p>
 
 	<p>Milestones:
@@ -617,11 +684,9 @@
 		<li> 
 			Extend the map application to store and display roads.
 			<ol>
-				<li> 
-					Create a data structure to store roads and appropriate unit tests. Make sure that your code passes all the unit tests. A suggestion is to create a data type called <code>Road</code>that stores a single road.  The simplest version is to store the id of the road and a list of node ids, just like the OSM data.  The class could look like this:<br>
-
-					<img border="0" src="mapapp_overview.png" alt="Web interface" width="1023" height="567">
-
+				<li>
+					Create a data structure to store roads and appropriate unit tests. Make sure that your code passes all the unit tests. A suggestion is to create a data type called <code>Edge</code> that stores a single edge. An edge is a directed connection between two nodes so a road would contain a lot of edges.
+					
 					<script src="https://gist.github.com/mseln/e3a9b431ce122039ae1c.js"></script>
 
 				</li>
@@ -631,7 +696,9 @@
 					<script src="https://gist.github.com/mseln/a5da5f1df3ba9d67dcfe.js"></script>
 				</li>
 				<li> 
-					Extend the map application to display all roads. To display all roads, we suggest that you create a new data type, or update the <code>Road</code> data type, to represent a road as a sequence of coordinates where each coordinate has at least a latitude and a longitude value.  You can then store all roads as a sequence of such road objects.  By having this structure it becomes straight forward to create a Django template for iterating through all roads and for each road create a polyline by iterating through all coordinates and adding each coordinate to the polyline. To help you, we provide the following example JavaScript code:
+					To store all roads, we suggest that you create a new class EdgeSet witch contains all edges. Between all connected we have to create an edge which is going to be stored in a list of edges.
+
+					By having this structure it becomes straight forward to create a Django template for iterating through all roads and for each road create a polyline by iterating through all coordinates and adding each coordinate to the polyline. To help you, we provide the following example JavaScript code:
 
 					<script src="https://gist.github.com/mseln/76bf9d2cd105fe25813d.js"></script>
 				</li>
@@ -669,7 +736,25 @@
 					<script src="https://gist.github.com/mseln/126b2d429345c50a0859.js"></script>
 				</li>
 				<li> 
-					Implement a provable optimal algorithm to compute the shortest path between two locations using the graph data structure together with appropriate test cases (you do not have to prove that it is optimal). You should write your own code implementing and testing an existing algorithm, There are many algorithms for finding the shortest path between two nodes in an edge weighted graph. For this project we suggest you start out by implementing Dijkstra's algorithm (<a href="http://en.wikipedia.org/wiki/Dijkstra's_algorithm">http://en.wikipedia.org/wiki/Dijkstra's_algorithm</a>).
+					Implement a provable optimal algorithm to compute the shortest path between two locations using the graph data structure together with appropriate test cases (you do not have to prove that it is optimal). You should write your own code implementing and testing an existing algorithm, There are many algorithms for finding the shortest path between two nodes in an edge weighted graph. For this project we suggest you start out by implementing(<a href="http://en.wikipedia.org/wiki/Dijkstra's_algorithm">Dijkstra's algorithm</a>).
+
+					<div class=note>
+						<h4 class=nocount>Note on running time:</h4>
+						
+						<p>Dijkstras algorithm for an adjacency matrix is not the most optimal, for graphs that has more than 1000 nodes it becomes time consuming. Below is a table of how the number of nodes is proportional to the running time. The <a href="http://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#Running_time">time complexity</a> for dijkstra is O(V^2) but can be improved.</p>
+						
+						<table border="1">
+							<tr>	<th>Nodes</th>	<th>Time (s)</th>	</tr>
+							<tr>	<td>542</td>	<td>0.18</td>		</tr>
+							<tr>	<td>740</td>	<td>0.47</td>		</tr>
+							<tr>	<td>1284</td>	<td>2.74</td>		</tr>
+							<tr>	<td>1744</td>	<td>6.08</td>		</tr>
+							<tr>	<td>2694</td>	<td>25.5</td>		</tr>
+							<tr>	<td>3652</td>	<td>66.4</td>		</tr>
+						</table>
+						
+						<p>As you can see the algorithm start to take a serious amount of time at around 1000 nodes. There are improvements to make e.g. using a heap instead of a matrix or create an abstract graph of only the crossings. But we leave them out for now and focus on getting a working shortest path application for a small area. In section 4.2. you can choose the extension project which includes speeding up the algoritm.</p>
+					</div>
 				</li> 
 			</ol>
 		</li> 
@@ -684,11 +769,17 @@
 						<li> 
 							Create an on click event handler that fills in the fields in the form when a user clicks on the map. Since the user needs to select two coordinates you have to find a way to do that (one approach is to have a very simple state machine with two states, one for entering the start coordinate and one for entering the destination coordinate). In the introductory part you created an on click event handler so the new thing is to populate a form with that data. One page discussing this is <a href="http://www.javascript-coder.com/javascript-form/getelementbyid-form.phtml">http://www.javascript-coder.com/javascript-form/getelementbyid-form.phtml</a>.
 						</li>
-						<li> 
-							Process the content of the form in the view.  This is quite straight forward as Django provides <code>request.POST</code> which is a dictionary containing all posted variables and their values.
+						<li>
+							<p.noindent>Process the content of the form in the view. To when you press the "Go" button, you are directed to the same page. The content of the form is sent by <a href="http://en.wikipedia.org/wiki/POST_%28HTTP%29">POST</a> and is avaible from django's <a href="https://docs.djangoproject.com/en/dev/ref/request-response/#django.http.HttpRequest.POST">request.POST</a>.</p>
+
+							<p.noindent>Below is some code for an object that handles POST requests. <i>Note: all the values are defined in the initialization, when the object is first defined i.e. nothing happens with the values in the object until the "Go" button is pressed</i></p>
+							<script src="https://gist.github.com/mseln/69fac992839c2ea9ba71.js"></script>
+							<p.noindent>If you want any other value from a form, simply create a new variable.</p>
+
+							<p>Example: <code>self.foo = get_float(request, 'id')</code></p>
 						</li>
 						<li> 
-							To prevent <a href=http://www.squarefree.com/securitytips/web-developers.html#CSRF>cross   site request forgery</a> (CSRF) Django requires you to take some measures that are described here <a href="http://docs.djangoproject.com/en/dev/ref/contrib/csrf/">http://docs.djangoproject.com/en/dev/ref/contrib/csrf/</a>. Make sure that you follow these instructions.
+							To prevent <a href="http://www.squarefree.com/securitytips/web-developers.html#CSRF">cross   site request forgery</a> (CSRF) Django requires you to take some measures that are described <a href="http://docs.djangoproject.com/en/dev/ref/contrib/csrf/">here</a>. Make sure that you follow these instructions.
 						</li>
 					</ol>
 				</li>
@@ -731,67 +822,112 @@
 		</ol>
 	</ol></p>
 
-	<h3>Extending Your Application Further</h3>
-	<p>
+	<h3><a id="extend">Extending Your Application Further</a></h3>
 	After you have completed all these tasks, you have accomplished a lot. You have created and tested a graph data structure, populated it with data from the Open Street Map project, implemented and tested a shortest path algorithm, created a web application where a user can select multiple locations (and map these locations into nodes in the graph), displayed single and multiple paths in the web application, and more.
 
 	What you have done so far provides you with both a set of components for more advanced map-based applications as well as an understanding of some of the basic issues involved in map-based applications. Now you will extend your application further or develop new applications starting from the code you already have. This is a very open ended project with many possibilities to create exciting map-based applications. Below are some example suggestions that you can chose from and extend as you like. You are also welcome to suggest your own improvements.
+
+	<ul>
+	<h4 class="projcount">Smaller improvements to the shortest path application:</h4>
 	<ul>
 		<li> 
-			Smaller improvements to the shortest path application:
-			<ul>
-				<li> 
-					Add speed to the edges and let the user ask for the fastest way rather than the shortest. Can you provide better choices by minimizing the number of crossings that the user needs to pass?
-				</li>
-				<li> 
-					Improve the efficiency of the application by for example adding a bounding box to the roads to filter out as many of them as possible before drawing them on the map.  If you do this, then it is a good idea to measure how long it takes to create the page so that you see that you are making progress.
-				</li>
-				<li> 
-					Add a search box so that a user can enter an address which is looked up using the Google Geocoding API (<a href="https://developers.google.com/maps/documentation/geocoding/">https://developers.google.com/maps/documentation/geocoding/</a>).
-				</li>
-				<li> 
-					Compare the shortest paths you find with the ones provided by the Google Directions API (<a href="https://developers.google.com/maps/documentation/directions/">https://developers.google.com/maps/documentation/directions/</a>).
-				</li>
-				<li> 
-					Add support for buildings.  This would involve at least parsing the buildings from the OSM data, storing them in your application and displaying them on the map. You could also add further information so that when the mouse is hovering over a building you display some interesting piece of information about it.
-				</li>
-			</ul>
+			Add speed to the edges and let the user ask for the fastest way rather than the shortest. Can you provide better choices by minimizing the number of crossings that the user needs to pass?
 		</li>
 		<li> 
-			Currently all the data is stored in memory and if you reload the page then all the data is loaded again. Extend the application to store all the data in a database instead. This makes the data persistent and potentially improves the efficiency of the application. This is also a good exercise since all modern web applications are database driven.  To get started we suggest that you read about Models in the Django book (<a href="http://www.djangobook.com/en/2.0/chapter05.html">http://www.djangobook.com/en/2.0/chapter05.html</a>). Try to move as much functionality into the database as possible, for example by replacing ClipNodes with a database query.
+			Improve the efficiency of the application by for example adding a bounding box to the roads to filter out as many of them as possible before drawing them on the map.  If you do this, then it is a good idea to measure how long it takes to create the page so that you see that you are making progress.
 		</li>
 		<li> 
-			Create an application which lets users record their current or planned future location. This can be used to see where your friends were last seen and potentially where to look for them.  Maybe you can connect the central schedule database to your application to show where you should be depending on what courses you take?
+			Add a search box so that a user can enter an address which is looked up using the Google Geocoding API (<a href="https://developers.google.com/maps/documentation/geocoding/">https://developers.google.com/maps/documentation/geocoding/</a>).
 		</li>
 		<li> 
-			Extend the application by collecting information from the user.  Initially it could be to only ask for the current position of the user.  Maybe you are even able to get that information from the GPS on the users device?
+			Compare the shortest paths you find with the ones provided by the Google Directions API (<a href="https://developers.google.com/maps/documentation/directions/">https://developers.google.com/maps/documentation/directions/</a>).
 		</li>
 		<li> 
-			Extend the application to allow a user to select a set of locations and find the shortest path between each pair of locations. 
-			<ol> 
-				<li> 
-					Extend the map application to allow a user to select a set of coordinates.
-				</li>
-				<li> 
-					Implement an all-pairs shortest path algorithm using the previously developed graph data structure including the API and the unit tests.
-				</li>
-				<li> 
-					Extend the map application to display all the paths.
-				</li>
-			</ol>
+			Add support for buildings.  This would involve at least parsing the buildings from the OSM data, storing them in your application and displaying them on the map. You could also add further information so that when the mouse is hovering over a building you display some interesting piece of information about it.
 		</li>
-		<li> 
-			You have been given the task of building a beer pipeline by connecting plastic tubes to provide all your friends with beer directly from HG. Since you are thirsty you want to minimize the total amount of plastic tubes that you have to connect before finishing the project. Extend the map application to allow a user to select a set of end points and then find the edges along which the pipeline should be built so that the total length of the pipeline is minimized and display the result on the map. You can make this problem easier or harder depending on how much freedom you consider to be allowed when constructing the pipeline. The simpler version is to only build the pipeline along existing roads. To make the problem harder, and the total length of the pipeline shorter, you can allow new nodes to be added. If you allow new nodes then you can start by ignoring buildings and then add these later. The more accurate you want the result, the more complicated it becomes.
-		</li>
+	</ul>
 
+	<h4 class="projcount">Speed improvements to the shortest path application:</h4>
+	<p>As stated in section 4.1. using a matrix is pretty unefficient for sparse graphs. You can do some improvements to speed up the algorithm.</p>
+	<ol>
+		<li>If you are not already using an adjacency list instead of matrix, then change it. An adjacency list is a list where each element is representing a node and all elements in the list are a list of all neighboors. The dictionary now becomes very handy since you can use the node id as key to a list conataining all neighboors to that node.</li>
+
+			<table border=0 align="center">
+				<tr>
+					<td align="center">
+							<img src="http://www.utm.edu/departments/math/graph/gifs/kbrgraph.gif" border=0>
+					</td>
+					<td align="center">
+						<img src="http://upload.wikimedia.org/wikipedia/commons/5/5d/Konigsberg_bridges.png" border=0>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">Just a simple graph.</td>
+					<td align="center">The graph is acually representing<br>the seven bridges of Königsberg.</td>
+				</tr>
+				<tr>
+					<td align="center">
+					<table border="1" >		
+						<tr> <td> </td> <th>A</th>		<th>B</th> 		<th>C</th> 		<th>D</th> </tr>
+						<tr> <th>A</th> <td>0</td>		<td>1</td> 		<td>1</td> 		<td>2</td> </tr>
+						<tr> <th>B</th> <td>1</td>		<td>0</td> 		<td>inf</td> 	<td>3</td> </tr>
+						<tr> <th>C</th> <td>1</td>		<td>inf</td> 	<td>0</td> 		<td>3</td> </tr>
+						<tr> <th>D</th> <td>2</td>		<td>3</td> 		<td>3</td>		<td>0</td> </tr>
+					</table>
+					</td>
+					<td align="center">
+						<table border="1">
+							<tr> <th>A</th> <td>(B, 1)</td>		<td>(C, 1)</td> 		<td>(D, 2)</td> 	 </tr>
+							<tr> <th>B</th> <td>(A, 1)</td>		<td>(D, 3)</td> </tr>
+							<tr> <th>C</th> <td>(A, 1)</td>		<td>(D, 3)</td> </tr>
+							<tr> <th>D</th> <td>(A, 2)</td>		<td>(B, 3)</td> 		<td>(C, 3)</td> </tr>
+						</table>
+					</td>	
+				</tr>
+				<tr>
+					<td align="center">Matrix representation of the graph</td>
+					<td align="center">List representation of the graph</td>
+				</tr>
+			</table><br>
+
+		The upper image to the left is showing a simple graph. Actually it is a abstraction of the bridges in <a href="http://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg">Königsberg</a> shown in the picture to the right. Below are two graphs. The one to the left is the matrix representation of the graph and the one to the left is the list representation, where every node has a list containing it's neighboors as a pair (neighboor, weight).</li>
+		<br><br>
+		<li>Implement dijkstra using a heap instead making lookup of min-element take constant "O(1)" instead of linear time "O(n)". Article about <a href="https://www.udacity.com/wiki/cs215/unit5solutions-1">dijkstra using a heap</a>.</li>
+		<br>
+		<li>Only consider nodes that contain a crossing. Since if there is a node with only one edge in to it and one from it you only have one path to choose i.e. consider that node in the calculation of the shortest path would be of no use.</li>
+		
+	</ol>
+
+
+
+	<h4 class="projcount">Using a database</h4> 
+	Currently all the data is stored in memory and if you reload the page then all the data is loaded again. Extend the application to store all the data in a database instead. This makes the data persistent and potentially improves the efficiency of the application. This is also a good exercise since all modern web applications are database driven.  To get started we suggest that you read about Models in the Django book (<a href="http://www.djangobook.com/en/2.0/chapter05.html">http://www.djangobook.com/en/2.0/chapter05.html</a>). Try to move as much functionality into the database as possible, for example by replacing ClipNodes with a database query.
+
+	Create an application which lets users record their current or planned future location. This can be used to see where your friends were last seen and potentially where to look for them.  Maybe you can connect the central schedule database to your application to show where you should be depending on what courses you take?
+
+	Extend the application by collecting information from the user.  Initially it could be to only ask for the current position of the user.  Maybe you are even able to get that information from the GPS on the users device?
+
+	Extend the application to allow a user to select a set of locations and find the shortest path between each pair of locations. 
+	<ol> 
 		<li> 
-			Your friend, an enthusiastic geocacher, has heard that you are building awesome map-based applications.  Since he is a bit lazy he has asked you to extend your application to allow him to select a set of geocaches and then automatically find the shortest route from his apartment visiting all the caches and then back to the apartment.
-		</li> 
+			Extend the map application to allow a user to select a set of coordinates.
+		</li>
+		<li> 
+			Implement an all-pairs shortest path algorithm using the previously developed graph data structure including the API and the unit tests.
+		</li>
+		<li> 
+			Extend the map application to display all the paths.
+		</li>
+	</ol>
 
-	</ul></p>
+	<h4 class="projcount">Build a beer pipeline!</h4>
+	You have been given the task of building a beer pipeline by connecting plastic tubes to provide all your friends with beer directly from HG. Since you are thirsty you want to minimize the total amount of plastic tubes that you have to connect before finishing the project. Extend the map application to allow a user to select a set of end points and then find the edges along which the pipeline should be built so that the total length of the pipeline is minimized and display the result on the map. You can make this problem easier or harder depending on how much freedom you consider to be allowed when constructing the pipeline. The simpler version is to only build the pipeline along existing roads. To make the problem harder, and the total length of the pipeline shorter, you can allow new nodes to be added. If you allow new nodes then you can start by ignoring buildings and then add these later. The more accurate you want the result, the more complicated it becomes.
 
-	<p>
-	In any case you can either focus on developing the necessary algorithms, the web application or some combination of them. Remember to also implement the appropriate testing to increase the quality of your code and hopefully decrease the development time. If you decide to work more on the web application rather than the underlying algorithms you may use existing code libraries such as Google's APIs or graph libraries (for example <a href="http://networkx.lanl.gov">http://networkx.lanl.gov</a>, <a href="http://igraph.sourceforge.net">http://igraph.sourceforge.net</a>).</p>
+	<h4 class="projcount">Help a geocacher</h4>
+	Your friend, an enthusiastic geocacher, has heard that you are building awesome map-based applications.  Since he is a bit lazy he has asked you to extend your application to allow him to select a set of geocaches and then automatically find the shortest route from his apartment visiting all the caches and then back to the apartment.
+	</ul>
+	<p>In any case you can either focus on developing the necessary algorithms, the web application or some combination of them. Remember to also implement the appropriate testing to increase the quality of your code and hopefully decrease the development time. If you decide to work more on the web application rather than the underlying algorithms you may use existing code libraries such as Google's APIs or graph libraries (for example <a href="http://networkx.lanl.gov">http://networkx.lanl.gov</a>, <a href="http://igraph.sourceforge.net">http://igraph.sourceforge.net</a>).</p>
+	</div>
 </body>
 
 </html> 

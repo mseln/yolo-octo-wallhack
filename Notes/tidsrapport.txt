@@ -1,19 +1,29 @@
-Datum:          Tid:    Beskrivning:
+Datum:              Tid:    Beskrivning:
                         
-2013-06-11      3h      Gjort färdigt del 3.1.
-2013-07-01      2h      Färdig med Introductory Phase
-2013-07-06      2h      Parsa punkter från osm till kartan
-2013-07-08      3h      Jobbat med parsing av vägar
-2013-07-13      2h      Utritning av vägar finns nu, en del noder kommer dock i fel ordning
-2013-07-14      2h      Adjency matrisen verkar fungera som den ska
-2013-07-14      1h      Implementerat floyd warshall samt lagt till html-formulär för input av koordinater
-2013-07-15      7h      Kan nu hämta information från html-formulär, kommenterat och strukturerat kod,
-                        hitta närmaste nod ifrån var man klickade samt hitta kortaste mellan två noder man kan välja
-2013-07-16      6h      Kanterna mellan noderna printades ut i fel ordning på en väg samt i kortaste vägen, nu fixat.
-                        Man kan nu välja två noder och programmet ritar ut kortaste vägen mellan dem.
-2013-07-18      8h      Dijkstra fungerar nu med adjacency list och matris, har läst på och implementerat en del PyUnit tester
-                        har snyggat upp utritning av vägar/kortaste väg och städat upp bland filer och funktioner
-2013-07-19      6h      Lagt till unit tests för dijkstra, modifierat dijkstra till att använda heap istället, gjort så att
-                        positionen och zoomnivån inte ändras när man klickar på "Go". 
-2013-07-20      2h      Kommenterat kod, Läst på om templates.
-2013-07-23      3h      Jobbat med TeX -> HTML parser
+2013-06-11      3   3h      Gjort färdigt del 3.1.
+2013-07-01      5   2h      Färdig med Introductory Phase
+2013-07-06      7   2h      Parsa punkter från osm till kartan
+2013-07-08      10  3h      Jobbat med parsing av vägar
+2013-07-13      12  2h      Utritning av vägar finns nu, en del noder kommer dock i fel ordning
+2013-07-14      14  2h      Adjency matrisen verkar fungera som den ska
+2013-07-14      15  1h      Implementerat floyd warshall samt lagt till html-formulär för input av koordinater
+2013-07-15      22  7h      Kan nu hämta information från html-formulär, kommenterat och strukturerat kod,
+                            hitta närmaste nod ifrån var man klickade samt hitta kortaste mellan två noder man kan välja
+2013-07-16      28  6h      Kanterna mellan noderna printades ut i fel ordning på en väg samt i kortaste vägen, nu fixat.
+                            Man kan nu välja två noder och programmet ritar ut kortaste vägen mellan dem.
+2013-07-18      36  8h      Dijkstra fungerar nu med adjacency list och matris, har läst på och implementerat en del PyUnit tester
+                            har snyggat upp utritning av vägar/kortaste väg och städat upp bland filer och funktioner
+2013-07-19      42  6h      Lagt till unit tests för dijkstra, modifierat dijkstra till att använda heap istället, gjort så att
+                            positionen och zoomnivån inte ändras när man klickar på "Go". 
+2013-07-20      44  2h      Kommenterat kod, Läst på om templates.
+2013-07-23      47  3h      Jobbat med TeX -> HTML parser
+2013-07-30      55  8h      Fixat POST-parser och dokumenterat den, lagt till information om debugging, extraherat skelettkod.
+2013-08-05      63  8h      Skapat road_network.py, telefonmöte, börjat göra om
+                            TeX till HTML
+2013-08-06      70  7h      Färdig med hemsidekonverteringen, testat med python 3,
+                            Har gjort grafisk översikt och kommenterat imposm.
+2013-08-07      77  7h      Implementerat extract_nodes och select_nodes med pyroute.
+                            Gått igenom kod och kollat att den uppfyller PEP8, Har lagt
+                            till ankare och en table of contents på hemsidan.
+2013-08-08      85  8h      Jobbat med hemsidan.
+2013-08-09      91  6h      Jobbat med hemsidan, testat tidåtgång för dijkstra med grannmatris och lagt in resultaten på hemsidan.
