@@ -86,10 +86,13 @@
   		border:1px 
   		solid #A6A6FB;
   	}
-	</style>
+  	</style>
 </head>
 
 <body bgcolor="#E6E6FA">
+	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js" skin = desert>
+  	</script>
+	
 	<div id="sidebar">
 		<h2 class="nocount"> Table of contents </h2>
 		<ol>
@@ -240,7 +243,8 @@
 
 	<p>In the <code>mapvis</code> app directory, there is a file <code>views.py</code>. This is were you should place your view functions.  Enter the code below to create a view function that generates a page with the classical message "Hello world".
 
-	<script src="https://gist.github.com/mseln/0153a3e4b65d3c8e6e13.js"></script>
+	# Embed the file robertkrimen/gist-it-example/example.js
+	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/hello_world.py"></script>
 
 	If you haven't already, read about what this code does
 	<a href="http://www.djangobook.com/en/2.0/chapter03.html">here</a>.</p>
@@ -248,7 +252,8 @@
 	<div class=note>
 		<h4 class=nocount>Debugging tips:</h4>
 		<p>If something goes wrong you need to find out what the problem is. Often you do that by checking what values the relevant variables have. Using <code>print</code> is a very easy way to debug in python. It simply prints a given value to the console. If you're running the server it will print the output in the same window as the server is running on.</p>
-		<script src="https://gist.github.com/mseln/ced9d25b9ebcc31b9ec7.js"></script>
+	
+		<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/debug_print.py"></script>
 
 		<p>As you may already have seen, the django error view contains a lot of info. It contains all variables and their values. You can get this info by just adding <code>assert(False)</code> anywhere in your code. It will cause the program to "crash" and show all info about the current view. Try it out in your hello world view! Add <code>assert(false)</code> just before <code>return HttpResponse("Hello world")</code> and reload the page</p>
 	</div>
@@ -269,7 +274,7 @@
 
 	The file will now look something like this:</p>
 
-	<script src="https://gist.github.com/mseln/fda731f5598e4f9d96f6.js"></script>
+	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/hello_world_url.py"></script>
 	<p>
 	Now you can start the development web server and open the page <i>URL</i>/hello in your web browser. Congratulations, you have now generated a web page using Python!
 	</p>
@@ -285,7 +290,7 @@
 	<p>To achieve this you need to import <code>datetime</code>, get the current date and time with the function <code>datetime.datetime.now()</code> and then generate an HTML page in the form of a string.  Why not try doing this on your own? </p>
 
 	<p>When you are done your code should look something like this:</p>
-	<script src="https://gist.github.com/mseln/313effe7fcc24619b21a.js"></script>
+	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/hello_world_time.py"></script>
 
 	<p><i>Note: If you are wondering why the application are showing the wrong time, it is probaly because you haven't set up the right timezone. How to fix that you have to find out yourself, it is a good excercise"</i></p>
 
@@ -322,7 +327,7 @@
 
 	<p>Create a view called <code>mapapp</code> in the file <code>views.py</code> with the following code. The code creates a context associating the key <code>NOW</code> with the current date and time, instantiates the template <code>map/mapapp.html</code> and returns it as a response to an HTTP request.</p>
 
-	<script src="https://gist.github.com/mseln/f6f4cd908c109b3c94b3.js"></script>
+	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/mapapp.py"></script>
 
 	<p>You also need to associate a URL with the view, this is done by adding <code>('^mapapp/$', mapapp),</code> to <code>urlpatterns</code> in the file <code>lmap/urls.py</code>.</p>
 
@@ -383,7 +388,7 @@
 	To display a map, replace the content of the file
 	<code>templates/mapvis/mapapp.html</code> with the following HTML, CSS and JavaScript code.
 
-	<script src="https://gist.github.com/mseln/10780540125714ff0ef9.js"></script>
+	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/template.html"></script>
 
 	<p>To understand what the code above does, take a look at the Google Maps JavaScript API tutorial <a href="https://developers.google.com/maps/documentation/javascript/tutorial">https://developers.google.com/maps/documentation/javascript/tutorial</a>.</p>
 
@@ -394,7 +399,7 @@
 		One of those tools is <a href="https://getfirebug.com/">firebug</a> which is an both free and open source plugin for browsers. With firebug you can see the source of the page you're visiting. It can also enable javascript's console to get error messages, which makes it a lot easier to find the missing "}" for instance. Firebug will also notify you about errors and warnings when you're browsing any site, if enabled.</p>
 
 		<p>Another way to debug javascript is to use alert which generates a pop-up window containing text. </p> 
-		<script src="https://gist.github.com/mseln/64ec50048eb1a2f43bc2.js"></script>
+		<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/debug_javascript.js"></script>
 		You can paste the code sample above anywhere you want in javascript code and it will make a pop-up window appear when that statement is reached.
 	</div>
 
@@ -402,7 +407,7 @@
 
 	<p>To display the map, you also need to update the <code>mapapp</code> view function by including your Google Maps API key in the Context so that it is included in the generated web page. The complete code for the view function is:</p> 
 
-	<script src="https://gist.github.com/mseln/86a2cf2a43dcfb5ac71e.js"></script>
+	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/mapapp_gmap.py"></script>
 
 	<p>The <code>Context</code> object works like a dictionary but with some extensions.<br>
 	Read about <a href="https://docs.djangoproject.com/en/dev/ref/templates/api/#django.template.Context"><code>Context</code></a> and <a href="https://docs.djangoproject.com/en/dev/ref/templates/api/">Templates</a> in the documentation.</p>
@@ -436,7 +441,8 @@
 	<p>To display a marker you need to create a new object of the type <code>google.maps.Marker</code> with a reference to the map, the latitude and longitude of the marker, and the title of the marker. The title is a string that is displayed when the mouse is placed on the marker.</p>
 
 	<p>Copy the following helper function into your template after the line<br> <code>google.maps.event.addDomListener(window, 'load', initialize);</code>:</p>
-	<script src="https://gist.github.com/mseln/af4c7a702c97f724c978.js"></script>
+	
+	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/create_marker.js"></script>
 
 	<h5>Create a marker on the click of the mouse</h5>
 
@@ -445,7 +451,8 @@
 	<p>The event handler is the createMarker function you created above.</p>
 
 	<p>To create the event handler, copy the following code to the end of the initialize() function you created before:</p>
-	<script src="https://gist.github.com/mseln/ba45ae5e151dc6efde93.js"></script>
+
+	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/click.js"></script>
 
 	<p>Test the functionality by reloading the web page and finding the coordinates of for example Zenit, your current location, and your house.</p>
 
@@ -553,7 +560,7 @@
 
 	<p>Find out how many nodes your Linköping map data contains by writing a program that counts them and how much time it takes.</p>
 
-	<script src="https://gist.github.com/mseln/9cce3c0c0c35b123bd78.js"></script>
+	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/parser_ex.py"></script>
 
 	<h5>Learn more about the parser</h5>
 
@@ -573,16 +580,18 @@
 	<h4>Create a data structure to store locations</h4>
 
 	<p>At the moment, all we want to be able to do is to keep all nodes with their longitude and latitude in memory. To do this, we represent nodes with a simple Python class holding the node id and its associated longitude and latitude:</p>
-	<script src="https://gist.github.com/mseln/c08022c23c154c197a66.js"></script>
+	
+	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/node.py"></script>
+
 	<p> Create a file called <code>store.py</code> and insert the code above there.</p>
 
 	<p>The data structure to store all the nodes will now simply be a dictionary using the node id as key and a array <code>bounds</code> to keep track of the boundaries of the nodes.<p>
-	<script src="https://gist.github.com/mseln/64986a9249a910cfa1eb.js"></script>
-
+	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/store_nodes.py"></script>
 
 	<p> Using the <code>osm_parser</code> to
 	parse our map data we get the following Python code:</p>
-	<script src="https://gist.github.com/mseln/8160d799385ec9424315.js"></script>
+	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/extract_osm_nodes.py"></script>
+
 
 
 	<h5>Use the <code>extract_osm_nodes</code> function</h5>
@@ -593,7 +602,8 @@
 
 	<p>In the map application we will need to draw all nodes in the rectangular area currently visible in the map window. This operation may have to be done multiple times, which is why we need a class holding only the nodes inside this particular rectangle. The following Python snippet creates an object holding only the nodes fitting that description:</p>
 
-	<script src="https://gist.github.com/mseln/3aab68621b1655ad51cb.js"></script>
+	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/select_nodes_in_rectangle.py"></script>
+
 
 
 
@@ -602,7 +612,8 @@
 	<p>Write Python code to get hold of, and print out, only the nodes within the rectangular area given by</p>
 
 
-	<script src="https://gist.github.com/mseln/21f1f7fae49a6ccdb780.js"></script>
+	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/area.py"></script>
+
 
 	
 	<h4>Write unit tests for the <code>ClipNodes</code> class</h4>
@@ -620,7 +631,8 @@
 	<p><b><font color="red"> NOT UP TO DATE!</font></b></p>
 	<p>Here is an initial unit test for the <code>ClipNodes</code> class.</p>
 	
-	<script src="https://gist.github.com/mseln/c303fe2f70d243db627f.js"></script>
+	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/test_clip.py"></script>
+
 	
 	<p>The code assumes that <code>ClipNodes</code> is in the file <code>nodes.py</code>, change this if necessary.</p>
 
@@ -630,7 +642,8 @@
 
 	<p>In the code above the test case <code>test_all_nodes_inside</code> is not implemented. To implement it, add the following code:</p>
 
-	<script src="https://gist.github.com/mseln/2514115268d480ccda0d.js"></script>
+	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/test_all_nodes_inside.py"></script>
+
 	
 	<p>Run the updated unit test. Why does it fail? What is wrong, the implementation of <code>ClipNodes</code> or the test case? Fix the problem and run the unit tests to make sure your code works.</p>
 
@@ -655,13 +668,15 @@
 
 	<p>The following code parses the file <code>linkoping_ap.osm</code> in the same directory as the view code, extracts all nodes in a rectangle corresponding to the area between the E-house and the physics building, and adds the list of nodes to the context used to render the map.</p>
 
-	<script src="https://gist.github.com/mseln/c85864c91042f8acea5f.js"></script>
+	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/mappapp.py"></script>
+
 
 	<h5>Extend the template to display a set of markers</h5>
 
 	<p>In the previous task you created a list of node objects and associated them with the identifier <code>COORDS</code> in the context. To display each of these nodes as a marker you can use the excellent Django template functionality. Basically, you can use simplified Python code to loop over a list and extract the attributes of each object. The following Django template code generates a JavaScript function to display all the nodes associated with <code>COORDS</code> as markers. Include the code last in the JavaScript section of the <code>mapapp.html</code> template.</p>
 
-	<script src="https://gist.github.com/mseln/fceea8efff6e9468802e.js"></script>
+	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/display_markers.js"></script>
+
 
 	<p>To display the markers you also need to call the function (<code>displayMarkers(map);</code>) in the initialize() function, preferably at the end.</p>
 
@@ -687,20 +702,23 @@
 				<li>
 					Create a data structure to store roads and appropriate unit tests. Make sure that your code passes all the unit tests. A suggestion is to create a data type called <code>Edge</code> that stores a single edge. An edge is a directed connection between two nodes so a road would contain a lot of edges.
 					
-					<script src="https://gist.github.com/mseln/e3a9b431ce122039ae1c.js"></script>
+					<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/edge.py"></script>
+
 
 				</li>
 				<li> 
 					Populate the data structure with roads from Open Street Map. The following snippet contains a suggested way to structure the code. You will have to fill in the missing pieces of code.
 
-					<script src="https://gist.github.com/mseln/a5da5f1df3ba9d67dcfe.js"></script>
+					<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/extract_osm_edges.py"></script>
+
 				</li>
 				<li> 
 					To store all roads, we suggest that you create a new class EdgeSet witch contains all edges. Between all connected we have to create an edge which is going to be stored in a list of edges.
 
 					By having this structure it becomes straight forward to create a Django template for iterating through all roads and for each road create a polyline by iterating through all coordinates and adding each coordinate to the polyline. To help you, we provide the following example JavaScript code:
 
-					<script src="https://gist.github.com/mseln/76bf9d2cd105fe25813d.js"></script>
+					<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/polyline.js"></script>
+
 				</li>
 			</ol>
 		</li>
@@ -733,7 +751,8 @@
 				<li> 
 					Populate the data structure with data from Open Street Map. To do this you will have to decide how to calculate the geographical distance between two nodes that are part of a road. Since Earth is not flat, the distance between two points on the map cannot simply be calculated as the two dimensional Euclidean distance. One way is to use the haversine formula, as in the following Python code snippet:
 
-					<script src="https://gist.github.com/mseln/126b2d429345c50a0859.js"></script>
+					<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/haversine.py"></script>
+
 				</li>
 				<li> 
 					Implement a provable optimal algorithm to compute the shortest path between two locations using the graph data structure together with appropriate test cases (you do not have to prove that it is optimal). You should write your own code implementing and testing an existing algorithm, There are many algorithms for finding the shortest path between two nodes in an edge weighted graph. For this project we suggest you start out by implementing(<a href="http://en.wikipedia.org/wiki/Dijkstra's_algorithm">Dijkstra's algorithm</a>).
@@ -773,7 +792,8 @@
 							<p.noindent>Process the content of the form in the view. To when you press the "Go" button, you are directed to the same page. The content of the form is sent by <a href="http://en.wikipedia.org/wiki/POST_%28HTTP%29">POST</a> and is avaible from django's <a href="https://docs.djangoproject.com/en/dev/ref/request-response/#django.http.HttpRequest.POST">request.POST</a>.</p>
 
 							<p.noindent>Below is some code for an object that handles POST requests. <i>Note: all the values are defined in the initialization, when the object is first defined i.e. nothing happens with the values in the object until the "Go" button is pressed</i></p>
-							<script src="https://gist.github.com/mseln/69fac992839c2ea9ba71.js"></script>
+							<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/POST_parser.py"></script>
+
 							<p.noindent>If you want any other value from a form, simply create a new variable.</p>
 
 							<p>Example: <code>self.foo = get_float(request, 'id')</code></p>
