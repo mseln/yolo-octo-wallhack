@@ -23,15 +23,9 @@ class TestSelectNodes(unittest.TestCase):
         selected_nodes = select_nodes_in_rectangle(nodes, 0, 10, 0, 10)
         self.assertFalse(selected_nodes.nodes)
 
-    #def test_some_nodes_inside(self):
+    # def test_some_nodes_inside(self):
 
-    def test_all_nodes_inside(self):
-        nodes = NodeSet()
-        nodes.add(1, (-10, -10))
-        nodes.add(2, (-5, -5))
-        selected_nodes = select_nodes_in_rectangle(nodes, -10, 10, -10, 10)
-
-        self.assertTrue(nodes.nodes.keys() == selected_nodes.nodes.keys())
+    # def test_all_nodes_inside(self):
 
     def test_random(self):
         # Create 100 random nodes
