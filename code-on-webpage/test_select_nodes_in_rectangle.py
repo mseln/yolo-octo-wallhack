@@ -6,8 +6,8 @@ from mapvis.store import extract_osm_nodes
 from mapvis.store import select_nodes_in_rectangle
 
 def node_inside(node, min_lat, max_lat, min_lng, max_lng):
-    return (min_lat < node.lat and node.lat < max_lat and 
-            min_lng < node.lng and node.lng < max_lng)
+    return (min_lat <= node.lat and node.lat <= max_lat and 
+            min_lng <= node.lng and node.lng <= max_lng)
 
 class TestSelectNodes(unittest.TestCase):
     def test_empty_nodes(self):
