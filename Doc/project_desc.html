@@ -251,11 +251,19 @@
 
 	<div class=note>
 		<h4 class=nocount>Debugging tips:</h4>
-		<p>If something goes wrong you need to find out what the problem is. Often you do that by checking what values the relevant variables have. Using <code>print</code> is a very easy way to debug in python. It simply prints a given value to the console. If you're running the server it will print the output in the same window as the server is running on.</p>
+		<ol>
+		<p>If something goes wrong you need to find out what the problem is. Often you do that by checking what values the relevant variables have. There are a few alternatives listed below.</p> 
+
+		<li>Using <code>print</code> is a very easy way to debug in python. It simply prints a given value to the console. If you're running the server it will print the output in the same window as the server is running on.</li>
 	
 		<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/debug_print.py"></script>
 
-		<p>As you may already have seen, the django error view contains a lot of info. It contains all variables and their values. You can get this info by just adding <code>assert(False)</code> anywhere in your code. It will cause the program to "crash" and show all info about the current view. Try it out in your hello world view! Add <code>assert(false)</code> just before <code>return HttpResponse("Hello world")</code> and reload the page</p>
+		<li>As you may already have seen, the django error view contains a lot of info. It contains all variables and their values. You can get this info by just adding <code>assert(False)</code> anywhere in your code. It will cause the program to "crash" and show all info about the current view. Try it out in your hello world view! Add <code>assert(false)</code> just before <code>return HttpResponse("Hello world")</code> and reload the page</li><br>
+
+		<li>Python has a built-in debugger called pdb. A debugger makes it possible to step trough the code one step at a time and see what goes on at each step. <a href="http://stackoverflow.com/questions/4228637/getting-started-with-the-python-debugger-pdb">getting started with pdb</a>
+		</li>
+		</ol>
+
 	</div>
 
 	<h5>Connect a URL to your view</h5>
@@ -688,9 +696,11 @@
 	The first step is to extend your web application to assist a user to find her way between two locations.  This is the basis for direction and route finding applications such as those provided by Google and Apple.</p>
 
 	<p>The image below is showing how the finished product could look like, of course your are going to be prettier.</p>
+	
 	<div align="center">
 		<img border="0" src="mapapp_overview.png" alt="Web interface" width="1023" height="567">
 	</div>
+
 	<h3><a id="find_path">Assisting a User to Get From A to B</a></h3> 
 	<p>The first goal of this part of the project is to develop a web application that assists a user to get from a location A to a location B. To achieve this, the application should allow a user to select two locations on a map, compute the shortest path between these locations and display the path on the map.  To compute the shortest path you also need to create a data structure storing information about which locations are connected and the distances between them as well as populate it with real map data.  At the end of this part of the project you will have an application similar to the one in</p>
 
@@ -797,6 +807,14 @@
 							<p.noindent>If you want any other value from a form, simply create a new variable.</p>
 
 							<p>Example: <code>self.foo = get_float(request, 'id')</code></p>
+
+							<div class=note>
+								<h4 class=nocount>try: ... except: ... !?</h4>
+								<p>What does the try: ... except: ... statement above do? It's purpose is to test if something is possible to do, in this case convert a string to float. If it wouldn't be possible, an <a href="http://docs.python.org/2/tutorial/errors.html#exceptions">exception</a> would be thrown. If you don't handle the exception the program will crash, which is pretty bad.</p>
+
+								<p>So how does it work? The program tries <code>(try:)</code> something, if it succeds, good! else handle the exception <code>(except:)</code> e.g. <code>print("Err: Conversion is not possible")</code></p>
+							</div>
+
 						</li>
 						<li> 
 							To prevent <a href="http://www.squarefree.com/securitytips/web-developers.html#CSRF">cross   site request forgery</a> (CSRF) Django requires you to take some measures that are described <a href="http://docs.djangoproject.com/en/dev/ref/contrib/csrf/">here</a>. Make sure that you follow these instructions.
@@ -883,7 +901,7 @@
 				</tr>
 				<tr>
 					<td align="center">Just a simple graph.</td>
-					<td align="center">The graph is acually representing<br>the seven bridges of Königsberg.</td>
+					<td align="center">The graph is acually representing<br>the seven bridges of <a href="http://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg">Königsberg</a>.</td>
 				</tr>
 				<tr>
 					<td align="center">
@@ -910,7 +928,7 @@
 				</tr>
 			</table><br>
 
-		The upper image to the left is showing a simple graph. Actually it is a abstraction of the bridges in <a href="http://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg">Königsberg</a> shown in the picture to the right. Below are two graphs. The one to the left is the matrix representation of the graph and the one to the left is the list representation, where every node has a list containing it's neighboors as a pair (neighboor, weight).</li>
+		The upper image to the left is showing a simple graph. The weight of the edges are the distance between the nodes, approximatly 1, 2 resp. 3 units. Actually the graph is an abstraction of the bridges in <a href="http://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg">Königsberg</a> shown in the picture to the right. Below are two graphs. The one to the left is the matrix representation of the graph and the one to the left is the list representation, where every node has a list containing it's neighboors as a pair (neighboor, weight).</li>
 		<br><br>
 		<li>Implement dijkstra using a heap instead making lookup of min-element take constant "O(1)" instead of linear time "O(n)". Article about <a href="https://www.udacity.com/wiki/cs215/unit5solutions-1">dijkstra using a heap</a>.</li>
 		<br>
@@ -918,16 +936,12 @@
 		
 	</ol>
 
-
-
-	<h4 class="projcount">Using a database</h4> 
-	Currently all the data is stored in memory and if you reload the page then all the data is loaded again. Extend the application to store all the data in a database instead. This makes the data persistent and potentially improves the efficiency of the application. This is also a good exercise since all modern web applications are database driven.  To get started we suggest that you read about Models in the Django book (<a href="http://www.djangobook.com/en/2.0/chapter05.html">http://www.djangobook.com/en/2.0/chapter05.html</a>). Try to move as much functionality into the database as possible, for example by replacing ClipNodes with a database query.
-
-	Create an application which lets users record their current or planned future location. This can be used to see where your friends were last seen and potentially where to look for them.  Maybe you can connect the central schedule database to your application to show where you should be depending on what courses you take?
-
-	Extend the application by collecting information from the user.  Initially it could be to only ask for the current position of the user.  Maybe you are even able to get that information from the GPS on the users device?
-
-	Extend the application to allow a user to select a set of locations and find the shortest path between each pair of locations. 
+	<h4 class="projcount">All pairs shortest path</h4>
+	<a href="http://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm">Floyd-Warshall algorithm</a> is an algorithm to compute all shortest path between all pairs of nodes. The algorithm is really easy to implement. Read about it and answer these questions:
+	<ol>
+		<li>What is the time complexity?</li>
+		<li>Estimate a maximum number of nodes the algorithm can handle in a reasonable amount of time</li>
+	</ol><br>
 	<ol> 
 		<li> 
 			Extend the map application to allow a user to select a set of coordinates.
@@ -939,9 +953,22 @@
 			Extend the map application to display all the paths.
 		</li>
 	</ol>
+	You can store the precalculated paths in a database, to make the application really fast. If you want to do that improvment, check out the extension project "Using a database".
+
+	<h4 class="projcount">Using a database</h4> 
+	Currently all the data is stored in memory and if you reload the page then all the data is loaded again. Extend the application to store all the data in a database instead. This makes the data persistent and potentially improves the efficiency of the application. This is also a good exercise since all modern web applications are database driven.  To get started we suggest that you read about Models in the Django book (<a href="http://www.djangobook.com/en/2.0/chapter05.html">http://www.djangobook.com/en/2.0/chapter05.html</a>). Try to move as much functionality into the database as possible, for example by replacing ClipNodes with a database query.
+
+	Create an application which lets users record their current or planned future location. This can be used to see where your friends were last seen and potentially where to look for them.  Maybe you can connect the central schedule database to your application to show where you should be depending on what courses you take?
+
+	Extend the application by collecting information from the user.  Initially it could be to only ask for the current position of the user.  Maybe you are even able to get that information from the GPS on the users device?
+
+	If you have done the "all pairs shortest path" project you can use it to calculate the shortest path and store the precalculated paths in the data base.
+	
 
 	<h4 class="projcount">Build a beer pipeline!</h4>
-	You have been given the task of building a beer pipeline by connecting plastic tubes to provide all your friends with beer directly from HG. Since you are thirsty you want to minimize the total amount of plastic tubes that you have to connect before finishing the project. Extend the map application to allow a user to select a set of end points and then find the edges along which the pipeline should be built so that the total length of the pipeline is minimized and display the result on the map. You can make this problem easier or harder depending on how much freedom you consider to be allowed when constructing the pipeline. The simpler version is to only build the pipeline along existing roads. To make the problem harder, and the total length of the pipeline shorter, you can allow new nodes to be added. If you allow new nodes then you can start by ignoring buildings and then add these later. The more accurate you want the result, the more complicated it becomes.
+	<p>You have been given the task of building a beer pipeline by connecting plastic tubes to provide all your friends with beer directly from HG. Since you are thirsty you want to minimize the total amount of plastic tubes that you have to connect before finishing the project. </p>
+
+	<p>Extend the map application to allow a user to select a set of end points and then find the edges along which the pipeline should be built so that the total length of the pipeline is minimized and display the result on the map. You can make this problem easier or harder depending on how much freedom you consider to be allowed when constructing the pipeline. The simpler version is to only build the pipeline along existing roads. To make the problem harder, and the total length of the pipeline shorter, you can allow new nodes to be added. If you allow new nodes then you can start by ignoring buildings and then add these later. The more accurate you want the result, the more complicated it becomes.</p>
 
 	<h4 class="projcount">Help a geocacher</h4>
 	Your friend, an enthusiastic geocacher, has heard that you are building awesome map-based applications.  Since he is a bit lazy he has asked you to extend your application to allow him to select a set of geocaches and then automatically find the shortest route from his apartment visiting all the caches and then back to the apartment.
