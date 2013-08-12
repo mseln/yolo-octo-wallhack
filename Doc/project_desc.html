@@ -89,10 +89,7 @@
   	</style>
 </head>
 
-<body bgcolor="#E6E6FA">
-	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js" skin = desert>
-  	</script>
-	
+<body bgcolor="#E6E6FA">	
 	<div id="sidebar">
 		<h2 class="nocount"> Table of contents </h2>
 		<ol>
@@ -142,9 +139,9 @@
 	as corruption, crimes and natural resources.
 	<li> Use crowd sourcing to monitor elections and support disaster
 	relief, such as <a href="https://crowdmap.com/{Crowdmap} by <a href=http://legacy.ushahidi.com/">Ushahidi</a>.
-	<li> Recreational applications such as <a href="http://www.geocaching.com/">Geocaching, <a href="https://foursquare.com/"}{FourSquares}, and
-	<a href="http://www.mapmyrun.com/>MapMyRun"</a>.
-	<li> For more examples, see <a href="http://googlemapsmania.blogspot.se">http://googlemapsmania.blogspot.se</a>.
+	<li> Recreational applications such as <a href="http://www.geocaching.com/">Geocaching</a>, <a href="https://foursquare.com/">FourSquares</a>, and
+	<a href="http://www.mapmyrun.com/>">MapMyRun</a>.
+	<li> For more examples, see <a href="http://googlemapsmania.blogspot.se">googlemapsmania.blogspot.se</a>.
 	</ul>
 	</p>
 	<p> Google Maps is probably the most popular online map as well as map API. With their many users Apple might manage to catch up. An interesting fact about Apple's maps is that it is partially developed by the Linköping company C3 Technologies which was acquired by Apple. C3 Technologies is a spin-off company from SAAB that generates accurate 3D maps.
@@ -178,17 +175,17 @@
 	<p>If you are using Solaris, then you need to load a module with Django and other software that you need for this project.  The name of the module is <code>tddd63-maps</code>.  To load it into your current terminal use the command <br> <code>module add   home/TDDD63/modulefiles/tddd63-maps</code>. </p>
 
 	<p>To automatically load the module every time you create a new terminal execute the command <code>module initadd /home/TDDD63/modulefiles/tddd63-maps</code> once.</p>
-	<p> If you are using your own Linux system then you need to install Django 1.4.1 by yourself (<a href="https://docs.djangoproject.com/en/dev/topics/install/">https://docs.djangoproject.com/en/dev/topics/install/</a>).</p>
+	<p> If you are using your own Linux system then you need to install <a href="https://docs.djangoproject.com/en/dev/topics/install/">Django 1.4.1</a> by yourself.</p>
 
 	<h5>Create the <code>lmap</code> project</h5>
 	The following command creates a Django project called <code>lmap</code>:
 	<code>django-admin.py startproject lmap</code>
 
 	<h5>Explore project files</h5> 
-	Explore the file structure created by Django and read about what the files are here <a href="http://docs.djangoproject.com/en/1.4/intro/tutorial01/#creating-a-project">http://docs.djangoproject.com/en/1.4/intro/tutorial01/#creating-a-project</a>.
+	Explore the file structure created by Django and read about what the files are <a href="http://docs.djangoproject.com/en/1.4/intro/tutorial01/#creating-a-project">here</a>.
 
 	<h5>Start a web server</h5> 
-	<p>To test your application you need to start a web server.  Django comes with a development server which you can use. Change into the outer <code>lmap</code> directory, if you haven't already, and run the command <code>python manage.py runserver 0.0.0.0:80XY</code>, where <i>X</i> is the group number (1-5) and <i>Y</i> is a number that each group assigns to each student in their group (0-9). The command starts the development web server and informs you about potential problems as well as the URL of the server. To get the URL, find the line "Development server is running at <i>URL</i>".<p>
+	<p>To test your application you need to start a web server.  Django comes with a development server which you can use. Change into the outer <code>lmap</code> directory, if you haven't already, and run the command <code>python3 manage.py runserver 0.0.0.0:80XY</code>, where <i>X</i> is the group number (1-5) and <i>Y</i> is a number that each group assigns to each student in their group (0-9). The command starts the development web server and informs you about potential problems as well as the URL of the server. To get the URL, find the line "Development server is running at <i>URL</i>".<p>
 
 	</p>Check that your web server is working by opening the URL found in your browser.</p>
 
@@ -206,10 +203,10 @@
 	<h5>Read about the database configuration</h5>
 
 	<p>Read more about the database options at
-	<a href="http://docs.djangoproject.com/en/1.4/intro/tutorial01/#database-setup">http://docs.djangoproject.com/en/1.4/intro/tutorial01/#database-setup</a>.</p>
+	<a href="http://docs.djangoproject.com/en/1.4/intro/tutorial01/#database-setup">docs.djangoproject.com</a>.</p>
 
 	<h5>Create database and initial tables</h5>
-	<p>Your Django project is by default configured to use several database tables. These must be created in the database before we can use them. To do this, execute the command <code>python manage.py syncdb</code>.</p>
+	<p>Your Django project is by default configured to use several database tables. These must be created in the database before we can use them. To do this, execute the command <code>python3 manage.py syncdb</code>.</p>
 
 	<p>When asked about creating a superuser, say "yes". Create a superuser "admin" with your email address and the password "admin".</p>
 
@@ -221,7 +218,7 @@
 	<h5>(Projects vs. Apps)</h5>
 
 	<p>Read about the difference between a project and an app at<br>
-	<a href="https://docs.djangoproject.com/en/1.4/intro/tutorial01/#creating-models">https://docs.djangoproject.com/en/1.4/intro/tutorial01/#creating-models</a>.</p>
+	<a href="https://docs.djangoproject.com/en/1.4/intro/tutorial01/#creating-models">docs.djangoproject.com</a>.</p>
 
 	<h5>(Create the mapvis app)</h5>
 
@@ -229,11 +226,11 @@
 
 	<h5>(Explore app files)</h5> 
 
-	<p>Explore the file structure created by Django and read about what the files are here <a href="https://docs.djangoproject.com/en/1.4/intro/tutorial01/#creating-models">https://docs.djangoproject.com/en/1.4/intro/tutorial01/#creating-models</a>.</p>
+	<p>Explore the file structure created by Django and read about what the files are <a href="https://docs.djangoproject.com/en/1.4/intro/tutorial01/#creating-models">here</a>.</p>
 
 	<h4>Make your app generate a web page</h4>
 
-	<p>The next step towards a web application is to generate your first web page.  In Django, and in other frameworks based on the Model View Controller (<a href="http://en.wikipedia.org/wiki/Model-view-controller">http://en.wikipedia.org/wiki/Model-view-controller</a>) design pattern, this is done through a <i>view</i>. To make a page available to a user it has to be associated with a URL. From a Django programming perspective, the content of a page is produced by a view function and a URL is specified in a URLconf.</p>
+	<p>The next step towards a web application is to generate your first web page.  In Django, and in other frameworks based on the <a href="http://en.wikipedia.org/wiki/Model-view-controller">Model View Controller</a> design pattern, this is done through a <i>view</i>. To make a page available to a user it has to be associated with a URL. From a Django programming perspective, the content of a page is produced by a view function and a URL is specified in a URLconf.</p>
 
 	<p>You can read about views and associating URLs to views <a href="http://www.djangobook.com/en/2.0/chapter03.html">here</a>.</p>
 
@@ -287,8 +284,8 @@
 	Now you can start the development web server and open the page <i>URL</i>/hello in your web browser. Congratulations, you have now generated a web page using Python!
 	</p>
 
-	<p>If you haven't already, read about what this code does here
-	<a href="http://www.djangobook.com/en/2.0/chapter03.html">http://www.djangobook.com/en/2.0/chapter03.html</a>.</p>
+	<p>If you haven't already, read about what this code does
+	<a href="http://www.djangobook.com/en/2.0/chapter03.html">here</a>.</p>
 
 	<h5>Create a view that generates a page showing the current time</h5>
 	<p>It is important to emphasize that the view function you just created is a plain Python function which generates a string, which is interpreted as a <a href="http://en.wikipedia.org/wiki/HTML">HTML</a> page by your browser.</p>
@@ -308,7 +305,7 @@
 
 	<p>If you know some HTML this would be a good time to play around with the view function and elaborate the page generated.  For example, make the current time bold.  You can also use your Python skills to for example display only the current time or format the date a bit nicer.</p>
 
-	<p>A good HTML tutorial is available here <a href="http://www.w3schools.com/html">http://www.w3schools.com/html</a>.</p>
+	<p>A good HTML tutorial is available <a href="http://www.w3schools.com/html">here</a>.</p>
 
 
 	<h4>Generate a web page using a template</h4>
@@ -352,7 +349,7 @@
 
 	<h5>Associate the mapapp view with the site root</h5>
 
-	<p>Now you should know enough to be able to create a URL pattern that associates the <code>mapapp</code> view with the site root.  If you need advice, read <a href="http://www.djangobook.com/en/2.0/chapter03.html">http://www.djangobook.com/en/2.0/chapter03.html</a>.</p>
+	<p>Now you should know enough to be able to create a URL pattern that associates the <code>mapapp</code> view with the site root.  If you need advice, read <a href="http://www.djangobook.com/en/2.0/chapter03.html">djangobook chapter03</a>.</p>
 
 	<h5>Play around with views and templates</h5>
 
@@ -372,19 +369,19 @@
 	<h4>Learn more about Google Maps</h4>
 
 	Take a few minutes to read about Google Maps at
-	<a href="http://developers.google.com/maps/">http://developers.google.com/maps/</a>.
+	<a href="http://developers.google.com/maps/">developers.google.com</a>.
 
 	<h4>Learn more about the Google Maps JavaScript API</h4>
 
 	Take a few minutes to read about the Google Maps JavaScript API
 	version 3 at
-	<a href="http://developers.google.com/maps/documentation/javascript/">http://developers.google.com/maps/documentation/javascript/</a>.
+	<a href="http://developers.google.com/maps/documentation/javascript/">developers.google.com</a>.
 
 	<h4>Get your own Google Maps API Key</h4>
 
 	To access the Google Maps API you need a key. Obtain your own key by
-	following these instructions
-	<a href="http://developers.google.com/maps/documentation/javascript/tutorial#api_key">http://developers.google.com/maps/documentation/javascript/tutorial#api_key</a>.
+	following
+	<a href="http://developers.google.com/maps/documentation/javascript/tutorial#api_key"> these</a> instructions.
 
 	<h4>Display a map</h4>
 
@@ -398,7 +395,7 @@
 
 	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/template.html"></script>
 
-	<p>To understand what the code above does, take a look at the Google Maps JavaScript API tutorial <a href="https://developers.google.com/maps/documentation/javascript/tutorial">https://developers.google.com/maps/documentation/javascript/tutorial</a>.</p>
+	<p>To understand what the code above does, take a look at the <a href="https://developers.google.com/maps/documentation/javascript/tutorial">Google Maps JavaScript API tutorial</a>.</p>
 
 	<div class=note>
 		<h4 class=nocount>Debugging tips:</h4>
@@ -470,7 +467,7 @@
 
 	<h3><a id="explore_osm">Exploring Data from Open Street Map</a></h3>
 
-	<p>Open Street Map (<a href="http://www.openstreetmap.org/">http://www.openstreetmap.org/</a>) (OSM) is an open source alternative to Google Maps which is created by volunteers, where many people, including members of Lysator, have contributed. Open Street Map contains data about for example nodes, roads and buildings.  A node is a point which is of interest, usually as part of a road or a building.</p>
+	<p><a href="http://www.openstreetmap.org/">Open Street Map</a> (OSM) is an open source alternative to Google Maps which is created by volunteers, where many people, including members of Lysator, have contributed. Open Street Map contains data about for example nodes, roads and buildings.  A node is a point which is of interest, usually as part of a road or a building.</p>
 
 	<p>The goal for this milestone is to download and explore the data in the Open Street Map project for a suitable area of Linköping.</p>
 
@@ -512,7 +509,7 @@
 
 	<h5>XML</h5>
 
-	<p>The data is in XML format. XML is a way to present structured data so that is is readable both by humans and machines. Read the Wikipedia page about XML (<a href="http://en.wikipedia.org/wiki/XML">http://en.wikipedia.org/wiki/XML</a>) to learn the basics about how this format works.</p>
+	<p>The data is in XML format. XML is a way to present structured data so that is is readable both by humans and machines. Read the <a href="http://en.wikipedia.org/wiki/XML">Wikipedia page about XML </a> to learn the basics about how this format works.</p>
 	 
 	<h5>OSM XML</h5>
 
@@ -543,7 +540,9 @@
 
 	<p>In this exercise you will use the web tool osmhack to investigate OSM data.</p>
 
-	<p>The web page <a href="http://toolserver.org/~kolossos/osm/osmhack.php?lat=58.40&lon=15.61&name=Link\"oping">http://toolserver.org/~kolossos/osm/osmhack.php?lat=58.40&lon=15.61&name=Link\"oping</a> automatically generates a list of the OSM map features used in the Link\"oping map. Clicking a link in the "Values" column generates a map with all map elements carrying the corresponding map feature highlighted in red.</p>
+	<p>
+		<font style = "color:red">??? </font>The web page <a href="http://toolserver.org/~kolossos/osm/osmhack.php?lat=58.40&lon=15.61&name=Link\"oping">http://toolserver.org/~kolossos/osm/osmhack.php?lat=58.40&lon=15.61&name=Link\"oping</a> automatically generates a list of the OSM map features used in the Link\"oping map. Clicking a link in the "Values" column generates a map with all map elements carrying the corresponding map feature highlighted in red. <font style = "color:red"> ???</font>
+	</p>
 
 	<h5>Motorways</h5>
 
@@ -615,7 +614,7 @@
 
 
 
-	<h5>Use the <code>ClipNodes</code> class</h5>
+	<h5>Use the <code>select_nodes_from_rectangle</code> function</h5>
 
 	<p>Write Python code to get hold of, and print out, only the nodes within the rectangular area given by</p>
 
@@ -624,26 +623,26 @@
 
 
 	
-	<h4>Write unit tests for the <code>ClipNodes</code> class</h4>
+	<h4>Write unit tests for the <code>select_nodes_from_rectangle</code> function</h4>
 
-	<p>When you develop software it is essential to <i>test</i> that it does what it is supposed to do.  Especially when you develop data structures and algorithms creating good test cases is both easy and could save a lot of time. To test a single unit of a program, such as a function or a class, is called <i>unit testing</i>. In this exercise you will implement unit tests for the <code>ClipNodes</code> class.</p>
+	<p>When you develop software it is essential to <i>test</i> that it does what it is supposed to do.  Especially when you develop data structures and algorithms creating good test cases is both easy and could save a lot of time. To test a single unit of a program, such as a function or a class, is called <i>unit testing</i>. In this exercise you will implement unit tests for the <code>select_nodes_from_rectangle</code> function.</p>
 
 	<h5>Learn more about unit testing</h5>
 
-	<p>Read the Wikipedia article on unit testing <a href="http://en.wikipedia.org/wiki/Unit_testing">http://en.wikipedia.org/wiki/Unit_testing</a>.</p>
+	<p>Read the Wikipedia article on <a href="http://en.wikipedia.org/wiki/Unit_testing">unit testing</a>.</p>
 
 	<h5>Create a simple unit test Using Python's <code>unittest</code> package</h5>
 
-	<p>One of many advantages of Python is that it has a built in unit testing framework which is called <code>unittest</code>. Read more about it here <a href="http://docs.python.org/library/unittest.html">http://docs.python.org/library/unittest.html</a>.</p>
+	<p>One of many advantages of Python is that it has a built in unit testing framework which is called <code>unittest</code>. Read more about it <a href="http://docs.python.org/library/unittest.html">here</a>.</p>
 
 	<p>Here is an initial unit test for the <code>select_nodes_in_rectangle</code> function.</p>
 	
 	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/test_select_nodes_in_rectangle.py"></script>
 
 	
-	<p>The code assumes that <code>ClipNodes</code> is in the file <code>nodes.py</code>, change this if necessary.</p>
+	<p>The code assumes that <code>select_nodes_from_rectangle</code> is in the file <code>store.py</code>, change this if necessary.</p>
 
-	<p>Run the unit test by executing the Python script (<code>python nodes_test.py</code>). Make sure that your existing codes passes the three test cases.</p>
+	<p>Run the unit test by executing the Python script (<code>python3 test_select_nodes_from_rectangle.py</code>). Make sure that your existing codes passes the three test cases.</p>
 
 	<h5>Implement the <code>test_all_nodes_inside</code> test case</h5>
 
@@ -660,11 +659,13 @@
 
 	<h5>Add unit tests for the <code>Node</code> class</h5>
 
-	<p>Now that you know how to create unit tests create one for the <code>Node</code> class. There should be for example be tests to make sure that the latitudes and longitudes are always within their bounds. Create both hand made test cases as well as randomly generated test cases. You can read more about latitudes and longitudes here <a href="http://en.wikipedia.org/wiki/Geographic_coordinate_system">http://en.wikipedia.org/wiki/Geographic_coordinate_system</a>.</p>
+	<p>Now that you know how to create unit tests create one for the <code>Node</code> class. There should be for example be tests to make sure that the latitudes and longitudes are always within their bounds. Create both hand made test cases as well as randomly generated test cases. You can read more about latitudes and longitudes <a href="http://en.wikipedia.org/wiki/Geographic_coordinate_system">here</a>.</p>
 
-	<p>If you want another concrete example of a unit test take a look here <a href="http://www.diveintopython.net/unit_testing/">http://www.diveintopython.net/unit_testing/</a>.</p>
-
-
+	<a href="http://www.diveintopython.net/unit_testing/">Dive into python</a> has a great introduction to unittesting. It's really worth reading.
+	<div class=note>
+		<h5 class=nocount>Run all test files with one command</h5>
+		<p>To run all unit test files, cd to the folder containing all unittests and execute the command <code>python3 -m unittest discover</code>. The command automatically discovers all files starting with "test" and searches them for test classes.</p>
+	</div>
 	<h4>Extend the map application to display all locations</h4>
 
 	<p>To display nodes from OSM as markers on the map you need to select an area, extract those nodes you would like to display, and call createMarker for each of those.</p>
@@ -673,7 +674,7 @@
 
 	<h5>Extend the view to include a set of markers</h5>
 
-	<p>The following code parses the file <code>linkoping_ap.osm</code> in the same directory as the view code, extracts all nodes in a rectangle corresponding to the area between the E-house and the physics building, and adds the list of nodes to the context used to render the map.</p>
+	<p>The following code parses the file <code>linkoping_map.osm</code> in the same directory as the view code, extracts all nodes in a rectangle corresponding to the area between the E-house and the physics building, and adds the list of nodes to the context used to render the map.</p>
 
 	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/mappapp.py"></script>
 
@@ -694,7 +695,7 @@
 
 	The first step is to extend your web application to assist a user to find her way between two locations.  This is the basis for direction and route finding applications such as those provided by Google and Apple.</p>
 
-	<p>The image below is showing how the finished product could look like, of course your are going to be prettier.</p>
+	<p>The image below is showing how the finished product could look like, of course yours are going to be prettier.</p>
 	
 	<div align="center">
 		<img border="0" src="mapapp_overview.png" alt="Web interface" width="1023" height="567">
@@ -732,25 +733,25 @@
 			</ol>
 		</li>
 		<li> 
-			Implement a shortest path algorithm together with appropriate unit tests. Now might be a good time to try a test-driven development methodology (see <a href="http://en.wikipedia.org/wiki/Test-driven_development">http://en.wikipedia.org/wiki/Test-driven_development</a>), where you start by defining the test cases and then develop the code until it passes all the test cases. It is of course possible to start with a few initial test cases which are then extended together with the code they test.
+			Implement a shortest path algorithm together with appropriate unit tests. Now might be a good time to try a test-driven development methodology <a href="http://en.wikipedia.org/wiki/Test-driven_development">test-driven development methodology</a>, where you start by defining the test cases and then develop the code until it passes all the test cases. It is of course possible to start with a few initial test cases which are then extended together with the code they test.
 			<ol>
 				<li> 
 					Create a data structure to store connections between locations and the lengths of these connections. The usual way to model interconnected locations that are a certain distance apart is by using a (combinatorial) graph. Read up on:
 					<ul>
 						<li> 
-							the mathematical concept of a graph (<a href="http://en.wikipedia.org/wiki/Graph_(mathematics)">http://en.wikipedia.org/wiki/Graph_(mathematics)</a>)
+							the mathematical concept of a <a href="http://en.wikipedia.org/wiki/Graph_(mathematics)">graph</a>
 						</li>
 						<li> 
-							typical data structures used to represent graphs (<a href="http://en.wikipedia.org/wiki/Graph_(data_structure)">http://en.wikipedia.org/wiki/Graph_(data_structure)</a>)
+							typical <a href="http://en.wikipedia.org/wiki/Graph_(data_structure)">data structures</a> used to represent graphs.
 						</li>
 					</ul>
 					You now have to make a preliminary decision concerning how you want to store the distance graph. We suggest that you make your choice between using
 					<ul>
 						<li> 
-							adjacency lists, or (<a href="http://en.wikipedia.org/wiki/Adjacency_list">http://en.wikipedia.org/wiki/Adjacency_list</a>)
+							<a href="http://en.wikipedia.org/wiki/Adjacency_list">adjacency lists</a>, or
 						</li>
 						<li> 
-							an adjacency matrix (<a href="http://en.wikipedia.org/wiki/Adjacency_matrix">http://en.wikipedia.org/wiki/Adjacency_matrix</a>).
+							an <a href="http://en.wikipedia.org/wiki/Adjacency_matrix">adjacency matrix</a>.
 						</li>
 					</ul>
 				</li>
@@ -792,10 +793,11 @@
 				<li> Extend the application to allow entering the coordinates of the start and destination by clicking on the map. To achieve this you have to do at least the following:
 					<ol>
 						<li> 
-							Create an HTML form with at least four fields, start latitude, start longitude, destination latitude and destination longitude. Read about HTML forms here <a href="http://www.w3schools.com/html/html_forms.asp">http://www.w3schools.com/html/html_forms.asp</a>.
+							Create an HTML form with at least four fields, start latitude, start longitude, destination latitude and destination longitude. Read about HTML forms <a href="http://www.w3schools.com/html/html_forms.asp">here</a>.
 						</li>
 						<li> 
-							Create an on click event handler that fills in the fields in the form when a user clicks on the map. Since the user needs to select two coordinates you have to find a way to do that (one approach is to have a very simple state machine with two states, one for entering the start coordinate and one for entering the destination coordinate). In the introductory part you created an on click event handler so the new thing is to populate a form with that data. One page discussing this is <a href="http://www.javascript-coder.com/javascript-form/getelementbyid-form.phtml">http://www.javascript-coder.com/javascript-form/getelementbyid-form.phtml</a>.
+							Create an on click event handler that fills in the fields in the form when a user clicks on the map. Since the user needs to select two coordinates you have to find a way to do that (one approach is to have a very simple state machine with two states, one for entering the start coordinate and one for entering the destination coordinate). In the introductory part you created an on click event handler so the new thing is to populate a form with that data. One page discussing this is <a href="http://www.javascript-coder.com/javascript-form/getelementbyid-form.phtml">
+							javascript-coder.com</a>.
 						</li>
 						<li>
 							<p.noindent>Process the content of the form in the view. To when you press the "Go" button, you are directed to the same page. The content of the form is sent by <a href="http://en.wikipedia.org/wiki/POST_%28HTTP%29">POST</a> and is avaible from django's <a href="https://docs.djangoproject.com/en/dev/ref/request-response/#django.http.HttpRequest.POST">request.POST</a>.</p>
@@ -874,10 +876,10 @@
 			Improve the efficiency of the application by for example adding a bounding box to the roads to filter out as many of them as possible before drawing them on the map.  If you do this, then it is a good idea to measure how long it takes to create the page so that you see that you are making progress.
 		</li>
 		<li> 
-			Add a search box so that a user can enter an address which is looked up using the Google Geocoding API (<a href="https://developers.google.com/maps/documentation/geocoding/">https://developers.google.com/maps/documentation/geocoding/</a>).
+			Add a search box so that a user can enter an address which is looked up using the <a href="https://developers.google.com/maps/documentation/geocoding/">Google Geocoding API</a>.
 		</li>
 		<li> 
-			Compare the shortest paths you find with the ones provided by the Google Directions API (<a href="https://developers.google.com/maps/documentation/directions/">https://developers.google.com/maps/documentation/directions/</a>).
+			Compare the shortest paths you find with the ones provided by the <a href="https://developers.google.com/maps/documentation/directions/">Google Directions API</a>.
 		</li>
 		<li> 
 			Add support for buildings.  This would involve at least parsing the buildings from the OSM data, storing them in your application and displaying them on the map. You could also add further information so that when the mouse is hovering over a building you display some interesting piece of information about it.
@@ -955,7 +957,7 @@
 	You can store the precalculated paths in a database, to make the application really fast. If you want to do that improvment, check out the extension project "Using a database".
 
 	<h4 class="projcount">Using a database</h4> 
-	Currently all the data is stored in memory and if you reload the page then all the data is loaded again. Extend the application to store all the data in a database instead. This makes the data persistent and potentially improves the efficiency of the application. This is also a good exercise since all modern web applications are database driven.  To get started we suggest that you read about Models in the Django book (<a href="http://www.djangobook.com/en/2.0/chapter05.html">http://www.djangobook.com/en/2.0/chapter05.html</a>). Try to move as much functionality into the database as possible, for example by replacing ClipNodes with a database query.
+	Currently all the data is stored in memory and if you reload the page then all the data is loaded again. Extend the application to store all the data in a database instead. This makes the data persistent and potentially improves the efficiency of the application. This is also a good exercise since all modern web applications are database driven.  To get started we suggest that you read about <a href="http://www.djangobook.com/en/2.0/chapter05.html">Models</a> in the Django book. Try to move as much functionality into the database as possible, for example by replacing ClipNodes with a database query.
 
 	Create an application which lets users record their current or planned future location. This can be used to see where your friends were last seen and potentially where to look for them.  Maybe you can connect the central schedule database to your application to show where you should be depending on what courses you take?
 
@@ -972,7 +974,7 @@
 	<h4 class="projcount">Help a geocacher</h4>
 	Your friend, an enthusiastic geocacher, has heard that you are building awesome map-based applications.  Since he is a bit lazy he has asked you to extend your application to allow him to select a set of geocaches and then automatically find the shortest route from his apartment visiting all the caches and then back to the apartment.
 	</ul>
-	<p>In any case you can either focus on developing the necessary algorithms, the web application or some combination of them. Remember to also implement the appropriate testing to increase the quality of your code and hopefully decrease the development time. If you decide to work more on the web application rather than the underlying algorithms you may use existing code libraries such as Google's APIs or graph libraries (for example <a href="http://networkx.lanl.gov">http://networkx.lanl.gov</a>, <a href="http://igraph.sourceforge.net">http://igraph.sourceforge.net</a>).</p>
+	<p>In any case you can either focus on developing the necessary algorithms, the web application or some combination of them. Remember to also implement the appropriate testing to increase the quality of your code and hopefully decrease the development time. If you decide to work more on the web application rather than the underlying algorithms you may use existing code libraries such as Google's APIs or graph libraries (for example <a href="http://networkx.lanl.gov">networkx</a>, <a href="http://igraph.sourceforge.net">igraph</a>).</p>
 	</div>
 </body>
 
