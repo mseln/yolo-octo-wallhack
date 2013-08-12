@@ -167,7 +167,7 @@ def extract_osm_edges(f_name, nodes):
 
     edges = obj.get_edges()
     for k, n in edges.items():
-        #print("id:" + str(k) + "\tneighboors: " + str(n))
+        # print("id:" + str(k) + "\tneighboors: " + str(n))
         pass
     edge_set = EdgeSet()
     it = 0
