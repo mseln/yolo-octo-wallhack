@@ -138,7 +138,7 @@
 	<li> Data visualization aids to explore and interact with data such
 	as corruption, crimes and natural resources.
 	<li> Use crowd sourcing to monitor elections and support disaster
-	relief, such as <a href="https://crowdmap.com/{Crowdmap} by <a href=http://legacy.ushahidi.com/">Ushahidi</a>.
+	relief, such as <a href="https://crowdmap.com/">Crowdmap</a> by <a href="http://legacy.ushahidi.com/">Ushahidi</a>.
 	<li> Recreational applications such as <a href="http://www.geocaching.com/">Geocaching</a>, <a href="https://foursquare.com/">FourSquares</a>, and
 	<a href="http://www.mapmyrun.com/>">MapMyRun</a>.
 	<li> For more examples, see <a href="http://googlemapsmania.blogspot.se">googlemapsmania.blogspot.se</a>.
@@ -196,9 +196,9 @@
 
 	<h5>Update database configuration</h5> 
 
-	<p>To configure Django to use an SQLite database open the file <code>lmap/settings.py</code>, find the variable <code>DATABASES</code>, and make <code>'django.db.backends.sqlite3'</code> be the value for <code>'ENGINE'</code>, and change the value for <code>'NAME'</code> to <code>'/home/<i>USER</i>/lmap/lmap.sqlite3'</code> where <i>USER</i> is your user name. </p>
+	<p>To configure Django to use an SQLite database open the file <code>lmap/settings.py</code>, find the variable <code>DATABASES</code>, and make <code>'django.db.backends.sqlite3'</code> be the value for <code>'ENGINE'</code>, and change the value for <code>'NAME'</code> to <code>os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'lmap.sqlite3').replace( '\\', '/' )</code>. <br>
 
-	<p>An alternative to hard coding the user name is to import the module<code>os</code> (<code>import os</code>) and set <code>'NAME'</code> to<code>os.environ['HOME']+'/lmap/lmap.sqlite3'</code>.</p>
+	<code>os.path.dirname( __file__ )</code> <i>is the directory where the settings.py file is located,</i>  <code>'..'</code><i> takes you to the folder above that and </i><code>'lmap.sqlite3'</code><i> is where your database is going to live.</i></p>
 
 	<h5>Read about the database configuration</h5>
 
@@ -541,7 +541,7 @@
 	<p>In this exercise you will use the web tool osmhack to investigate OSM data.</p>
 
 	<p>
-		<font style = "color:red">??? </font>The web page <a href="http://toolserver.org/~kolossos/osm/osmhack.php?lat=58.40&lon=15.61&name=Link\"oping">http://toolserver.org/~kolossos/osm/osmhack.php?lat=58.40&lon=15.61&name=Link\"oping</a> automatically generates a list of the OSM map features used in the Link\"oping map. Clicking a link in the "Values" column generates a map with all map elements carrying the corresponding map feature highlighted in red. <font style = "color:red"> ???</font>
+		<font style = "color:red">??? </font>The web page <a href="http://toolserver.org/~kolossos/osm/osmhack.php?lat=58.40&lon=15.61&name=Linköping">http://toolserver.org/~kolossos/osm/osmhack.php?lat=58.40&lon=15.61&name=Linköping</a> automatically generates a list of the OSM map features used in the Link\"oping map. Clicking a link in the "Values" column generates a map with all map elements carrying the corresponding map feature highlighted in red. <font style = "color:red"> ???</font>
 	</p>
 
 	<h5>Motorways</h5>

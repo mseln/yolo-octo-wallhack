@@ -1,5 +1,5 @@
-import os
 # Django settings for lmap project.
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -12,8 +12,9 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'lmap.sqlite3')).replace( '\\', '/' ), 
+        # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -109,7 +110,7 @@ ROOT_URLCONF = 'lmap.urls'
 WSGI_APPLICATION = 'lmap.wsgi.application'
 
 TEMPLATE_DIRS = (
-    os.environ['HOME']+'/Desktop/one-more-time/lmap/templates'
+    os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'templates')).replace( '\\', '/' ),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.

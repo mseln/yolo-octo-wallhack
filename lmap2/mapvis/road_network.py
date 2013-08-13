@@ -9,8 +9,8 @@ class RoadNetwork:
     def __init__(self):
         self.node_set = extract_osm_nodes("linkoping_map.osm")
         self.node_set = select_nodes_in_rectangle(self.node_set,
-                                                  58.3900, 58.4050,
-                                                  15.5700, 15.5900)
+                                                  58.3900, 58.4000,
+                                                  15.5800, 15.5810)
         # node_set.print_node_set()
 
         self.edge_set = extract_osm_edges("linkoping_map.osm", 
@@ -29,7 +29,7 @@ class RoadNetwork:
         shortest_path = dijk_adjmat(adj_mat.return_matrix(), 81388, 81388)
         end = datetime.datetime.now()
 
-        print("Node set contain " + str(len(self.node_set.return_nodes())) + " nodes")
+        print("NodeSet contains " + str(len(self.node_set.return_nodes())) + " nodes")
         print("Dijkstra took " + str(end-start) + " seconds to run")
         # print(shortest_path)
 
