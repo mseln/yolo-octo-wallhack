@@ -86,6 +86,16 @@
   		border:1px 
   		solid #A6A6FB;
   	}
+  	.note {
+	padding-left:65px;
+	background:url("note.png") .8em .8em no-repeat;
+	}
+	.note-title {
+    	color: #487858;
+    	font-weight: bold;
+    	margin-bottom: 0 !important;
+    	margin-top: 0 !important;
+	}
   	</style>
 </head>
 
@@ -113,7 +123,7 @@
 	<h1 class="countheads">TDDD63 Project: Map-based Applications</h1>
 	<h2><a id="intro">Introduction to map based applications</a> </h2>
 	<p>Maps represent the world we live in. They are central in many computer applications. The goal of this project is to create a map-based application including some of the underlying data structures and algorithms. </p>
-	<p>As we all know, the numbering of the houses in Ryd can be quiteconfusing. It has been rumored that there is a research report stating that there is no simple set of rules that describe the numbering. To help you find your way to your friends you need a map application that for example shows the shortest path between your house and your friends houses.  Since you want to become an expert programmer you decide to write your own application to learn more about the data structures, algorithms, and problems involved in map applications.</p>
+	<p>As we all know, the numbering of the houses in Ryd can be quite confusing. It has been rumored that there is a research report stating that there is no simple set of rules that describe the numbering. To help you find your way to your friends you need a map application that for example shows the shortest path between your house and your friends houses.  Since you want to become an expert programmer you decide to write your own application to learn more about the data structures, algorithms, and problems involved in map applications.</p>
 	<p>In the first part of the project a basic map application is developed which can then be extended in a number of different directions in the second part.</p>
 
 
@@ -130,7 +140,7 @@
 		<img class="high"  height="60%" width="60%" src="http://image.issuu.com/080926150256-7f1d39d0e87c4e28a7515a2712d1e473/jpg/page_3.jpg" style="display: block;">
 	</div>
 
-	<p>Computerized maps have gained popularity especially with the introduction of smart phones with <a href="http://en.wikipedia.org/wiki/GPS_navigation_device">GPS receivers</a>. Equipped with a GPS receiver you know the coordinates of your current location, i.e.~you know where you are (roughly, depending on the accuracy of the receiver).  To make those coordinates much more useful, you also need to know where those coordinates are in the world.  In other words, you need a map. With a map displaying your location, according to the GPS, you can do many things such as finding your way to your friend somewhere in Ryd and find the closest pizza place.</p>
+	<p>Computerized maps have gained popularity especially with the introduction of smart phones with <a href="http://en.wikipedia.org/wiki/GPS_navigation_device">GPS receivers</a>. Equipped with a GPS receiver you know the coordinates of your current location, i.e. you know where you are (roughly, depending on the accuracy of the receiver).  To make those coordinates much more useful, you also need to know where those coordinates are in the world.  In other words, you need a map. With a map displaying your location, according to the GPS, you can do many things such as finding your way to your friend somewhere in Ryd and find the closest pizza place.</p>
 	<p>
 	There are many popular map-based applications:
 	<ul>
@@ -150,9 +160,7 @@
 
 
 	<h2><a id="project_intro">Project Assignment: Introductory Phase</a></h2>
-	<p>The goal of the introductory phase is to create a web application using the <a href="https://www.djangoproject.com/">Django framework</a>,</p>
-	<p>display a map using the <a href="https://developers.google.com/maps/documentation/javascript/">Google Maps API</a>,</p>
-	<p>and to explore map data from the <a href="http://www.openstreetmap.org/">Open Street Map project</a>.</p>
+	<p>The goal of the introductory phase is to create a web application using the <a href="https://www.djangoproject.com/">Django framework</a>, display a map using the <a href="https://developers.google.com/maps/documentation/javascript/">Google Maps API</a> and to explore map data from the <a href="http://www.openstreetmap.org/">Open Street Map project</a>.</p>
 	<p>This part of the project is structured around the following four
 	milestones that each consists of a series of exercises. Each exercise
 	has a number of tasks that should be completed. </p>
@@ -168,14 +176,14 @@
 	<p>The goal of this milestone is to create a basic web application using the Django framework. Django is a Python framework for creating websites. It is very easy to get started with and provides all the functionality needed for this project.</p>
 
 	<h4> (Create a Django Project) </h4>
-	<p>To get started you need to create a Django project. This is done with the help of the <code>django-admin.py</code> program. A Django project is a Python package, i.e. a directory of code, that contains all the settings for an instance of Django. This includes database configurations, Django-specific options and application-specific settings.</p>
+	<p>To get started you need to create a Django project. This is done with the help of the <code>django-admin.py</code> program. A Django project is a Python package, i.e. a directory of code, that contains all the settings for an instance of Django. This includes database configurations, Django-specific options and application-specific settin</p>
 
-	<h5>Load the <code>tddd63maps module</code></h5>
+	<h5>Load the <code>tddd63 maps module </code></h5>
 
 	<p>If you are using Solaris, then you need to load a module with Django and other software that you need for this project.  The name of the module is <code>tddd63-maps</code>.  To load it into your current terminal use the command <br> <code>module add   home/TDDD63/modulefiles/tddd63-maps</code>. </p>
 
 	<p>To automatically load the module every time you create a new terminal execute the command <code>module initadd /home/TDDD63/modulefiles/tddd63-maps</code> once.</p>
-	<p> If you are using your own Linux system then you need to install <a href="https://docs.djangoproject.com/en/dev/topics/install/">Django 1.4.1</a> by yourself.</p>
+	<p> If you are using your own UNIX (linux, mac) system then you need to install <a href="https://docs.djangoproject.com/en/dev/topics/install/">Django 1.4.1</a> by yourself. If you are a windows user you have to find out how to set up django yourself. Check how to install it <a href="https://docs.djangoproject.com/en/dev/topics/install/">here</a>.</p>
 
 	<h5>Create the <code>lmap</code> project</h5>
 	The following command creates a Django project called <code>lmap</code>:
@@ -196,10 +204,19 @@
 
 	<h5>Update database configuration</h5> 
 
-	<p>To configure Django to use an SQLite database open the file <code>lmap/settings.py</code>, find the variable <code>DATABASES</code>, and make <code>'django.db.backends.sqlite3'</code> be the value for <code>'ENGINE'</code>, and change the value for <code>'NAME'</code> to <code>os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'lmap.sqlite3').replace( '\\', '/' )</code>. <br>
+	<p>To configure Django to use an SQLite database open the file <code>lmap/settings.py</code>, find the variable <code>DATABASES</code>, and make <code>'django.db.backends.sqlite3'</code> be the value for <code>'ENGINE'</code>, and change the value for <code>'NAME'</code> to <code>os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'lmap.sqlite3').replace( '\\', '/' )</code>. </p>
 
-	<code>os.path.dirname( __file__ )</code> <i>is the directory where the settings.py file is located,</i>  <code>'..'</code><i> takes you to the folder above that and </i><code>'lmap.sqlite3'</code><i> is where your database is going to live.</i></p>
-
+	<div class=note>
+		<p class=note-title>What do all these mysterious function calls do?</p>
+		<ul>
+			<li><code>os.path.dirname( __file__ )</code> is the directory where the settings.py file is located. </li>  
+			<li><code>'..'</code> takes you to the folder above that.</li>
+			<li><code>'lmap.sqlite3'</code> is where your database is going to live.</li> 
+			<li><code>os.path.join(...)</code> joins the path togheter.
+			<li><code>os.path.abspath(...)</code> returns the absolute path of what the above returns.</li>
+			<li><code>.replace( '\\', '/' )</code> takes the path which is a simple string and replaces all backslashes (\) with forward slashes (/). The reason why this is added to the statement is because if you are on a windows mashine, the file path will separate it's directories with backslashes instead of forward slashes. Django uses forward slashes and that is why they have to be replaced.</li>
+		</ul>
+	</div>
 	<h5>Read about the database configuration</h5>
 
 	<p>Read more about the database options at
@@ -238,18 +255,16 @@
 
 	<h5>Create a view displaying a message</h5>
 
-	<p>In the <code>mapvis</code> app directory, there is a file <code>views.py</code>. This is were you should place your view functions.  Enter the code below to create a view function that generates a page with the classical message "Hello world".
-
-	# Embed the file robertkrimen/gist-it-example/example.js
+	<p>In the <code>mapvis</code> app directory, there is a file <code>views.py</code>. This is were you should place your view functions.  Enter the code below to create a view function that generates a page with the classical message "Hello world".</p>
 	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/hello_world.py"></script>
 
-	If you haven't already, read about what this code does
+	<p>If you haven't already checked the docs, read about what this code does
 	<a href="http://www.djangobook.com/en/2.0/chapter03.html">here</a>.</p>
 
 	<div class=note>
-		<h4 class=nocount>Debugging tips:</h4>
+		<p class=note-title>Debugging tips:</p>
 		<ol>
-		<p>If something goes wrong you need to find out what the problem is. Often you do that by checking what values the relevant variables have. There are a few alternatives listed below.</p> 
+		<p.noindent>If something goes wrong you need to find out what the problem is. Often you do that by checking what values the relevant variables have. There are a few alternatives listed below.</p> 
 
 		<li>Using <code>print</code> is a very easy way to debug in python. It simply prints a given value to the console. If you're running the server it will print the output in the same window as the server is running on.</li>
 	
@@ -324,7 +339,7 @@
 
 	<p>Now that you have a directory for templates you need to configure your project to find those templates.  This is done by editing the file <code>lmap/settings.py</code>.</p>
 
-	<p>Find the variable <code>TEMPLATE_DIRS</code> in the file <code>lmap/settings.py</code> and add the absolute path to newly created <code>templates</code> directory. Remember that you can use the environment variable <code>HOME</code> to avoid hard coding the path for one particular user (which simplifies using the same code by several people). If you have followed the instructions, you should add <code>os.environ['HOME']+'/lmap/templates',</code> to the list <code>TEMPLATE_DIRS</code>.</p>
+	<p>Find the variable <code>TEMPLATE_DIRS</code> in the file <code>lmap/settings.py</code> and add the absolute path to newly created <code>templates</code> directory. If you have followed the instructions, you should add <code>os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'templates')).replace( '\\', '/' ),</code> to the list <code>TEMPLATE_DIRS</code>.</p>
 
 	<h5>Create a view rendering a page from the template</h5>
 
@@ -398,7 +413,7 @@
 	<p>To understand what the code above does, take a look at the <a href="https://developers.google.com/maps/documentation/javascript/tutorial">Google Maps JavaScript API tutorial</a>.</p>
 
 	<div class=note>
-		<h4 class=nocount>Debugging tips:</h4>
+		<p class=note-title>Debugging tips:</p>
 		<p>To debug javascript you need to use some sort of tool, otherwise you would only get a white page if something goes wrong and that doesn't say too much does it?<br>
 
 		One of those tools is <a href="https://getfirebug.com/">firebug</a> which is an both free and open source plugin for browsers. With firebug you can see the source of the page you're visiting. It can also enable javascript's console to get error messages, which makes it a lot easier to find the missing "}" for instance. Firebug will also notify you about errors and warnings when you're browsing any site, if enabled.</p>
@@ -663,7 +678,7 @@
 
 	<a href="http://www.diveintopython.net/unit_testing/">Dive into python</a> has a great introduction to unittesting. It's really worth reading.
 	<div class=note>
-		<h5 class=nocount>Run all test files with one command</h5>
+		<p class=note-title>Run all test files with one command</p>
 		<p>To run all unit test files, cd to the folder containing all unittests and execute the command <code>python3 -m unittest discover</code>. The command automatically discovers all files starting with "test" and searches them for test classes.</p>
 	</div>
 	<h4>Extend the map application to display all locations</h4>
@@ -768,7 +783,7 @@
 					Implement a provable optimal algorithm to compute the shortest path between two locations using the graph data structure together with appropriate test cases (you do not have to prove that it is optimal). You should write your own code implementing and testing an existing algorithm, There are many algorithms for finding the shortest path between two nodes in an edge weighted graph. For this project we suggest you start out by implementing(<a href="http://en.wikipedia.org/wiki/Dijkstra's_algorithm">Dijkstra's algorithm</a>).
 
 					<div class=note>
-						<h4 class=nocount>Note on running time:</h4>
+						<p class=note-title>Note on running time:</p>
 						
 						<p>Dijkstras algorithm for an adjacency matrix is not the most optimal, for graphs that has more than 1000 nodes it becomes time consuming. Below is a table of how the number of nodes is proportional to the running time. The <a href="http://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#Running_time">time complexity</a> for dijkstra is O(V^2) but can be improved.</p>
 						
@@ -810,7 +825,7 @@
 							<p>Example: <code>self.foo = get_float(request, 'id')</code></p>
 
 							<div class=note>
-								<h4 class=nocount>try: ... except: ... !?</h4>
+								<p class=note-title>try: ... except: ... !?</p>
 								<p>What does the try: ... except: ... statement above do? It's purpose is to test if something is possible to do, in this case convert a string to float. If it wouldn't be possible, an <a href="http://docs.python.org/2/tutorial/errors.html#exceptions">exception</a> would be thrown. If you don't handle the exception the program will crash, which is pretty bad.</p>
 
 								<p>So how does it work? The program tries <code>(try:)</code> something, if it succeds, good! else handle the exception <code>(except:)</code> e.g. <code>print("Err: Conversion is not possible")</code></p>

@@ -27,3 +27,5 @@ Datum:              Tid:    Beskrivning:
                             till ankare och en table of contents på hemsidan.
 2013-08-08      85  8h      Jobbat med hemsidan.
 2013-08-09      91  6h      Jobbat med hemsidan, testat tidåtgång för dijkstra med grannmatris och lagt in resultaten på hemsidan.
+2013-09-12      97  6h      Fixat unittest + Hemsidan
+2013-09-13      99  2h      Hemsidan
