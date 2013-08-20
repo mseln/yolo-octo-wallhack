@@ -146,8 +146,8 @@ def select_nodes_in_rectangle(nodes, min_lat, max_lat, min_lng, max_lng):
 
     nodes_in_rectangle = NodeSet()
     for k, node in nodes.return_nodes().items():
-        if(min_lat <= node.lat and node.lat <= max_lat and 
-           min_lng <= node.lng and node.lng <= max_lng):
+        if(min_lat < node.lat and node.lat < max_lat and 
+           min_lng < node.lng and node.lng < max_lng):
             nodes_in_rectangle.add(k, (node.lat, node.lng))
  
     return nodes_in_rectangle
