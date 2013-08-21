@@ -30,6 +30,10 @@
 		content: none;
 		counter-increment: none;
 	}
+	h3.projcount:before {
+		content: "Extension project " counter(h2counter) "." counter(h3counter) ".\0000a0\0000a0";
+		counter-increment: h3counter;
+	}
 	h3 {
 		counter-reset: h4counter;
 	}
@@ -57,7 +61,7 @@
 		counter-increment: none;
 	}
 	h2.intro{}
-	p {text-indent:20px;}
+	p {text-indent:0px;}
 	.noindent,
 	p.noindent,
 	{
@@ -105,16 +109,16 @@
 		<ol>
 			<li><a href="#intro">Introduction</a></li> 
 			<li><a href="#background">Background</a></li>
-			<li><a href="#project_intro">Project Assignment: Introductory Phase</a></li>
+			<li><a href="#project_intro">Introductory Phase</a></li>
 			<ol>
 				<li><a href="#django">Creating a Web Application with Django</a></li>
 				<li><a href="#gmaps_api">Displaying a Map with the Google Maps API</a></li>
 				<li><a href="#explore_osm">Exploring Data from Open Street Map</a></li>
 				<li><a href="#disp_osm">Displaying Open Street Map Data</a></li>
 			</ol>
-			<li><a href="#project_main">Project Assignment: Main Phase</a></li>
+			<li><a href="#project_main">Main Phase</a></li>
 			<ol>
-				<li><a href="#find_path">Assisting a User to Get From A to B</a></li>
+				<li><a href="#find_path">Assisting a User to Get from A to B</a></li>
 				<li><a href="#extend">Extending Your Application Further</a></li>
 			</ol>
 		</ol>
@@ -123,8 +127,8 @@
 	<h1 class="countheads">TDDD63 Project: Map-based Applications</h1>
 	<h2><a id="intro">Introduction to map based applications</a> </h2>
 	<p>Maps represent the world we live in. They are central in many computer applications. The goal of this project is to create a map-based application including some of the underlying data structures and algorithms. </p>
-	<p>As we all know, the numbering of the houses in Ryd can be quite confusing. It has been rumored that there is a research report stating that there is no simple set of rules that describe the numbering. To help you find your way to your friends you need a map application that for example shows the shortest path between your house and your friends houses.  Since you want to become an expert programmer you decide to write your own application to learn more about the data structures, algorithms, and problems involved in map applications.</p>
-	<p>In the first part of the project a basic map application is developed which can then be extended in a number of different directions in the second part.</p>
+	<p>As we all know, the numbering of the houses in Ryd can be quite confusing. It has been rumored that there is a research report stating that there is no simple set of rules that describe the numbering. To help you find your way to your friends you need a map application that shows the shortest path between your house and your friends houses.  Since you want to become an expert programmer you decide to write your own application to learn more about the data structures, algorithms, and techniques involved in map applications.</p>
+	<p>In the first part of the project a basic web-based map application is developed which you should extended in the second part.</p>
 
 
 
@@ -154,36 +158,37 @@
 	<li> For more examples, see <a href="http://googlemapsmania.blogspot.se">googlemapsmania.blogspot.se</a>.
 	</ul>
 	</p>
-	<p> Google Maps is probably the most popular online map as well as map API. With their many users Apple might manage to catch up. An interesting fact about Apple's maps is that it is partially developed by the Linköping company C3 Technologies which was acquired by Apple. C3 Technologies is a spin-off company from SAAB that generates accurate 3D maps.
+	<p> Google Maps is probably the most popular online map as well as map API. As Apple now have their own map application and many users, they might manage to catch up. An interesting fact about Apple's maps is that it is partially developed by the Linköping company C3 Technologies which was acquired by Apple. C3 Technologies is a spin-off company from SAAB that generates accurate 3D maps.
 	</p>
 
 
 
-	<h2><a id="project_intro">Project Assignment: Introductory Phase</a></h2>
+	<h2><a id="project_intro">Introductory Phase</a></h2>
 	<p>The goal of the introductory phase is to create a web application using the <a href="https://www.djangoproject.com/">Django framework</a>, display a map using the <a href="https://developers.google.com/maps/documentation/javascript/">Google Maps API</a> and to explore map data from the <a href="http://www.openstreetmap.org/">Open Street Map project</a>.</p>
 	<p>This part of the project is structured around the following four
 	milestones that each consists of a series of exercises. Each exercise
 	has a number of tasks that should be completed. </p>
 	<ol>
-	<li> Create a web application with Django (which requires Python 3.2)
-	<li> Display a map using the Google Maps API
+	<li> Create a web application with Django
+	<li> Display a map in your web application using the Google Maps API
 	<li> Explore Open Street Map data
-	<li> Display Open Street Map data on a map
+	<li> Display Open Street Map data on the map in your web application
 	</ol>
-	<p> When you have reached the last milestone you will have a web application that displays a set of locations from Open Street Map on a map using the Google Maps API. </p>
+	<p> When you have reached the last milestone you will have a web application that displays data from Open Street Map on a map using the Google Maps API. </p>
 
 	<h3><a id="django">Creating a Web Application with Django</a></h3>
 	<p>The goal of this milestone is to create a basic web application using the Django framework. Django is a Python framework for creating websites. It is very easy to get started with and provides all the functionality needed for this project.</p>
 
-	<h4> (Create a Django Project) </h4>
-	<p>To get started you need to create a Django project. This is done with the help of the <code>django-admin.py</code> program. A Django project is a Python package, i.e. a directory of code, that contains all the settings for an instance of Django. This includes database configurations, Django-specific options and application-specific settin</p>
+	<h4>Create a Django Project</h4>
+	<p>To get started you need to create a Django project. This is done with the help of the <code>django-admin.py</code> program. A Django project is a Python package, i.e. a directory containing the code and the settings for an instance of Django. This includes database configurations, Django-specific options and application-specific settings.</p>
 
 	<h5>Load the <code>tddd63 maps module </code></h5>
 
-	<p>If you are using Solaris, then you need to load a module with Django and other software that you need for this project.  The name of the module is <code>tddd63-maps</code>.  To load it into your current terminal use the command <br> <code>module add   home/TDDD63/modulefiles/tddd63-maps</code>. </p>
+	<p>If you are using IDA's Solaris system, then you need to load a module with Django and other software that you need for this project.  The name of the module is <code>tddd63-maps</code>.  To load it into your current terminal use the command <br> <code>module add home/TDDD63/modulefiles/tddd63-maps</code>. </p>
 
-	<p>To automatically load the module every time you create a new terminal execute the command <code>module initadd /home/TDDD63/modulefiles/tddd63-maps</code> once.</p>
-	<p> If you are using your own UNIX (linux, mac) system then you need to install <a href="https://docs.djangoproject.com/en/dev/topics/install/">Django 1.4.1</a> by yourself. If you are a windows user you have to find out how to set up django yourself. Check how to install it <a href="https://docs.djangoproject.com/en/dev/topics/install/">here</a>.</p>
+	<p>To automatically load the module every time you create a new terminal execute the command <code>module initadd /home/TDDD63/modulefiles/tddd63-maps</code> once.  This does not load the module into any already created terminals, including the terminal where you executed the command.</p>
+
+	<p> If you are using your own UNIX (Linux, Mac) system then you need to install <a href="https://docs.djangoproject.com/en/dev/topics/install/">Django 1.4.1</a> by yourself. If you are a windows user you have to find out how to set up django yourself. Check how to install it <a href="https://docs.djangoproject.com/en/dev/topics/install/">here</a>.</p>
 
 	<h5>Create the <code>lmap</code> project</h5>
 	The following command creates a Django project called <code>lmap</code>:
@@ -193,28 +198,28 @@
 	Explore the file structure created by Django and read about what the files are <a href="http://docs.djangoproject.com/en/1.4/intro/tutorial01/#creating-a-project">here</a>.
 
 	<h5>Start a web server</h5> 
-	<p>To test your application you need to start a web server.  Django comes with a development server which you can use. Change into the outer <code>lmap</code> directory, if you haven't already, and run the command <code>python3 manage.py runserver 0.0.0.0:80XY</code>, where <i>X</i> is the group number (1-5) and <i>Y</i> is a number that each group assigns to each student in their group (0-9). The command starts the development web server and informs you about potential problems as well as the URL of the server. To get the URL, find the line "Development server is running at <i>URL</i>".<p>
+	<p>To test your application you need to start a web server.  Django comes with a development server which you can use. Change into the outer <code>lmap</code> directory, if you haven't already, and run the command <code>python3 manage.py runserver 0.0.0.0:80XY</code>, where <i>X</i> is your group number (1-6) and <i>Y</i> is a number that each group assigns to each student in their group (0-9). The command starts the development web server and informs you about potential problems and the URL of the server. To get the URL, find the line "Development server is running at <i>URL</i>".<p>
 
-	</p>Check that your web server is working by opening the URL found in your browser.</p>
+	</p>Check that your web server is working by opening the URL in your browser.</p>
 
 
 	<h4>Set up an SQLite database</h4>
-
+	<!-- TODO: Link to SQLite -->
 	<p>To store information your application needs a database. SQLite is a simple database which is stored in a single file in the file system.</p>
 
 	<h5>Update database configuration</h5> 
 
-	<p>To configure Django to use an SQLite database open the file <code>lmap/settings.py</code>, find the variable <code>DATABASES</code>, and make <code>'django.db.backends.sqlite3'</code> be the value for <code>'ENGINE'</code>, and change the value for <code>'NAME'</code> to <code>os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'lmap.sqlite3').replace( '\\', '/' )</code>. </p>
+	<p>To configure Django to use an SQLite database open the file <code>lmap/settings.py</code>, find the variable <code>DATABASES</code>, assign the variable <code>'ENGINE'</code> the value <code>'django.db.backends.sqlite3'</code>, and change the value of <code>'NAME'</code> to <code>os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'lmap.sqlite3').replace( '\\', '/' )</code>. </p>
 
 	<div class=note>
-		<p class=note-title>What do all these mysterious function calls do?</p>
+		<p class=note-title>What does this mysterious expression mean?</p>
 		<ul>
-			<li><code>os.path.dirname( __file__ )</code> is the directory where the settings.py file is located. </li>  
+			<li><code>os.path.dirname( __file__ )</code> is the directory where the <code>settings.py</code> file is located. </li>  
 			<li><code>'..'</code> takes you to the folder above that.</li>
-			<li><code>'lmap.sqlite3'</code> is where your database is going to live.</li> 
-			<li><code>os.path.join(...)</code> joins the path togheter.
-			<li><code>os.path.abspath(...)</code> returns the absolute path of what the above returns.</li>
-			<li><code>.replace( '\\', '/' )</code> takes the path which is a simple string and replaces all backslashes (\) with forward slashes (/). The reason why this is added to the statement is because if you are on a windows mashine, the file path will separate it's directories with backslashes instead of forward slashes. Django uses forward slashes and that is why they have to be replaced.</li>
+			<li><code>'lmap.sqlite3'</code> is the name of the file that stores the database.</li> 
+			<li><code>os.path.join(...)</code> joins the paths togheter.
+			<li><code>os.path.abspath(...)</code> returns the absolute path of its argument, which is the relative path created above.</li>
+			<li><code>.replace( '\\', '/' )</code> takes the path, which is just a string, and replaces all backslashes (\) with forward slashes (/). This is needed in case you are using Windows, which uses backslashes as separators in paths, while Django (and Unix) uses forward slashes.</li>
 		</ul>
 	</div>
 	<h5>Read about the database configuration</h5>
@@ -222,58 +227,56 @@
 	<p>Read more about the database options at
 	<a href="http://docs.djangoproject.com/en/1.4/intro/tutorial01/#database-setup">docs.djangoproject.com</a>.</p>
 
-	<h5>Create database and initial tables</h5>
-	<p>Your Django project is by default configured to use several database tables. These must be created in the database before we can use them. To do this, execute the command <code>python3 manage.py syncdb</code>.</p>
+	<h5>Create the database and initial tables</h5>
+	<p>Your Django project is by default configured to use several database tables. These must be created in the database before they can be used. To do this, execute the command <code>python3 manage.py syncdb</code>.</p>
 
 	<p>When asked about creating a superuser, say "yes". Create a superuser "admin" with your email address and the password "admin".</p>
 
 
-	<h4>(Create a Django app)</h4>
+	<h4>Create a Django app</h4>
 
-	<p>A Django app is a Python package, somewhere on your Python path, that follows a certain convention.  Django comes with a utility that automatically generates the basic directory structure of an app, so you can focus on writing code rather than creating directories.  An app is a reusable Django component that can be used in multiple projects.</p>
+	<p>A Django app is a Python package, somewhere in your Python path, that follows a certain convention.  Django comes with a utility that automatically generates the basic directory structure of an app, so you can focus on writing code rather than creating directories.  An app is a reusable Django component that can be used in multiple projects.</p>
 
-	<h5>(Projects vs. Apps)</h5>
+	<h5>Projects vs. Apps</h5>
 
-	<p>Read about the difference between a project and an app at<br>
+	<p>Read about the differences between a project and an app at
 	<a href="https://docs.djangoproject.com/en/1.4/intro/tutorial01/#creating-models">docs.djangoproject.com</a>.</p>
 
-	<h5>(Create the mapvis app)</h5>
+	<h5>Create the mapvis app</h5>
 
-	<p>Change directory to the <code>lmap</code> directory so that you are in the directory with <code>manage.py</code>. To create the <code>mapvis</code> app, execute the command <code>python manage.py startapp mapvis</code>.</p>
+	<p>Change directories to the <code>lmap</code> directory so that you are in the directory with <code>manage.py</code>. To create the <code>mapvis</code> app, execute the command <code>python manage.py startapp mapvis</code>.</p>
 
-	<h5>(Explore app files)</h5> 
+	<h5>Explore app files</h5> 
 
 	<p>Explore the file structure created by Django and read about what the files are <a href="https://docs.djangoproject.com/en/1.4/intro/tutorial01/#creating-models">here</a>.</p>
 
-	<h4>Make your app generate a web page</h4>
 
+	<h4>Make your app generate a web page</h4>
 	<p>The next step towards a web application is to generate your first web page.  In Django, and in other frameworks based on the <a href="http://en.wikipedia.org/wiki/Model-view-controller">Model View Controller</a> design pattern, this is done through a <i>view</i>. To make a page available to a user it has to be associated with a URL. From a Django programming perspective, the content of a page is produced by a view function and a URL is specified in a URLconf.</p>
 
-	<p>You can read about views and associating URLs to views <a href="http://www.djangobook.com/en/2.0/chapter03.html">here</a>.</p>
-
+	<p>Read about views and associating URLs to views <a href="http://www.djangobook.com/en/2.0/chapter03.html">here</a>.</p>
 
 
 	<h5>Create a view displaying a message</h5>
-
 	<p>In the <code>mapvis</code> app directory, there is a file <code>views.py</code>. This is were you should place your view functions.  Enter the code below to create a view function that generates a page with the classical message "Hello world".</p>
+
 	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/hello_world.py"></script>
 
-	<p>If you haven't already checked the docs, read about what this code does
+	<p>Read about what this code does
 	<a href="http://www.djangobook.com/en/2.0/chapter03.html">here</a>.</p>
 
 	<div class=note>
 		<p class=note-title>Debugging tips:</p>
 		<ol>
-		<p.noindent>If something goes wrong you need to find out what the problem is. Often you do that by checking what values the relevant variables have. There are a few alternatives listed below.</p> 
+		<p.noindent>If something goes wrong you need to find out what the problem is. Often you do that by checking the values the relevant variables. This can be done in several ways.  Some of the alternatives are listed below.</p> 
 
-		<li>Using <code>print</code> is a very easy way to debug in python. It simply prints a given value to the console. If you're running the server it will print the output in the same window as the server is running on.</li>
+		<li>Using <code>print</code> is a very easy way to debug in Python. It simply prints a given value to the console. If you are running a web server it will print the output in the same terminal as the server is running in.</li>
 	
 		<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/debug_print.py"></script>
 
-		<li>As you may already have seen, the django error view contains a lot of info. It contains all variables and their values. You can get this info by just adding <code>assert(False)</code> anywhere in your code. It will cause the program to "crash" and show all info about the current view. Try it out in your hello world view! Add <code>assert(false)</code> just before <code>return HttpResponse("Hello world")</code> and reload the page</li><br>
+		<li>As you may already have seen, the Django error view contains a lot of information. It contains all the variables and their values. You can get this information by adding <code>assert(False)</code> anywhere in your code. This will cause the program to "crash" and show all the information about the current view. Try it out in your hello world view! Add <code>assert(false)</code> just before <code>return HttpResponse("Hello world")</code> and reload the page</li><br>
 
-		<li>Python has a built-in debugger called pdb. A debugger makes it possible to step trough the code one step at a time and see what goes on at each step. <a href="http://stackoverflow.com/questions/4228637/getting-started-with-the-python-debugger-pdb">getting started with pdb</a>
-		</li>
+		<li>Python also has a built-in debugger called <code>pdb</code>. A debugger makes it possible to step trough the code one step at a time and see what goes on at each step. Read <a href="http://stackoverflow.com/questions/4228637/getting-started-with-the-python-debugger-pdb">getting started with pdb</a> to learn more about pdb.</li>
 		</ol>
 
 	</div>
@@ -312,7 +315,7 @@
 	<p>When you are done your code should look something like this:</p>
 	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/hello_world_time.py"></script>
 
-	<p><i>Note: If you are wondering why the application are showing the wrong time, it is probaly because you haven't set up the right timezone. How to fix that you have to find out yourself, it is a good excercise"</i></p>
+	<p><i>Note: If you are wondering why the application are showing the wrong time, it is probaly because you haven't set up the right timezone. How to fix that you have to find out yourself, it is a good excercise</i></p>
 
 	<p>If you still have a hard time understanding what the code snippets above do. Take some time and read through the whole <a href="http://www.djangobook.com/en/2.0/chapter03.html">Views and URLconfs</a> from django book.</p>
 
@@ -324,7 +327,8 @@
 
 
 	<h4>Generate a web page using a template</h4>
-
+	<!-- TODO: Explain what a template is and how it works. -->
+        <!-- TODO: Give examples of variables, if and for loops in templates. -->
 	<p>In the previous exercise you created a web page by hard coding the content. A much better approach is to use the Django template facility. It allows you to combine hard coded and generated HTML/<a href="http://en.wikipedia.org/wiki/Cascading_Style_Sheets">CSS</a>/<a href="http://en.wikipedia.org/wiki/Javascript">JavaScript</a> in more user friendly manner than creating a very long string by concatenating smaller strings.</p>
 
 	<p>You can read more about Django's templates <a href="http://www.djangobook.com/en/2.0/chapter04.html">here</a>.</p>
@@ -556,7 +560,7 @@
 	<p>In this exercise you will use the web tool osmhack to investigate OSM data.</p>
 
 	<p>
-		<font style = "color:red">??? </font>The web page <a href="http://toolserver.org/~kolossos/osm/osmhack.php?lat=58.40&lon=15.61&name=Linköping">http://toolserver.org/~kolossos/osm/osmhack.php?lat=58.40&lon=15.61&name=Linköping</a> automatically generates a list of the OSM map features used in the Link\"oping map. Clicking a link in the "Values" column generates a map with all map elements carrying the corresponding map feature highlighted in red. <font style = "color:red"> ???</font>
+	</font>The web page <a href="http://toolserver.org/~kolossos/osm/osmhack.php?lat=58.40&lon=15.61&name=Linköping">http://toolserver.org/~kolossos/osm/osmhack.php?lat=58.40&lon=15.61&name=Linköping</a> automatically generates a list of the OSM map features used in the Linköping map. Clicking a link in the "Values" column generates a map with all map elements carrying the corresponding map feature highlighted in red.
 	</p>
 
 	<h5>Motorways</h5>
@@ -573,7 +577,7 @@
 
 
 	<h4>Using Python tools to parse and investigate OSM data</h4>
-
+	<!-- TODO: Explain what a SAX parser is, what the OSM parser does and how they are connected. -->
 	<p>We now want you to start processing the OSM data by executing programs you have written yourself. Parsing the rather extensive OML XML format is not an easy task. You will therefore use a ready made parser for at least the introductory phase.</p>
 
 	<p>Hint: You might have to change the directory and file name of the OSM map file to make the code work.</p>
@@ -607,7 +611,7 @@
 
 	<p> Create a file called <code>store.py</code> and insert the code above there.</p>
 
-	<p>The data structure to store all the nodes will now simply be a dictionary using the node id as key and a array <code>bounds</code> to keep track of the boundaries of the nodes.<p>
+	<p>The data structure to store all the nodes will now simply be a dictionary using the node id as key and an array <code>bounds</code> to keep track of the boundaries of the nodes.<p>
 	<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/store_nodes.py"></script>
 
 	<p> Using the <code>osm_parser</code> to
@@ -706,7 +710,7 @@
 	<p>To display the markers you also need to call the function (<code>displayMarkers(map);</code>) in the initialize() function, preferably at the end.</p>
 
 
-	<h2><a id="project_main">Project Assignment: Main Phase</a></h2>
+	<h2><a id="project_main">Main Phase: Assisting a User to Get from A to B</a></h2>
 
 	<p>Congratulations, you have now learned how to create a web application displaying a map, how to extract data from the Open Street map project, store it in a data structure and display it in your web application.  Equipped with this, you will now create more advanced map-based web applications.
 
@@ -718,71 +722,68 @@
 		<img border="0" src="mapapp_overview.png" alt="Web interface" width="1023" height="567">
 	</div>
 
-	<h3><a id="find_path">Assisting a User to Get From A to B</a></h3> 
-	<p>The first goal of this part of the project is to develop a web application that assists a user to get from a location A to a location B. To achieve this, the application should allow a user to select two locations on a map, compute the shortest path between these locations and display the path on the map.  To compute the shortest path you also need to create a data structure storing information about which locations are connected and the distances between them as well as populate it with real map data.  At the end of this part of the project you will have an application similar to the one in</p>
+	<p>The goal of this part of the project is to develop a web application that assists a user to get from a location A to a location B. To achieve this, the application should allow a user to select two locations on a map, compute the shortest path between these locations and display the path on the map.  To compute the shortest path you also need to create a data structure storing information about which locations are connected and the distances between them as well as populate it with real map data.  At the end of this part of the project you will have an application similar to the one in</p>
 
+	<h3><a id="">Extend the map application to store and display roads</a></h3>
 	<p>Milestones:
-	<ol>	
+	  <ol>
+	    <li>
+	      Create a data structure to store roads and appropriate unit tests. Make sure that your code passes all the unit tests. A suggestion is to create a data type called <code>Edge</code> that stores a single edge. An edge is a directed connection between two nodes so a road would contain a lot of edges.
+	      
+	      <script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/edge.py"></script>
+	    </li>
+	    <li> 
+	      Populate the data structure with roads from Open Street Map. The following snippet contains a suggested way to structure the code. You will have to fill in the missing pieces of code.
+	      
+	      <script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/extract_osm_edges.py"></script>
+	    </li>
+	    <li> 
+	      To store all roads, we suggest that you create a new class EdgeSet witch contains all edges. Between all connected we have to create an edge which is going to be stored in a list of edges.
+
+	      By having this structure it becomes straight forward to create a Django template for iterating through all roads and for each road create a polyline by iterating through all coordinates and adding each coordinate to the polyline. To help you, we provide the following example JavaScript code:
+
+	      <script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/polyline.js"></script>
+
+	    </li>
+	  </ol>
+
+	  <h3><a id="">TODO: Create a new title for each major milestone</a></h3>
+	  <!-- TODO: For each major milestone, create a new section with a title, write a short introduction, then have a list of minor milestones. -->
+		<ol>
 		<li> 
-			Extend the map application to store and display roads.
-			<ol>
-				<li>
-					Create a data structure to store roads and appropriate unit tests. Make sure that your code passes all the unit tests. A suggestion is to create a data type called <code>Edge</code> that stores a single edge. An edge is a directed connection between two nodes so a road would contain a lot of edges.
-					
-					<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/edge.py"></script>
+		  Implement a shortest path algorithm together with appropriate unit tests. Now might be a good time to try a test-driven development methodology <a href="http://en.wikipedia.org/wiki/Test-driven_development">test-driven development methodology</a>, where you start by defining the test cases and then develop the code until it passes all the test cases. It is of course possible to start with a few initial test cases which are then extended together with the code they test.
+		  <ol>
+		    <li> 
+		      Create a data structure to store connections between locations and the lengths of these connections. The usual way to model interconnected locations that are a certain distance apart is by using a (combinatorial) graph. Read up on:
+		      <ul>
+			<li> 
+			  the mathematical concept of a <a href="http://en.wikipedia.org/wiki/Graph_(mathematics)">graph</a>
+			</li>
+			<li> 
+			  typical <a href="http://en.wikipedia.org/wiki/Graph_(data_structure)">data structures</a> used to represent graphs.
+			</li>
+		      </ul>
+		      You now have to make a preliminary decision concerning how you want to store the distance graph. We suggest that you make your choice between using
+		      <ul>
+			<li> 
+			  <a href="http://en.wikipedia.org/wiki/Adjacency_list">adjacency lists</a>, or
+			</li>
+			<li> 
+			  an <a href="http://en.wikipedia.org/wiki/Adjacency_matrix">adjacency matrix</a>.
+			</li>
+		      </ul>
+		    </li>
+		    <li> 
+		      Implement your chosen data structure in Python and make sure you have appropriate test cases.
+		    </li>
+		    <li> 
+		      Populate the data structure with data from Open Street Map. To do this you will have to decide how to calculate the geographical distance between two nodes that are part of a road. Since Earth is not flat, the distance between two points on the map cannot simply be calculated as the two dimensional Euclidean distance. One way is to use the haversine formula, as in the following Python code snippet:
 
-
-				</li>
-				<li> 
-					Populate the data structure with roads from Open Street Map. The following snippet contains a suggested way to structure the code. You will have to fill in the missing pieces of code.
-
-					<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/extract_osm_edges.py"></script>
-
-				</li>
-				<li> 
-					To store all roads, we suggest that you create a new class EdgeSet witch contains all edges. Between all connected we have to create an edge which is going to be stored in a list of edges.
-
-					By having this structure it becomes straight forward to create a Django template for iterating through all roads and for each road create a polyline by iterating through all coordinates and adding each coordinate to the polyline. To help you, we provide the following example JavaScript code:
-
-					<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/polyline.js"></script>
-
-				</li>
-			</ol>
-		</li>
-		<li> 
-			Implement a shortest path algorithm together with appropriate unit tests. Now might be a good time to try a test-driven development methodology <a href="http://en.wikipedia.org/wiki/Test-driven_development">test-driven development methodology</a>, where you start by defining the test cases and then develop the code until it passes all the test cases. It is of course possible to start with a few initial test cases which are then extended together with the code they test.
-			<ol>
-				<li> 
-					Create a data structure to store connections between locations and the lengths of these connections. The usual way to model interconnected locations that are a certain distance apart is by using a (combinatorial) graph. Read up on:
-					<ul>
-						<li> 
-							the mathematical concept of a <a href="http://en.wikipedia.org/wiki/Graph_(mathematics)">graph</a>
-						</li>
-						<li> 
-							typical <a href="http://en.wikipedia.org/wiki/Graph_(data_structure)">data structures</a> used to represent graphs.
-						</li>
-					</ul>
-					You now have to make a preliminary decision concerning how you want to store the distance graph. We suggest that you make your choice between using
-					<ul>
-						<li> 
-							<a href="http://en.wikipedia.org/wiki/Adjacency_list">adjacency lists</a>, or
-						</li>
-						<li> 
-							an <a href="http://en.wikipedia.org/wiki/Adjacency_matrix">adjacency matrix</a>.
-						</li>
-					</ul>
-				</li>
-				<li> 
-					Implement your chosen data structure in Python and make sure you have appropriate test cases.
-				</li>
-				<li> 
-					Populate the data structure with data from Open Street Map. To do this you will have to decide how to calculate the geographical distance between two nodes that are part of a road. Since Earth is not flat, the distance between two points on the map cannot simply be calculated as the two dimensional Euclidean distance. One way is to use the haversine formula, as in the following Python code snippet:
-
-					<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/haversine.py"></script>
-
-				</li>
-				<li> 
-					Implement a provable optimal algorithm to compute the shortest path between two locations using the graph data structure together with appropriate test cases (you do not have to prove that it is optimal). You should write your own code implementing and testing an existing algorithm, There are many algorithms for finding the shortest path between two nodes in an edge weighted graph. For this project we suggest you start out by implementing(<a href="http://en.wikipedia.org/wiki/Dijkstra's_algorithm">Dijkstra's algorithm</a>).
+		      <script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/haversine.py"></script>
+		      
+		    </li>
+		    <li> 
+		      Implement a provable optimal algorithm to compute the shortest path between two locations using the graph data structure together with appropriate test cases (you do not have to prove that it is optimal). You should write your own code implementing and testing an existing algorithm, There are many algorithms for finding the shortest path between two nodes in an edge weighted graph. For this project we suggest you start out by implementing(<a href="http://en.wikipedia.org/wiki/Dijkstra's_algorithm">Dijkstra's algorithm</a>).
 
 					<div class=note>
 						<p class=note-title>Note on running time:</p>
@@ -878,13 +879,13 @@
 		</ol>
 	</ol></p>
 
-	<h3><a id="extend">Extending Your Application Further</a></h3>
+	<h2><a id="extend">Extending Your Application Further</a></h2>
 	After you have completed all these tasks, you have accomplished a lot. You have created and tested a graph data structure, populated it with data from the Open Street Map project, implemented and tested a shortest path algorithm, created a web application where a user can select multiple locations (and map these locations into nodes in the graph), displayed single and multiple paths in the web application, and more.
 
 	What you have done so far provides you with both a set of components for more advanced map-based applications as well as an understanding of some of the basic issues involved in map-based applications. Now you will extend your application further or develop new applications starting from the code you already have. This is a very open ended project with many possibilities to create exciting map-based applications. Below are some example suggestions that you can chose from and extend as you like. You are also welcome to suggest your own improvements.
 
 	<ul>
-	<h4 class="projcount">Smaller improvements to the shortest path application:</h4>
+	<h3 class="projcount">Smaller improvements to the shortest path application:</h3>
 	<ul>
 		<li> 
 			Add speed to the edges and let the user ask for the fastest way rather than the shortest. Can you provide better choices by minimizing the number of crossings that the user needs to pass?
@@ -903,7 +904,7 @@
 		</li>
 	</ul>
 
-	<h4 class="projcount">Speed improvements to the shortest path application:</h4>
+	<h3 class="projcount">Speed improvements to the shortest path application:</h3>
 	<p>As stated in section 4.1. using a matrix is pretty unefficient for sparse graphs. You can do some improvements to speed up the algorithm.</p>
 	<ol>
 		<li>If you are not already using an adjacency list instead of matrix, then change it. An adjacency list is a list where each element is representing a node and all elements in the list are a list of all neighboors. The dictionary now becomes very handy since you can use the node id as key to a list conataining all neighboors to that node.</li>
@@ -954,7 +955,7 @@
 		
 	</ol>
 
-	<h4 class="projcount">All pairs shortest path</h4>
+	<h3 class="projcount">All pairs shortest path</h3>
 	<a href="http://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm">Floyd-Warshall algorithm</a> is an algorithm to compute all shortest path between all pairs of nodes. The algorithm is really easy to implement. Read about it and answer these questions:
 	<ol>
 		<li>What is the time complexity?</li>
@@ -973,7 +974,7 @@
 	</ol>
 	You can store the precalculated paths in a database, to make the application really fast. If you want to do that improvment, check out the extension project "Using a database".
 
-	<h4 class="projcount">Using a database</h4> 
+	<h3 class="projcount">Using a database</h3> 
 	Currently all the data is stored in memory and if you reload the page then all the data is loaded again. Extend the application to store all the data in a database instead. This makes the data persistent and potentially improves the efficiency of the application. This is also a good exercise since all modern web applications are database driven.  To get started we suggest that you read about <a href="http://www.djangobook.com/en/2.0/chapter05.html">Models</a> in the Django book. Try to move as much functionality into the database as possible, for example by replacing ClipNodes with a database query.
 
 	Create an application which lets users record their current or planned future location. This can be used to see where your friends were last seen and potentially where to look for them.  Maybe you can connect the central schedule database to your application to show where you should be depending on what courses you take?
@@ -983,12 +984,12 @@
 	If you have done the "all pairs shortest path" project you can use it to calculate the shortest path and store the precalculated paths in the data base.
 	
 
-	<h4 class="projcount">Build a beer pipeline!</h4>
+	<h3 class="projcount">Build a beer pipeline!</h3>
 	<p>You have been given the task of building a beer pipeline by connecting plastic tubes to provide all your friends with beer directly from HG. Since you are thirsty you want to minimize the total amount of plastic tubes that you have to connect before finishing the project. </p>
 
 	<p>Extend the map application to allow a user to select a set of end points and then find the edges along which the pipeline should be built so that the total length of the pipeline is minimized and display the result on the map. You can make this problem easier or harder depending on how much freedom you consider to be allowed when constructing the pipeline. The simpler version is to only build the pipeline along existing roads. To make the problem harder, and the total length of the pipeline shorter, you can allow new nodes to be added. If you allow new nodes then you can start by ignoring buildings and then add these later. The more accurate you want the result, the more complicated it becomes.</p>
 
-	<h4 class="projcount">Help a geocacher</h4>
+	<h3 class="projcount">Help a geocacher</h3>
 	Your friend, an enthusiastic geocacher, has heard that you are building awesome map-based applications.  Since he is a bit lazy he has asked you to extend your application to allow him to select a set of geocaches and then automatically find the shortest route from his apartment visiting all the caches and then back to the apartment.
 	</ul>
 	<p>In any case you can either focus on developing the necessary algorithms, the web application or some combination of them. Remember to also implement the appropriate testing to increase the quality of your code and hopefully decrease the development time. If you decide to work more on the web application rather than the underlying algorithms you may use existing code libraries such as Google's APIs or graph libraries (for example <a href="http://networkx.lanl.gov">networkx</a>, <a href="http://igraph.sourceforge.net">igraph</a>).</p>
