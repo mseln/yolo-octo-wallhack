@@ -726,160 +726,148 @@
 
 	<h3><a id="">Extend the map application to store and display roads</a></h3>
 	<p>Milestones:
-	  <ol>
-	    <li>
-	      Create a data structure to store roads and appropriate unit tests. Make sure that your code passes all the unit tests. A suggestion is to create a data type called <code>Edge</code> that stores a single edge. An edge is a directed connection between two nodes so a road would contain a lot of edges.
+	<h4>Store an edge</h4>
+	    Create a data structure to store roads and appropriate unit tests. Make sure that your code passes all the unit tests. A suggestion is to create a data type called <code>Edge</code> that stores a single edge. An edge is a directed connection between two nodes so a road would contain a lot of edges.
 	      
 	      <script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/edge.py"></script>
-	    </li>
-	    <li> 
-	      Populate the data structure with roads from Open Street Map. The following snippet contains a suggested way to structure the code. You will have to fill in the missing pieces of code.
+
+	<h4>Get the data from the osm file</h4>
+	    Populate the data structure with roads from Open Street Map. The following snippet contains a suggested way to structure the code. You will have to fill in the missing pieces of code.
 	      
 	      <script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/extract_osm_edges.py"></script>
-	    </li>
-	    <li> 
-	      To store all roads, we suggest that you create a new class EdgeSet witch contains all edges. Between all connected we have to create an edge which is going to be stored in a list of edges.
 
-	      By having this structure it becomes straight forward to create a Django template for iterating through all roads and for each road create a polyline by iterating through all coordinates and adding each coordinate to the polyline. To help you, we provide the following example JavaScript code:
+	<h4>Store all the edges    <img src="all_the_roads.jpg" style="width: 7%; height: 7%"></h4>
+	    To store all roads, we suggest that you create a new class EdgeSet witch contains all edges. Between all connected we have to create an edge which is going to be stored in a list of edges.
+
+	    By having this structure it becomes straight forward to create a Django template for iterating through all roads and for each road create a polyline by iterating through all coordinates and adding each coordinate to the polyline. To help you, we provide the following example JavaScript code:
 
 	      <script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/polyline.js"></script>
 
-	    </li>
-	  </ol>
+		<h3><a id="">TODO: Create a new title for each major milestone</a></h3>
+		<!-- TODO: For each major milestone, create a new section with a title, write a short introduction, then have a list of minor milestones. -->
+		<h4>Shortest path</h4>
+		Implement a shortest path algorithm together with appropriate unit tests. Now might be a good time to try a test-driven development methodology <a href="http://en.wikipedia.org/wiki/Test-driven_development">test-driven development methodology</a>, where you start by defining the test cases and then develop the code until it passes all the test cases. It is of course possible to start with a few initial test cases which are then extended together with the code they test.
 
-	  <h3><a id="">TODO: Create a new title for each major milestone</a></h3>
-	  <!-- TODO: For each major milestone, create a new section with a title, write a short introduction, then have a list of minor milestones. -->
-		<ol>
+		<h5>Create a mathematical graph</h5>
+		Create a data structure to store connections between locations and the lengths of these connections. The usual way to model interconnected locations that are a certain distance apart is by using a (combinatorial) graph. Read up on:
+		<ul>
+			<li> 
+				the mathematical concept of a <a href="http://en.wikipedia.org/wiki/Graph_(mathematics)">graph</a>
+			</li>
+			<li> 
+				typical <a href="http://en.wikipedia.org/wiki/Graph_(data_structure)">data structures</a> used to represent graphs.
+			</li>
+		</ul>
+		You now have to make a preliminary decision concerning how you want to store the distance graph. We suggest that you make your choice between using
+		<ul>
+			<li> 
+				<a href="http://en.wikipedia.org/wiki/Adjacency_list">adjacency lists</a>, or
+			</li>
+			<li> 
+			  	an <a href="http://en.wikipedia.org/wiki/Adjacency_matrix">adjacency matrix</a>.
+			</li>
+		</ul>
+
+		<h5>Implement it in python</h5>
+		<p>Implement your chosen data structure in Python and make sure you have appropriate test cases.</p>
+
+		<p>Then populate the data structure with data from Open Street Map. To do this you will have to decide how to calculate the geographical distance between two nodes that are part of a road. Since Earth is not flat, the distance between two points on the map cannot simply be calculated as the two dimensional Euclidean distance. One way is to use the haversine formula, as in the following Python code snippet:
+
+		<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/haversine.py"></script></p>
+
+	<h5>Implement the shortest path algorithm</h5>
+	<p>Implement a provable optimal algorithm to compute the shortest path between two locations using the graph data structure together with appropriate test cases (you do not have to prove that it is optimal). You should write your own code implementing and testing an existing algorithm, There are many algorithms for finding the shortest path between two nodes in an edge weighted graph. For this project we suggest you start out by implementing(<a href="http://en.wikipedia.org/wiki/Dijkstra's_algorithm">Dijkstra's algorithm</a>).</p>
+
+		<div class=note>
+			<p class=note-title>Note on running time:</p>
+
+			<p>Dijkstras algorithm for an adjacency matrix is not the most optimal, for graphs that has more than 1000 nodes it becomes time consuming. Below is a table of how the number of nodes is proportional to the running time. The <a href="http://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#Running_time">time complexity</a> for dijkstra is O(V^2) but can be improved.</p>
+
+			<table border="1">
+				<tr>	<th>Nodes</th>	<th>Time (s)</th>	</tr>
+				<tr>	<td>542</td>	<td>0.18</td>		</tr>
+				<tr>	<td>740</td>	<td>0.47</td>		</tr>
+				<tr>	<td>1284</td>	<td>2.74</td>		</tr>
+				<tr>	<td>1744</td>	<td>6.08</td>		</tr>
+				<tr>	<td>2694</td>	<td>25.5</td>		</tr>
+				<tr>	<td>3652</td>	<td>66.4</td>		</tr>
+			</table>
+
+			<p>As you can see the algorithm start to take a serious amount of time at around 1000 nodes. There are improvements to make e.g. using a heap instead of a matrix or create an abstract graph of only the crossings. But we leave them out for now and focus on getting a working shortest path application for a small area. In section 4.2. you can choose the extension project which includes speeding up the algoritm.</p>
+		</div>
+	</p>
+	<h4>Find and display the shortest distance</h4> 
+	Extend the map application to find and display the shortest <b>distance</b> between two locations.
+	<h5>Fitting title</h5>
+	Extend the application to allow entering the coordinates of the start and destination by clicking on the map. To achieve this you have to do at least the following:
+	<ol>
 		<li> 
-		  Implement a shortest path algorithm together with appropriate unit tests. Now might be a good time to try a test-driven development methodology <a href="http://en.wikipedia.org/wiki/Test-driven_development">test-driven development methodology</a>, where you start by defining the test cases and then develop the code until it passes all the test cases. It is of course possible to start with a few initial test cases which are then extended together with the code they test.
-		  <ol>
-		    <li> 
-		      Create a data structure to store connections between locations and the lengths of these connections. The usual way to model interconnected locations that are a certain distance apart is by using a (combinatorial) graph. Read up on:
-		      <ul>
-			<li> 
-			  the mathematical concept of a <a href="http://en.wikipedia.org/wiki/Graph_(mathematics)">graph</a>
-			</li>
-			<li> 
-			  typical <a href="http://en.wikipedia.org/wiki/Graph_(data_structure)">data structures</a> used to represent graphs.
-			</li>
-		      </ul>
-		      You now have to make a preliminary decision concerning how you want to store the distance graph. We suggest that you make your choice between using
-		      <ul>
-			<li> 
-			  <a href="http://en.wikipedia.org/wiki/Adjacency_list">adjacency lists</a>, or
-			</li>
-			<li> 
-			  an <a href="http://en.wikipedia.org/wiki/Adjacency_matrix">adjacency matrix</a>.
-			</li>
-		      </ul>
-		    </li>
-		    <li> 
-		      Implement your chosen data structure in Python and make sure you have appropriate test cases.
-		    </li>
-		    <li> 
-		      Populate the data structure with data from Open Street Map. To do this you will have to decide how to calculate the geographical distance between two nodes that are part of a road. Since Earth is not flat, the distance between two points on the map cannot simply be calculated as the two dimensional Euclidean distance. One way is to use the haversine formula, as in the following Python code snippet:
-
-		      <script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/haversine.py"></script>
-		      
-		    </li>
-		    <li> 
-		      Implement a provable optimal algorithm to compute the shortest path between two locations using the graph data structure together with appropriate test cases (you do not have to prove that it is optimal). You should write your own code implementing and testing an existing algorithm, There are many algorithms for finding the shortest path between two nodes in an edge weighted graph. For this project we suggest you start out by implementing(<a href="http://en.wikipedia.org/wiki/Dijkstra's_algorithm">Dijkstra's algorithm</a>).
-
-					<div class=note>
-						<p class=note-title>Note on running time:</p>
-						
-						<p>Dijkstras algorithm for an adjacency matrix is not the most optimal, for graphs that has more than 1000 nodes it becomes time consuming. Below is a table of how the number of nodes is proportional to the running time. The <a href="http://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#Running_time">time complexity</a> for dijkstra is O(V^2) but can be improved.</p>
-						
-						<table border="1">
-							<tr>	<th>Nodes</th>	<th>Time (s)</th>	</tr>
-							<tr>	<td>542</td>	<td>0.18</td>		</tr>
-							<tr>	<td>740</td>	<td>0.47</td>		</tr>
-							<tr>	<td>1284</td>	<td>2.74</td>		</tr>
-							<tr>	<td>1744</td>	<td>6.08</td>		</tr>
-							<tr>	<td>2694</td>	<td>25.5</td>		</tr>
-							<tr>	<td>3652</td>	<td>66.4</td>		</tr>
-						</table>
-						
-						<p>As you can see the algorithm start to take a serious amount of time at around 1000 nodes. There are improvements to make e.g. using a heap instead of a matrix or create an abstract graph of only the crossings. But we leave them out for now and focus on getting a working shortest path application for a small area. In section 4.2. you can choose the extension project which includes speeding up the algoritm.</p>
-					</div>
-				</li> 
-			</ol>
-		</li> 
+			Create an HTML form with at least four fields, start latitude, start longitude, destination latitude and destination longitude. Read about HTML forms <a href="http://www.w3schools.com/html/html_forms.asp">here</a>.
+		</li>
 		<li> 
-			Extend the map application to find and display the shortest <b>distance</b> between two locations.
-			<ol>
-				<li> Extend the application to allow entering the coordinates of the start and destination by clicking on the map. To achieve this you have to do at least the following:
-					<ol>
-						<li> 
-							Create an HTML form with at least four fields, start latitude, start longitude, destination latitude and destination longitude. Read about HTML forms <a href="http://www.w3schools.com/html/html_forms.asp">here</a>.
-						</li>
-						<li> 
-							Create an on click event handler that fills in the fields in the form when a user clicks on the map. Since the user needs to select two coordinates you have to find a way to do that (one approach is to have a very simple state machine with two states, one for entering the start coordinate and one for entering the destination coordinate). In the introductory part you created an on click event handler so the new thing is to populate a form with that data. One page discussing this is <a href="http://www.javascript-coder.com/javascript-form/getelementbyid-form.phtml">
-							javascript-coder.com</a>.
-						</li>
-						<li>
-							<p.noindent>Process the content of the form in the view. To when you press the "Go" button, you are directed to the same page. The content of the form is sent by <a href="http://en.wikipedia.org/wiki/POST_%28HTTP%29">POST</a> and is avaible from django's <a href="https://docs.djangoproject.com/en/dev/ref/request-response/#django.http.HttpRequest.POST">request.POST</a>.</p>
+			Create an on click event handler that fills in the fields in the form when a user clicks on the map. Since the user needs to select two coordinates you have to find a way to do that (one approach is to have a very simple state machine with two states, one for entering the start coordinate and one for entering the destination coordinate). In the introductory part you created an on click event handler so the new thing is to populate a form with that data. One page discussing this is <a href="http://www.javascript-coder.com/javascript-form/getelementbyid-form.phtml">
+			javascript-coder.com</a>.
+		</li>
+		<li>
+			<p.noindent>Process the content of the form in the view. To when you press the "Go" button, you are directed to the same page. The content of the form is sent by <a href="http://en.wikipedia.org/wiki/POST_%28HTTP%29">POST</a> and is avaible from django's <a href="https://docs.djangoproject.com/en/dev/ref/request-response/#django.http.HttpRequest.POST">request.POST</a>.</p>
 
-							<p.noindent>Below is some code for an object that handles POST requests. <i>Note: all the values are defined in the initialization, when the object is first defined i.e. nothing happens with the values in the object until the "Go" button is pressed</i></p>
-							<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/POST_parser.py"></script>
+			<p.noindent>Below is some code for an object that handles POST requests. <i>Note: all the values are defined in the initialization, when the object is first defined i.e. nothing happens with the values in the object until the "Go" button is pressed</i></p>
+			<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/POST_parser.py"></script>
 
-							<p.noindent>If you want any other value from a form, simply create a new variable.</p>
+			<p.noindent>If you want any other value from a form, simply create a new variable.</p>
 
-							<p>Example: <code>self.foo = get_float(request, 'id')</code></p>
+			<p>Example: <code>self.foo = get_float(request, 'id')</code></p>
 
-							<div class=note>
-								<p class=note-title>try: ... except: ... !?</p>
-								<p>What does the try: ... except: ... statement above do? It's purpose is to test if something is possible to do, in this case convert a string to float. If it wouldn't be possible, an <a href="http://docs.python.org/2/tutorial/errors.html#exceptions">exception</a> would be thrown. If you don't handle the exception the program will crash, which is pretty bad.</p>
+			<div class=note>
+				<p class=note-title>try: ... except: ... !?</p>
+				<p>What does the try: ... except: ... statement above do? It's purpose is to test if something is possible to do, in this case convert a string to float. If it wouldn't be possible, an <a href="http://docs.python.org/2/tutorial/errors.html#exceptions">exception</a> would be thrown. If you don't handle the exception the program will crash, which is pretty bad.</p>
 
-								<p>So how does it work? The program tries <code>(try:)</code> something, if it succeds, good! else handle the exception <code>(except:)</code> e.g. <code>print("Err: Conversion is not possible")</code></p>
-							</div>
+				<p>So how does it work? The program tries <code>(try:)</code> something, if it succeds, good! else handle the exception <code>(except:)</code> e.g. <code>print("Err: Conversion is not possible")</code></p>
+			</div>
 
-						</li>
-						<li> 
-							To prevent <a href="http://www.squarefree.com/securitytips/web-developers.html#CSRF">cross   site request forgery</a> (CSRF) Django requires you to take some measures that are described <a href="http://docs.djangoproject.com/en/dev/ref/contrib/csrf/">here</a>. Make sure that you follow these instructions.
-						</li>
-					</ol>
-				</li>
-				<li> 
-					Since a user might click anywhere on the map, you have to implement an algorithm that finds the node in the map database closest to a given coordinate.  An initial approximation can be to find the node which has the closest distance to the selected coordinate. Luckily, you have already implemented function that computes the distance between two coordinates represented as a pair of latitude and longitude. A second approximation could be to find the <i>N</i> closest nodes and make a somewhat smart selection among these. A third approximation is to find the closest point on the edges between the nodes (and implicitly add a node there). This is very useful if there are long road segments and the selected location is right in the middle of that segment.
-				</li>
-				As always, you should also create appropriate test cases.
-				<li> 
-					Extend the map application to display the start and destination with for example markers.
-				</li>
-				<li> 
-					Extend the application to show the computed distance somewhere.
-				</li>
-			</ol>
-			<li> 
-				Extend the map application to find and display the shortest <b>path</b> between two locations.
-				<ol>
-					<li> 
-						Extract the shortest path from the output of your shortest path algorithm. Remember to extend the unit tests by adding new test cases.
-					</li>
-					<li> 
-						Extend the application to display the computed shortest path on the map using, for example, the code developed as part of the previous milestones.
-					</li>
-				</ol>
-			</li>
-			<li> 
-				Most applications that provide directions give the user some alternatives to choose from. Extend the map application to find alternative routes between two locations.
-				<ol>
-					<li> 
-						The simplest approach is probably to extend the shortest path algorithm to compute the <i>X</i> shortest paths and display these. Does this provide good alternatives?
-					</li>
-					<li> 
-						A more interesting approach could be to compute the <i>X</i> shortest paths and then find the <i>Y</i> paths among these that share the fewest number of nodes.
-					</li>
-					<li> 
-						Can you find a better approach to compute alternative paths?
-					</li>
-				</ol>
-			</li>
-		</ol>
-	</ol></p>
+		</li>
+		<li> 
+			To prevent <a href="http://www.squarefree.com/securitytips/web-developers.html#CSRF">cross   site request forgery</a> (CSRF) Django requires you to take some measures that are described <a href="http://docs.djangoproject.com/en/dev/ref/contrib/csrf/">here</a>. Make sure that you follow these instructions.
+		</li>
+	</ol>
+	<h5>User input</h5>
+	<p>Since a user might click anywhere on the map, you have to implement an algorithm that finds the node in the map database closest to a given coordinate.  An initial approximation can be to find the node which has the closest distance to the selected coordinate. Luckily, you have already implemented function that computes the distance between two coordinates represented as a pair of latitude and longitude. A second approximation could be to find the <i>N</i> closest nodes and make a somewhat smart selection among these. A third approximation is to find the closest point on the edges between the nodes (and implicitly add a node there). This is very useful if there are long road segments and the selected location is right in the middle of that segment.</p>
+	
+	<p>As always, you should also create appropriate test cases.</p>
 
-	<h2><a id="extend">Extending Your Application Further</a></h2>
+	<h5>Some more small extensions</h5>
+	<ul>
+		<li> 
+			Extend the map application to display the start and destination with for example markers.
+		</li>
+		<li> 
+			Extend the application to show the computed distance somewhere.
+		</li>
+	</ul>
+
+	<h4>Find and display the shortest path</h4>
+	Extend the map application to find and display the shortest <b>path</b> between two locations.
+
+	<h5>Get the shortest path</h5> 
+	Extract the shortest path from the output of your shortest path algorithm. Remember to extend the unit tests by adding new test cases.
+
+	<h5>Visualize the shortest path</h5>
+	Extend the application to display the computed shortest path on the map using, for example, the code developed as part of the previous milestones.
+
+	Most applications that provide directions give the user some alternatives to choose from. Extend the map application to find alternative routes between two locations.
+	<ol>
+		<li> 
+			The simplest approach is probably to extend the shortest path algorithm to compute the <i>X</i> shortest paths and display these. Does this provide good alternatives?
+		</li>
+		<li> 
+			A more interesting approach could be to compute the <i>X</i> shortest paths and then find the <i>Y</i> paths among these that share the fewest number of nodes.
+		</li>
+		<li> 
+			Can you find a better approach to compute alternative paths?
+		</li>
+	</ol>
+		
+	<h3><a id="extend">Extending Your Application Further</a></h3>
 	After you have completed all these tasks, you have accomplished a lot. You have created and tested a graph data structure, populated it with data from the Open Street Map project, implemented and tested a shortest path algorithm, created a web application where a user can select multiple locations (and map these locations into nodes in the graph), displayed single and multiple paths in the web application, and more.
 
 	What you have done so far provides you with both a set of components for more advanced map-based applications as well as an understanding of some of the basic issues involved in map-based applications. Now you will extend your application further or develop new applications starting from the code you already have. This is a very open ended project with many possibilities to create exciting map-based applications. Below are some example suggestions that you can chose from and extend as you like. You are also welcome to suggest your own improvements.
