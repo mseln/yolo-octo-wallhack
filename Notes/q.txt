@@ -1,2 +1,0 @@
-? request.POST innehåller alla variabler, men hur får man ut dom till view.py?
-	! Sidan laddas om, kolla in: http://www.djangobook.com/en/2.0/chapter07.html

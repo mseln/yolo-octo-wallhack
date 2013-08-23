@@ -1,0 +1,1 @@
+minlat = 58.3984, maxlat = 58.3990, minlng = 15.5733, maxlng = 15.576

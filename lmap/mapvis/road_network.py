@@ -1,5 +1,5 @@
 
-from store import *
+from mapvis.store import *
 from algorithms import *
 import dijkstra
 import graph
@@ -37,6 +37,4 @@ class RoadNetwork :
 		# Create a dictionary with all nodes in the shortest path
 		nodes_in_shortest_path = dict() 
 		if self.shortest_path : nodes_in_shortest_path = self.nodes.get_nodes(self.shortest_path['path'])
-		print self.shortest_path
-		print nodes_in_shortest_path
 		return nodes_in_shortest_path
