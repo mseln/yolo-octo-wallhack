@@ -1,0 +1,1 @@
+Debugging in python pdb:   http://pythonconquerstheuniverse.wordpress.com/2009/09/10/debugging-in-python/

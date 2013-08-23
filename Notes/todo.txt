@@ -1,0 +1,16 @@
+* Gör en bra översikt över projektet och all kod som är skriven och ska skrivas, grafiskt
+
+* Ta fram ett testramverk baserat på pyUnit och ge konkreta exempel på tester samt konkreta förslag på tester de själva ska lägga till
+
+* Om möjligt gör koden mer funktionell för att bättre passa ihop med pythonkursen som går parallelt
+
+* I sektion 4.2 där olika utbyggningar nämns, sätt bra rubriker på dem som ger lite struktur men samtidigt stor valfrihet
+
+
+x Ge tydliga instruktioner och exempel på hur testning och debuggning av koden kan ske (print, alert, exceptions, PDB i Python och JavaScripts konsol). En möjlighet är att lägga till en ny sektion i kapitel 3 om detta eller, vilket antagligen är bättre, lägg till information om testning och debuggning i alla sektioner där det är relevant.
+x Att fundera över: Borde ordningen mellan att ta fram kortastevägenalgoritmen och att skapa GUI för den ändras? Är det meningsfullt att skilja på att räkna ut och visa kortaste avståndet respektive kortaste vägen (det beror lite hur de har implementerat algoritmen, men från ett GUI-perspektiv är det en mindre ändring).
+x Gör skelettkoden tillgänglig
+x Ta fram bättre och tydligare abstraktioner särskilt för OSM-data, grafer och kortastevägenalgoritmen
+x Projektet ska vara anpassat så att det går att lösa med en enkel grannmatris, dvs det får som mest vara ungefär 1000 noder (tar reda på hur många som det faktiskt går att ha med)
+x I sektion 4.1 där studenterna ska skapa ett formulär så behövs instruktioner eller ännu bättre färdig kod som kopplar formulärdata till Python m.m.
+x Förklara vad all kod gör främst genom kommentarer i koden med pekare till mer detaljerad information
