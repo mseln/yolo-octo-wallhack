@@ -53,7 +53,7 @@
 		counter-increment: none;
 	}
 	h4.projcount:before {
-		content: "Extension project " counter(h2counter) "." counter(h3counter) "." counter(h4counter) ".\0000a0\0000a0";
+		content: "Ext " counter(h2counter) "." counter(h3counter) "." counter(h4counter) ".\0000a0\0000a0";
 		counter-increment: h4counter;
 	}
 	h4 {
@@ -223,7 +223,7 @@
 		<p>Check that your web server is working by opening the URL in your browser.</p>
 
 
-		<h4>Set up an SQLite database</h4>
+		<h4>Set up a <a href="http://www.sqlite.org/">SQLite</a> database</h4>
 		<!-- TODO: Link to SQLite -->
 		<p>To store information your application needs a database. SQLite is a simple database which is stored in a single file in the file system.</p>
 
@@ -386,6 +386,15 @@
 		<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/mapapp.py"></script>
 
 		<p>You also need to associate a URL with the view, this is done by adding <code>('^mapapp/$', mapapp),</code> to <code>urlpatterns</code> in the file <code>lmap/urls.py</code>.</p>
+
+		<div class="note">
+			<p class="note-title">A short introduction to templates</p>
+			A template is a basically a regular HTML page but with some tweaks. They can include tags which django evaluates into html-code
+
+			<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/memb_reg.html"></script>
+
+			<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/template_ex.py"></script>
+.		</div>
 
 		<h5>Create a page template</h5>
 
@@ -780,7 +789,8 @@
 
 		<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/polyline.js"></script>
 
-		<h3><a id="must_be_updated2">TODO: Create a new title for each major milestone</a></h3>
+		<!--<h3><a id="must_be_updated2">TODO: Create a new title for each major milestone</a></h3>-->
+
 		<!-- TODO: For each major milestone, create a new section with a title, write a short introduction, then have a list of minor milestones. -->
 		<h4>Shortest path</h4>
 		Implement a shortest path algorithm together with appropriate unit tests. Now might be a good time to try a test-driven development methodology <a href="http://en.wikipedia.org/wiki/Test-driven_development">test-driven development methodology</a>, where you start by defining the test cases and then develop the code until it passes all the test cases. It is of course possible to start with a few initial test cases which are then extended together with the code they test.
@@ -909,7 +919,7 @@
 
 		What you have done so far provides you with both a set of components for more advanced map-based applications as well as an understanding of some of the basic issues involved in map-based applications. Now you will extend your application further or develop new applications starting from the code you already have. This is a very open ended project with many possibilities to create exciting map-based applications. Below are some example suggestions that you can chose from and extend as you like. You are also welcome to suggest your own improvements.
 
-		<h3 class="projcount">Smaller improvements to the shortest path application:</h3>
+		<h4 class="projcount">Smaller improvements to the shortest path application:</h3>
 		<ul>
 			<li> 
 				Add speed to the edges and let the user ask for the fastest way rather than the shortest. Can you provide better choices by minimizing the number of crossings that the user needs to pass?
@@ -928,7 +938,7 @@
 			</li>
 		</ul>
 
-		<h3 class="projcount">Speed improvements to the shortest path application:</h3>
+		<h4 class="projcount">Speed improvements to the shortest path application:</h3>
 		<p>As stated in section 4.1. using a matrix is pretty unefficient for sparse graphs. You can do some improvements to speed up the algorithm.</p>
 		<ol>
 			<li>If you are not already using an adjacency list instead of matrix, then change it. An adjacency list is a list where each element is representing a node and all elements in the list are a list of all neighboors. The dictionary now becomes very handy since you can use the node id as key to a list conataining all neighboors to that node.
@@ -978,7 +988,7 @@
 
 		Only consider nodes that contain a crossing. Since if there is a node with only one edge in to it and one from it you only have one path to choose i.e. consider that node in the calculation of the shortest path would be of no use.
 
-		<h3 class="projcount">All pairs shortest path</h3>
+		<h4 class="projcount">All pairs shortest path</h3>
 		<a href="http://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm">Floyd-Warshall algorithm</a> is an algorithm to compute all shortest path between all pairs of nodes. The algorithm is really easy to implement. Read about it and answer these questions:
 		<ol>
 			<li>What is the time complexity?</li>
@@ -997,7 +1007,7 @@
 		</ol>
 		You can store the precalculated paths in a database, to make the application really fast. If you want to do that improvment, check out the extension project "Using a database".
 
-		<h3 class="projcount">Using a database</h3> 
+		<h4 class="projcount">Using a database</h3> 
 		Currently all the data is stored in memory and if you reload the page then all the data is loaded again. Extend the application to store all the data in a database instead. This makes the data persistent and potentially improves the efficiency of the application. This is also a good exercise since all modern web applications are database driven.  To get started we suggest that you read about <a href="http://www.djangobook.com/en/2.0/chapter05.html">Models</a> in the Django book. Try to move as much functionality into the database as possible, for example by replacing ClipNodes with a database query.
 
 		Create an application which lets users record their current or planned future location. This can be used to see where your friends were last seen and potentially where to look for them.  Maybe you can connect the central schedule database to your application to show where you should be depending on what courses you take?
@@ -1007,12 +1017,12 @@
 		If you have done the "all pairs shortest path" project you can use it to calculate the shortest path and store the precalculated paths in the data base.
 
 
-		<h3 class="projcount">Build a beer pipeline!</h3>
+		<h4 class="projcount">Build a beer pipeline!</h3>
 		<p>You have been given the task of building a beer pipeline by connecting plastic tubes to provide all your friends with beer directly from HG. Since you are thirsty you want to minimize the total amount of plastic tubes that you have to connect before finishing the project. </p>
 
 		<p>Extend the map application to allow a user to select a set of end points and then find the edges along which the pipeline should be built so that the total length of the pipeline is minimized and display the result on the map. You can make this problem easier or harder depending on how much freedom you consider to be allowed when constructing the pipeline. The simpler version is to only build the pipeline along existing roads. To make the problem harder, and the total length of the pipeline shorter, you can allow new nodes to be added. If you allow new nodes then you can start by ignoring buildings and then add these later. The more accurate you want the result, the more complicated it becomes.</p>
 
-		<h3 class="projcount">Help a geocacher</h3>
+		<h4 class="projcount">Help a geocacher</h3>
 		Your friend, an enthusiastic geocacher, has heard that you are building awesome map-based applications.  Since he is a bit lazy he has asked you to extend your application to allow him to select a set of geocaches and then automatically find the shortest route from his apartment visiting all the caches and then back to the apartment.
 
 		<p>In any case you can either focus on developing the necessary algorithms, the web application or some combination of them. Remember to also implement the appropriate testing to increase the quality of your code and hopefully decrease the development time. If you decide to work more on the web application rather than the underlying algorithms you may use existing code libraries such as Google's APIs or graph libraries (for example <a href="http://networkx.lanl.gov">networkx</a>, <a href="http://igraph.sourceforge.net">igraph</a>).</p>

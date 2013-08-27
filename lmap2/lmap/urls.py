@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from mapvis.views import hello, mapapp
+from bobbin_lace_association.views import memb_reg
  
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -10,15 +11,5 @@ urlpatterns = patterns('',
                         url('^hello/$', hello),
                         url('^mapapp/$', mapapp),
                         url('^$', mapapp),
-                        # Examples:
-                        # url(r'^$', 'lmap.views.home', name='home'),
-                        # url(r'^lmap/', include('lmap.foo.urls')),
-                         
-                        # Uncomment the admin/doc line below to enable admin
-                        # documentation:
-                        # url(r'^admin/doc/',
-                        # include('django.contrib.admindocs.urls')),
-                         
-                        # Uncomment the next line to enable the admin:
-                        # url(r'^admin/', include(admin.site.urls)),
+                        url('^bobbin_lace/memb_reg/$', memb_reg),
 )
