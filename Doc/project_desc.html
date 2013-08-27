@@ -389,12 +389,62 @@
 
 		<div class="note">
 			<p class="note-title">A short introduction to templates</p>
-			A template is a basically a regular HTML page but with some tweaks. They can include tags which django evaluates into html-code
+			<p>A template is a basically a regular HTML page but with some tweaks. They can include tags which django evaluates into html-code.</p>
+
+			<p> A template contains tags and variables which the renderer evaluates into basic html.
+				<ul>
+					<li>
+						Variables: The following statement will be evaluated to the value of the variable in the double curly brackets 
+						<pre>{{ foo }}</pre>
+						
+						<p>Dot lookups can be summarized like this: when the template system encounters a dot in a variable name, it tries the following lookups, in this order:</p>
+
+						<ol>
+					    	<li> Dictionary lookup (e.g., <code>foo["bar"]</code>) </li>
+					    	<li> Attribute lookup (e.g., <code>foo.bar</code>) </li>
+					    	<li> Method call (e.g., <code>foo.bar()</code>) </li>
+							<li> List-index lookup (e.g., <code>foo[2]</code>) </li>
+						</ol>
+
+						<p>The system uses the first lookup type that works. It’s short-circuit logic.</p>
+					</li>
+					
+					<li>
+						Tags: A tag tells the renderer to eveluate the expression, it can be for loops, if statements and there is a lot of other templates to be found in the <a href="http://www.djangobook.com/en/2.0/chapter04.html">djangobook</a>.
+						<pre>{% for foo in bar %} ... {% endfor %}</pre>
+						<pre>{% if foo > 10 %} ... {% endif %}</pre> 
+					</li>
+
+					<li>
+						Filters: A filter filters the content of a variable, for instance making all the characters uppercase.
+						<pre>{{ randomstring|upper }}</pre> 
+					</li>
+				</ul>
+			</p>
+
+			<p>Look at the example below. A good excercise could be to make a new app (<code>python3 manage.py startapp bobbin_lace</code>). </p>
+
+			<p>In <code>bobbin_lace/views.py</code> paste the code below.</p>
+
+			<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/template_ex.py"></script>
+
+			<p>In the folder <code>templates</code> create a new folder <code>bobbin_lace</code> and create a new file into that folder which you name <code>memb_reg.html</code> and paste the following code.</p>
 
 			<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/memb_reg.html"></script>
 
-			<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/template_ex.py"></script>
-.		</div>
+			<p>To be able to show the page you have to connect a url to <code>memb_reg()</code>. Do it by editing the file urls.py.</p>
+
+			<p>
+				A few tiny tasks:
+				<ul>
+					<li>Goto the webpage you just created (<a href="http://127.0.0.1:8000/bobbin_lace/memb_reg/">http://127.0.0.1:8000/bobbin_lace/memb_reg/</a>)</li>
+					<li>Right click somewhere on the webpage and chose "View Page Source". Figure out what the renderer do.</li>
+					<li> Send the string "Hello World!" as context from the view and print it on the web page with only uppercase characters. (psst, upper)...
+				</ul>
+			</p>
+
+			<p>This was just a short intro and you will most likely need more information on templates later on. A good source is <a href="http://www.djangobook.com/en/2.0/chapter04.html">Django Book ch 4</a>.
+		</div>
 
 		<h5>Create a page template</h5>
 
