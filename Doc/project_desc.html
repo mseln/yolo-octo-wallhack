@@ -119,6 +119,7 @@
 		padding:10px;
 		height:auto;
 		border: solid 2px black;
+		background-color:#FFCC99;
 	}
 	div.note { 
 		padding:.8em 1em .8em; 
@@ -142,43 +143,52 @@
 	</style>
 </head>
 
-<body>	
+<body>
 	<div id="sidebar">
-		<h2 class="nocount"> Table of contents </h2>
-		<ol>
-			<li><a href="#intro">Introduction</a></li> 
-			<li><a href="#background">Background</a></li>
-			<li><a href="#project_intro">Introductory Phase</a></li>
-			<li>
-				<ol>
-					<li><a href="#django">Creating a Web Application with Django</a></li>
-					<li><a href="#gmaps_api">Displaying a Map with the Google Maps API</a></li>
-					<li><a href="#explore_osm">Exploring Data from Open Street Map</a></li>
-					<li><a href="#disp_osm">Displaying Open Street Map Data</a></li>
-				</ol>
-			</li>
-			<li><a href="#project_main">Main Phase</a></li>
-			<li>
-				<ol>
-					<li><a href="#find_path">Assisting a User to Get from A to B</a></li>
-					<li><a href="#extend">Extending Your Application Further</a></li>
-				</ol>
-			</li>
-		</ol>
+		<h1 class="countheads">Table Of Contents</h1>
+		<h2><a href="#a_intro">Introduction to map based applications</a></h2>
+		
+		<h2><a href="#a_background">Background</a></h2>
+		
+		<h2><a href="#a_overview">Overview</a></h2>
+		
+		<h2><a href="#a_project_intro">Introductory Phase</a></h2>
+		<h3><a href="#a_django">Creating a Web Applcation with Django</a></h3>
+		<h3><a href="#a_gmaps_api">Displaying a Map with the Google Maps API</a></h3>
+		<h3><a href="#a_explore_osm">Exploring Data from Open Street Map</a></h3>
+		<h3><a href="#a_disp_osm">Displaying Open Street Map Data</a></h3>
+		
+		<h2><a href="#a_project_main">Assisting a User to Get from A to B</a></h2>
+		<h3><a href="#a_store_road_data">Store The Road Data</a></h3>
+		<h3><a href="#a_shortest_path">Shortest path</a></h3>
+		<h3><a href="#a_shortest_distance">Find and display the shortest distance</a></h3>
+		<h3><a href="#a_display_path">Find and display the shortest path</a></h3>
+
+		<h2><a href="#a_extend">Extending Your Application Further</a></h2>
+		<h3><a href="#smaller_improvements">Smaller improvements to the shortest path application</a></h3>
+		<h3><a href="#speed_improvements">Speed improvements to the shortest path application:</a></h3>
+		<h3><a href="#apsp">All pairs shortest path</a></h3>
+		<h3><a href="#database">Using a database</a></h3>
+		<h3><a href="#beer">Build a beer pipeline!</a></h3>
+		<h3><a href="#geocaching">Help a geocacher</a></h3>
+
 	</div>
 	<div id="main">
+		<!--<script>print_file("hello_world.py")</script>-->
 		<h1 class="countheads">TDDD63 Project: Map-based Applications</h1>		
-		
+
+		<a id="a_intro"></a>
 		<h2>Introduction to map based applications</h2>
-		<div id="intro"><a id="a_intro"></a>
+		<div id="intro">
 			<p>Maps represent the world we live in. They are central in many computer applications. The goal of this project is to create a map-based application including some of the underlying data structures and algorithms. </p>
 			<p>As we all know, the numbering of the houses in Ryd can be quite confusing. It has been rumored that there is a research report stating that there is no simple set of rules that describe the numbering. To help you find your way to your friends you need a map application that shows the shortest path between your house and your friends houses.  Since you want to become an expert programmer you decide to write your own application to learn more about the data structures, algorithms, and techniques involved in map applications.</p>
 			<p>In the first part of the project a basic web-based map application is developed which you should extended in the second part.</p>
 		</div>
 
+		<a id="a_background"></a>
 		<h2>Background</h2>
-		<div id="background"><a id="a_background"></a>
-			
+		<div id="background">
+
 			<p>Maps have always played a central role in human society. According to <a href="http://en.wikipedia.org/wiki/Map">Wikipedia</a>, a map is "a visual representation of an area -- a symbolic depiction highlighting relationships between elements of that space such as objects, regions, and themes." </p>
 
 			The earliest known maps are of the heavens, not the earth. 
@@ -208,8 +218,9 @@
 			</p>
 		</div>
 
+		<a id="a_overview"></a>
 		<h2>Overview</h2>
-		<div id="overview"><a id="a_overview"></a>
+		<div id="overview">
 			<p>Below is an overview of the map application that you are going to produce. It is showing how the information is flowing in the project (when you are browsing the web-page) and what third party resources that you are going to use e.g. the google maps api.</p> 
 
 			<p>It's okay to not understand it at first glance. The purpose of this chapter is to make it easier to understand how the project is going to be organised. You can look at this chapter again when you fell unsure of how to structure your code.</p>
@@ -225,7 +236,7 @@
 				<li><b>Map Operations API:</b> Does the map caluculatins, e.g. shortest path</li>
 				<li><b>Map Visualation API:</b> Takes the information that Map Op returns and visualises that data, e.g. the shortest path.</li>
 			</ul>
-			
+
 
 			<p>An example of an file structure. It is really just an example, you can organize your files however you like. Don't worry about what these files are, because you are going to create them yourself in part 3. As said before this chapther can be handy to look back at when you don't know where to put your code.
 			</p>
@@ -239,8 +250,9 @@
 			</table>
 		</div>
 
+		<a id="a_project_intro"></a>
 		<h2>Introductory Phase</h2>
-		<div id="project_intro"><a id="a_project_intro"></a>
+		<div id="project_intro">
 			<p>The goal of the introductory phase is to create a web application using the <a href="https://www.djangoproject.com/">Django framework</a>, display a map using the <a href="https://developers.google.com/maps/documentation/javascript/">Google Maps API</a> and to explore map data from the <a href="http://www.openstreetmap.org/">Open Street Map project</a>.</p>
 			<p>
 				This part of the project is structured around the following four
@@ -484,7 +496,7 @@
 						<pre>{{ randomstring|upper }}</pre> 
 					</li>
 				</ul>
-				
+
 
 				<p>Look at the example below. A good excercise could be to make a new app (<code>python3 manage.py startapp bobbin_lace</code>). </p>
 
@@ -506,7 +518,7 @@
 					<li>Right click somewhere on the webpage and chose "View Page Source". Figure out what the renderer do.</li>
 					<li> Send the string "Hello World!" as context from the view and print it on the web page with only uppercase characters. (psst, upper)...</li>
 				</ul>
-				
+
 
 				<p>This was just a short intro and you will most likely need more information on templates later on. A good source is <a href="http://www.djangobook.com/en/2.0/chapter04.html">Django Book ch 4</a>.</p>
 			</div>
@@ -742,11 +754,15 @@
 
 			<h4 class="exercise">Using Python tools to parse and investigate OSM data</h4>
 			<!-- TODO: Explain what a SAX parser is, what the OSM parser does and how they are connected. -->
-			<p>We now want you to start processing the OSM data by executing programs you have written yourself. Parsing the rather extensive OML XML format is not an easy task. You will therefore use a ready made parser for at least the introductory phase.</p>
+			<!-- MyQ: Don't know exactly how the parser works nor how to explain it-->
+			<p>We now want you to start processing the OSM data by executing programs you have written yourself. Parsing the rather extensive OML XML format is not an easy task. You will therefore use a ready made parser for at least the introductory phase. We recommend that you use a downscaled variant of <a href="http://almien.co.uk/OSM/Routing/">pyroute</a> made by Oliver White, which you can find <a href="https://raw.github.com/mseln/yolo-octo-wallhack/master/lmap2/mapvis/osm_parser.py">here</a>. Open the file, chose save as and where you want to save it.</p>
 
-			<p>Hint: You might have to change the directory and file name of the OSM map file to make the code work.</p>
+			<p>The parser we provide uses the SAX parser (Simple API for XML). The SAX parser is a API that can read a XML document. You can read more about it <a href="http://en.wikipedia.org/wiki/Simple_API_for_XML">here</a>.</p>
+
+			<p>A small example is provided in the task below to help you to understand how the parser is used.</p>
 
 			<h5 class="taskcount">How many nodes does your Linköping map data have?</h5>
+
 
 			<p>Find out how many nodes your Linköping map data contains by writing a program that counts them and how much time it takes.</p>
 
@@ -883,8 +899,9 @@
 			<p>To display the markers you also need to call the function (<code>displayMarkers(map);</code>) in the initialize() function, preferably at the end.</p>
 		</div>
 
+		<a id="a_project_main"></a>
 		<h2>Main Phase: Assisting a User to Get from A to B</h2>
-		<div id="project_main"><a id="a_project_main"></a>
+		<div id="project_main">
 			<p>
 				Congratulations, you have now learned how to create a web application displaying a map, how to extract data from the Open Street map project, store it in a data structure and display it in your web application.  Equipped with this, you will now create more advanced map-based web applications.
 				<br><br>
@@ -901,29 +918,37 @@
 
 			<p>This part into milestones. If you follow them you are going to have a good foundation to extend the project later on.</p>
 
-			<h3 class="milecount">Store an edge</h3>
+			<a id="a_store_road_data"></a>
+			<h3 class="milecount">Store The Road Data</h3>
+			<p>You have already extracted the nodes from the osm data, but to be able to find the shortest path you also have to find out what roads there are. The osm data also contains road data and purpose of this milestone is to extract that data.</p>
+
+			<h4 class="milecount">Store an edge</h4>
 			Create a data structure to store roads and appropriate unit tests. Make sure that your code passes all the unit tests. A suggestion is to create a data type called <code>Edge</code> that stores a single edge. An edge is a directed connection between two nodes so a road would contain a lot of edges.
 
 			<a id="edge.py"></a>
 			<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/edge.py"></script>
 
-			<h3 class="milecount">Get the data from the osm file</h3>
+			<h4 class="milecount">Get the data from the osm file</h4>
 			Populate the data structure with roads from Open Street Map. The following snippet contains a suggested way to structure the code. You will have to fill in the missing pieces of code.
 
 			<a id="extract_osm_edges.py"></a>
 			<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/extract_osm_edges.py"></script>
 
-			<h3 class="milecount">Store all the edges    <img src="all_the_roads.jpg" style="width: 7%; height: 7%" alt="all_the"></h3>
-			To store all roads, we suggest that you create a new class EdgeSet witch contains all edges. Between all connected we have to create an edge which is going to be stored in a list of edges.
+			<h4 class="milecount">Store all the edges    <img src="all_the_roads.jpg" style="width: 7%; height: 7%" alt="all_the"></h4>
+			To store all roads, we suggest that you create a new class EdgeSet which contains all edges. Between all connected we have to create an edge which is going to be stored in a list of edges.
 
-			By having this structure it becomes straight forward to create a Django template for iterating through all roads and for each road create a polyline by iterating through all coordinates and adding each coordinate to the polyline. To help you, we provide the following example JavaScript code:
+			<div class=note>
+				<p class=note-title>Show the roads on the map!</p>
+				By having the structure above it becomes straight forward to create a Django template for iterating through all roads and for each road create a polyline by iterating through all coordinates and adding each coordinate to the polyline. To help you, we provide the following example JavaScript code:
 
-			<a id="polyline.js"></a>
-			<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/polyline.js"></script>
+				<a id="polyline.js"></a>
+				<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/polyline.js"></script>
+			</div>
 
 			<!--<h3 class="count"><a id="a_must_be_updated2">TODO: Create a new title for each major milestone</a></h3>-->
 
 			<!-- TODO: For each major milestone, create a new section with a title, write a short introduction, then have a list of minor milestones. -->
+			<a id="a_shortest_path"></a>
 			<h3 class="milecount">Shortest path</h3>
 			Implement a shortest path algorithm together with appropriate unit tests. Now might be a good time to try a test-driven development methodology <a href="http://en.wikipedia.org/wiki/Test-driven_development">test-driven development methodology</a>, where you start by defining the test cases and then develop the code until it passes all the test cases. It is of course possible to start with a few initial test cases which are then extended together with the code they test.
 
@@ -976,6 +1001,7 @@
 				<p>As you can see the algorithm start to take a serious amount of time at around 1000 nodes. There are improvements to make e.g. using a heap instead of a matrix or create an abstract graph of only the crossings. But we leave them out for now and focus on getting a working shortest path application for a small area. In section 4.2. you can choose the extension project which includes speeding up the algoritm.</p>
 			</div>
 
+			<a id="a_shortest_distance"></a>
 			<h3 class="milecount">Find and display the shortest distance</h3> 
 			Extend the map application to find and display the shortest <b>distance</b> between two locations.
 			<h4 class="milecount">Fitting title</h4>
@@ -1026,6 +1052,7 @@
 				</li>
 			</ul>
 
+			<a id="a_display_path"></a>
 			<h3 class="milecount">Find and display the shortest path</h3>
 			Extend the map application to find and display the shortest <b>path</b> between two locations.
 
@@ -1049,13 +1076,16 @@
 			</ol>
 		</div>
 
-		<h2 class="count"><a id="a_extend">Extending Your Application Further</a></h2>
+		<a id="a_extend"></a>
+		<h2 class="count">Extending Your Application Further</h2>
 		<div id="extend">
 			After you have completed all these tasks, you have accomplished a lot. You have created and tested a graph data structure, populated it with data from the Open Street Map project, implemented and tested a shortest path algorithm, created a web application where a user can select multiple locations (and map these locations into nodes in the graph), displayed single and multiple paths in the web application, and more.
 
 			What you have done so far provides you with both a set of components for more advanced map-based applications as well as an understanding of some of the basic issues involved in map-based applications. Now you will extend your application further or develop new applications starting from the code you already have. This is a very open ended project with many possibilities to create exciting map-based applications. Below are some example suggestions that you can chose from and extend as you like. You are also welcome to suggest your own improvements.
 
+			<a id="smaller_improvements"></a>
 			<h3 class="projcount">Smaller improvements to the shortest path application:</h3>
+			<p>The application you have made so far is a bare minimum of a path finding application, below are a few things listed that makes your application more user friendly and usable.</p>
 			<ul>
 				<li> 
 					Add speed to the edges and let the user ask for the fastest way rather than the shortest. Can you provide better choices by minimizing the number of crossings that the user needs to pass?
@@ -1074,58 +1104,60 @@
 				</li>
 			</ul>
 
+			<a id="speed_improvements"></a>
 			<h3 class="projcount">Speed improvements to the shortest path application:</h3>
 			<p>As stated in section 4.1. using a matrix is pretty unefficient for sparse graphs. You can do some improvements to speed up the algorithm.</p>
-			<ol>
-				<li>If you are not already using an adjacency list instead of matrix, then change it. An adjacency list is a list where each element is representing a node and all elements in the list are a list of all neighboors. The dictionary now becomes very handy since you can use the node id as key to a list conataining all neighboors to that node.
+			
+			<p>If you are not already using an adjacency list instead of matrix, then change it. An adjacency list is a list where each element is representing a node and all elements in the list are a list of all neighboors. The dictionary now becomes very handy since you can use the node id as key to a list conataining all neighboors to that node.</p>
 
-					<table class="center">
-						<tr>
-							<td class="center">
-								<img src="http://www.utm.edu/departments/math/graph/gifs/kbrgraph.gif" alt="graph">
-							</td>
-							<td class="center">
-								<img src="http://upload.wikimedia.org/wikipedia/commons/5/5d/Konigsberg_bridges.png"  alt="konigsberg_bridge">
-							</td>
-						</tr>
-						<tr>
-							<td class="center">Just a simple graph.</td>
-							<td class="center">The graph is acually representing<br>the seven bridges of <a href="http://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg">Königsberg</a>.</td>
-						</tr>
-						<tr>
-							<td class="center">
-								<table border="1" >		
-									<tr> <td> </td> <th>A</th>		<th>B</th> 		<th>C</th> 		<th>D</th> </tr>
-									<tr> <th>A</th> <td>0</td>		<td>1</td> 		<td>1</td> 		<td>2</td> </tr>
-									<tr> <th>B</th> <td>1</td>		<td>0</td> 		<td>inf</td> 	<td>3</td> </tr>
-									<tr> <th>C</th> <td>1</td>		<td>inf</td> 	<td>0</td> 		<td>3</td> </tr>
-									<tr> <th>D</th> <td>2</td>		<td>3</td> 		<td>3</td>		<td>0</td> </tr>
-								</table>
-							</td>
-							<td class="center">
-								<table border="1">
-									<tr> <th>A</th> <td>(B, 1)</td>	<td>(C, 1)</td> <td>(D, 2)</td> </tr>
-									<tr> <th>B</th> <td>(A, 1)</td>	<td>(D, 3)</td> <td>	  </td> </tr>
-									<tr> <th>C</th> <td>(A, 1)</td> <td>(D, 3)</td>	<td>      </td> </tr>
-									<tr> <th>D</th> <td>(A, 2)</td> <td>(B, 3)</td> <td>(C, 3)</td> </tr>
-								</table>
-							</td>	
-						</tr>
-						<tr>
-							<td class="center">Matrix representation of the graph</td>
-							<td class="center">List representation of the graph</td>
-						</tr>
-					</table><br>
-				</li>
-			</ol>
+			<table class="center">
+				<tr>
+					<td class="center">
+						<img src="http://www.utm.edu/departments/math/graph/gifs/kbrgraph.gif" alt="graph">
+					</td>
+					<td class="center">
+						<img src="http://upload.wikimedia.org/wikipedia/commons/5/5d/Konigsberg_bridges.png"  alt="konigsberg_bridge">
+					</td>
+				</tr>
+				<tr>
+					<td class="center">Just a simple graph.</td>
+					<td class="center">The graph is acually representing<br>the seven bridges of <a href="http://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg">Königsberg</a>.</td>
+				</tr>
+				<tr>
+					<td class="center">
+						<table border="1" >		
+							<tr> <td> </td> <th>A</th>		<th>B</th> 		<th>C</th> 		<th>D</th> </tr>
+							<tr> <th>A</th> <td>0</td>		<td>1</td> 		<td>1</td> 		<td>2</td> </tr>
+							<tr> <th>B</th> <td>1</td>		<td>0</td> 		<td>inf</td> 	<td>3</td> </tr>
+							<tr> <th>C</th> <td>1</td>		<td>inf</td> 	<td>0</td> 		<td>3</td> </tr>
+							<tr> <th>D</th> <td>2</td>		<td>3</td> 		<td>3</td>		<td>0</td> </tr>
+						</table>
+					</td>
+					<td class="center">
+						<table border="1">
+							<tr> <th>A</th> <td>(B, 1)</td>	<td>(C, 1)</td> <td>(D, 2)</td> </tr>
+							<tr> <th>B</th> <td>(A, 1)</td>	<td>(D, 3)</td> <td>	  </td> </tr>
+							<tr> <th>C</th> <td>(A, 1)</td> <td>(D, 3)</td>	<td>      </td> </tr>
+							<tr> <th>D</th> <td>(A, 2)</td> <td>(B, 3)</td> <td>(C, 3)</td> </tr>
+						</table>
+					</td>	
+				</tr>
+				<tr>
+					<td class="center">Matrix representation of the graph</td>
+					<td class="center">List representation of the graph</td>
+				</tr>
+			</table><br>
+
 			The upper image to the left is showing a simple graph. The weight of the edges are the distance between the nodes, approximatly 1, 2 resp. 3 units. Actually the graph is an abstraction of the bridges in <a href="http://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg">Königsberg</a> shown in the picture to the right. Below are two graphs. The one to the left is the matrix representation of the graph and the one to the left is the list representation, where every node has a list containing it's neighboors as a pair (neighboor, weight).
 			<br><br>
 			Implement dijkstra using a heap instead making lookup of min-element take constant "O(1)" instead of linear time "O(n)". Article about <a href="https://www.udacity.com/wiki/cs215/unit5solutions-1">dijkstra using a heap</a>.
 
 			Only consider nodes that contain a crossing. Since if there is a node with only one edge in to it and one from it you only have one path to choose i.e. consider that node in the calculation of the shortest path would be of no use.
 
+			<a id="apsp"></a>
 			<h3 class="projcount">All pairs shortest path</h3>
-			<a href="http://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm">Floyd-Warshall algorithm</a> is an algorithm to compute all shortest path between all pairs of nodes. The algorithm is really easy to implement. Read about it and answer these questions:
+			<p><a href="http://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm">Floyd-Warshall algorithm</a> is an algorithm to compute all shortest path between all pairs of nodes. The algorithm is really easy to implement.</p> 
+			<p>Read about the algorithm and answer these questions:</p>
 			<ol>
 				<li>What is the time complexity?</li>
 				<li>Estimate a maximum number of nodes the algorithm can handle in a reasonable amount of time</li>
@@ -1141,23 +1173,27 @@
 					Extend the map application to display all the paths.
 				</li>
 			</ol>
-			You can store the precalculated paths in a database, to make the application really fast. If you want to do that improvment, check out the extension project "Using a database".
+			<p>You can store the precalculated paths in a database, to make the application really fast. If you want to do that improvment, check out the extension project "Using a database".</p>
 
-			<h3 class="projcount">Using a database</h3> 
-			Currently all the data is stored in memory and if you reload the page then all the data is loaded again. Extend the application to store all the data in a database instead. This makes the data persistent and potentially improves the efficiency of the application. This is also a good exercise since all modern web applications are database driven.  To get started we suggest that you read about <a href="http://www.djangobook.com/en/2.0/chapter05.html">Models</a> in the Django book. Try to move as much functionality into the database as possible, for example by replacing ClipNodes with a database query.
+			<a id="database"></a>
+			<h3 class="projcount">Using a database</h3>
+			<p>Almost all web applications in the world wide web world uses databases. By using a database, it is possible to precalculate a lot of things by storing information from previous searches, making the searching much more efficient. Another advantage is that you as the admin of the website can look at statistics about what the users do, exactly like Google and Facebook.</p>
 
-			Create an application which lets users record their current or planned future location. This can be used to see where your friends were last seen and potentially where to look for them.  Maybe you can connect the central schedule database to your application to show where you should be depending on what courses you take?
+			<p>Currently all the data is stored in memory and if you reload the page then all the data is loaded again. Extend the application to store all the data in a database instead. This makes the data persistent and potentially improves the efficiency of the application. This is also a good exercise since all modern web applications are database driven.  To get started we suggest that you read about <a href="http://www.djangobook.com/en/2.0/chapter05.html">Models</a> in the Django book. Try to move as much functionality into the database as possible, for example by replacing ClipNodes with a database query.</p>
 
-			Extend the application by collecting information from the user.  Initially it could be to only ask for the current position of the user.  Maybe you are even able to get that information from the GPS on the users device?
+			<p>Create an application which lets users record their current or planned future location. This can be used to see where your friends were last seen and potentially where to look for them.  Maybe you can connect the central schedule database to your application to show where you should be depending on what courses you take?</p>
 
-			If you have done the "all pairs shortest path" project you can use it to calculate the shortest path and store the precalculated paths in the data base.
+			<p>Extend the application by collecting information from the user.  Initially it could be to only ask for the current position of the user.  Maybe you are even able to get that information from the GPS on the users device?</p>
 
+			<p>If you have done the "all pairs shortest path" project you can use it to calculate the shortest path and store the precalculated paths in the data base.</p>
 
+			<a id="beer"></a>
 			<h3 class="projcount">Build a beer pipeline!</h3>
 			<p>You have been given the task of building a beer pipeline by connecting plastic tubes to provide all your friends with beer directly from HG. Since you are thirsty you want to minimize the total amount of plastic tubes that you have to connect before finishing the project. </p>
 
 			<p>Extend the map application to allow a user to select a set of end points and then find the edges along which the pipeline should be built so that the total length of the pipeline is minimized and display the result on the map. You can make this problem easier or harder depending on how much freedom you consider to be allowed when constructing the pipeline. The simpler version is to only build the pipeline along existing roads. To make the problem harder, and the total length of the pipeline shorter, you can allow new nodes to be added. If you allow new nodes then you can start by ignoring buildings and then add these later. The more accurate you want the result, the more complicated it becomes.</p>
 
+			<a id="geocaching"></a>
 			<h3 class="projcount">Help a geocacher</h3>
 			Your friend, an enthusiastic geocacher, has heard that you are building awesome map-based applications.  Since he is a bit lazy he has asked you to extend your application to allow him to select a set of geocaches and then automatically find the shortest route from his apartment visiting all the caches and then back to the apartment.
 
