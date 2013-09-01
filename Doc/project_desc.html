@@ -116,8 +116,23 @@
 		padding-bottom: 5000px; 
 		float:right; 
 		width: 15%;
+		
 		padding:10px;
+
+		margin-top: 15px;
+		margin-left: 10px;
+
 		height:auto;
+		border: solid 2px black;
+		background-color:#FFCC99;
+	}
+	div.top{
+		margin-top: 5px;
+		margin-bottom: 5px;
+		
+		padding-left: 10px;
+		padding-right: 10px;
+		
 		border: solid 2px black;
 		background-color:#FFCC99;
 	}
@@ -126,10 +141,6 @@
 		margin: 1em 0; 
 		border:1px 
 		solid #FF9933;
-
-
-	}
-	div.note {
 		padding-left:65px;
 		background:url("note.png") .8em .8em no-repeat;
 		background-color:#FFCC99;
@@ -174,9 +185,11 @@
 
 	</div>
 	<div id="main">
-		<!--<script>print_file("hello_world.py")</script>-->
-		<h1 class="countheads">TDDD63 Project: Map-based Applications</h1>		
-
+		<div class="top">
+			<h1>TDDD63 Project: Map-based Applications</h1>		
+		</div>
+		<h1 class="countheads"></h1><!-- Inits the counter-->
+		
 		<a id="a_intro"></a>
 		<h2>Introduction to map based applications</h2>
 		<div id="intro">
@@ -463,6 +476,7 @@
 
 			<p>You also need to associate a URL with the view, this is done by adding <code>('^mapapp/$', mapapp),</code> to <code>urlpatterns</code> in the file <code>lmap/urls.py</code>.</p>
 
+			<a id="intro_to_templates"></a>
 			<div class="note">
 				<p class="note-title">A short introduction to templates</p>
 				<p>A template is a basically a regular HTML page but with some tweaks. They can include tags which django evaluates into html-code.</p>
@@ -900,13 +914,9 @@
 		</div>
 
 		<a id="a_project_main"></a>
-		<h2>Main Phase: Assisting a User to Get from A to B</h2>
+		<h2>Assisting a User to Get from A to B</h2>
 		<div id="project_main">
-			<p>
-				Congratulations, you have now learned how to create a web application displaying a map, how to extract data from the Open Street map project, store it in a data structure and display it in your web application.  Equipped with this, you will now create more advanced map-based web applications.
-				<br><br>
-				The first step is to extend your web application to assist a user to find her way between two locations.  This is the basis for direction and route finding applications such as those provided by Google and Apple.
-			</p>
+			<p>Congratulations, you have now learned how to create a web application displaying a map, how to extract data from the Open Street map project, store it in a data structure and display it in your web application.  Equipped with this, you will now create more advanced map-based web applications.<br><br>The first step is to extend your web application to assist a user to find her way between two locations.  This is the basis for direction and route finding applications such as those provided by Google and Apple.</p>
 
 			<p>The image below is showing how the finished product could look like, of course yours are going to be prettier.</p>
 
@@ -920,7 +930,7 @@
 
 			<a id="a_store_road_data"></a>
 			<h3 class="milecount">Store The Road Data</h3>
-			<p>You have already extracted the nodes from the osm data, but to be able to find the shortest path you also have to find out what roads there are. The osm data also contains road data and purpose of this milestone is to extract that data.</p>
+			<p><i>You have already extracted the nodes from the osm data, but to be able to find the shortest path you also have to find out what roads there are. The osm data also contains road data and purpose of this milestone is to extract that data.</i></p>
 
 			<h4 class="milecount">Store an edge</h4>
 			Create a data structure to store roads and appropriate unit tests. Make sure that your code passes all the unit tests. A suggestion is to create a data type called <code>Edge</code> that stores a single edge. An edge is a directed connection between two nodes so a road would contain a lot of edges.
@@ -937,20 +947,12 @@
 			<h4 class="milecount">Store all the edges    <img src="all_the_roads.jpg" style="width: 7%; height: 7%" alt="all_the"></h4>
 			To store all roads, we suggest that you create a new class EdgeSet which contains all edges. Between all connected we have to create an edge which is going to be stored in a list of edges.
 
-			<div class=note>
-				<p class=note-title>Show the roads on the map!</p>
-				By having the structure above it becomes straight forward to create a Django template for iterating through all roads and for each road create a polyline by iterating through all coordinates and adding each coordinate to the polyline. To help you, we provide the following example JavaScript code:
-
-				<a id="polyline.js"></a>
-				<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/polyline.js"></script>
-			</div>
-
 			<!--<h3 class="count"><a id="a_must_be_updated2">TODO: Create a new title for each major milestone</a></h3>-->
 
 			<!-- TODO: For each major milestone, create a new section with a title, write a short introduction, then have a list of minor milestones. -->
 			<a id="a_shortest_path"></a>
 			<h3 class="milecount">Shortest path</h3>
-			Implement a shortest path algorithm together with appropriate unit tests. Now might be a good time to try a test-driven development methodology <a href="http://en.wikipedia.org/wiki/Test-driven_development">test-driven development methodology</a>, where you start by defining the test cases and then develop the code until it passes all the test cases. It is of course possible to start with a few initial test cases which are then extended together with the code they test.
+			<i>Implement a shortest path algorithm together with appropriate unit tests. Now might be a good time to try a test-driven development methodology <a href="http://en.wikipedia.org/wiki/Test-driven_development">test-driven development methodology</a>, where you start by defining the test cases and then develop the code until it passes all the test cases. It is of course possible to start with a few initial test cases which are then extended together with the code they test.</i>
 
 			<h4 class="milecount">Create a mathematical graph</h4>
 			Create a data structure to store connections between locations and the lengths of these connections. The usual way to model interconnected locations that are a certain distance apart is by using a (combinatorial) graph. Read up on:
@@ -998,13 +1000,13 @@
 					<tr>	<td>3652</td>	<td>66.4</td>		</tr>
 				</table>
 
-				<p>As you can see the algorithm start to take a serious amount of time at around 1000 nodes. There are improvements to make e.g. using a heap instead of a matrix or create an abstract graph of only the crossings. But we leave them out for now and focus on getting a working shortest path application for a small area. In section 4.2. you can choose the extension project which includes speeding up the algoritm.</p>
+				<p>As you can see the algorithm start to take a serious amount of time at around 1000 nodes. There are improvements to make e.g. using a heap instead of a matrix or create an abstract graph of only the crossings. But we leave them out for now and focus on getting a working shortest path application for a small area. In section 6. you can choose the extension project which includes speeding up the algoritm.</p>
 			</div>
 
 			<a id="a_shortest_distance"></a>
-			<h3 class="milecount">Find and display the shortest distance</h3> 
-			Extend the map application to find and display the shortest <b>distance</b> between two locations.
-			<h4 class="milecount">Fitting title</h4>
+			<h3 class="milecount">Display the shortest distance</h3> 
+			<i>Now when you have calculated the shortest distance, it would be interesting to know how long it is. Extend the map application to find and display the shortest <b>distance</b> between two locations.</i>
+			<h4 class="milecount">Add start and end coordinates</h4>
 			Extend the application to allow entering the coordinates of the start and destination by clicking on the map. To achieve this you have to do at least the following:
 			<ol>
 				<li> 
@@ -1053,14 +1055,22 @@
 			</ul>
 
 			<a id="a_display_path"></a>
-			<h3 class="milecount">Find and display the shortest path</h3>
-			Extend the map application to find and display the shortest <b>path</b> between two locations.
+			<h3 class="milecount">Display the shortest path</h3>
+			<i>It would also be good to know what path to follow if you want to take the shortest one. Extend the map application to find and display the shortest <b>path</b> between two locations.</i>
 
 			<h4 class="milecount">Get the shortest path</h4> 
 			Extract the shortest path from the output of your shortest path algorithm. Remember to extend the unit tests by adding new test cases.
 
 			<h4 class="milecount">Visualize the shortest path</h4>
-			Extend the application to display the computed shortest path on the map using, for example, the code developed as part of the previous milestones.
+			Extend the application to display the computed shortest path on the map using, the code snippet below shows how you can use the Google Maps API to draw a line on the map. Combine this knowledge with what you learned in <a href="#intro_to_templates">"A short introduction to templates"</a> in section 4.1.
+
+			<div class=note>
+				<p class=note-title>Show the roads on the map!</p>
+				By having the structure above it becomes straight forward to create a Django template for iterating through all roads and for each road create a polyline by iterating through all coordinates and adding each coordinate to the polyline. To help you, we provide the following example JavaScript code:
+
+				<a id="polyline.js"></a>
+				<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/polyline.js"></script>
+			</div>
 
 			Most applications that provide directions give the user some alternatives to choose from. Extend the map application to find alternative routes between two locations.
 			<ol>
@@ -1106,7 +1116,7 @@
 
 			<a id="speed_improvements"></a>
 			<h3 class="projcount">Speed improvements to the shortest path application:</h3>
-			<p>As stated in section 4.1. using a matrix is pretty unefficient for sparse graphs. You can do some improvements to speed up the algorithm.</p>
+			<p>As stated in section 5. using a matrix is pretty unefficient for sparse graphs. You can do some improvements to speed up the algorithm.</p>
 			
 			<p>If you are not already using an adjacency list instead of matrix, then change it. An adjacency list is a list where each element is representing a node and all elements in the list are a list of all neighboors. The dictionary now becomes very handy since you can use the node id as key to a list conataining all neighboors to that node.</p>
 
