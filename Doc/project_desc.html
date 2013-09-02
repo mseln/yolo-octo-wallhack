@@ -104,30 +104,29 @@
 		margin-right: auto 
 	}
 
-	#wrap { width:500px; margin:0 auto; }
-	#main { 
+	#main {
 		overflow:auto;
 		width: 80%;
 		float: left;
 		padding:10px;
+		padding-top:0px;
 	}
 	#sidebar { 
-		margin-bottom: -5000px; 
-		padding-bottom: 5000px; 
 		float:right; 
 		width: 15%;
 		
 		padding:10px;
 
-		margin-top: 15px;
-		margin-left: 10px;
+		margin-top: 20px;
+		margin-left: 0px;
 
 		height:auto;
+
 		border: solid 2px black;
 		background-color:#FFCC99;
 	}
 	div.top{
-		margin-top: 5px;
+		margin-top: 20px;
 		margin-bottom: 5px;
 		
 		padding-left: 10px;
@@ -189,7 +188,7 @@
 			<h1>TDDD63 Project: Map-based Applications</h1>		
 		</div>
 		<h1 class="countheads"></h1><!-- Inits the counter-->
-		
+
 		<a id="a_intro"></a>
 		<h2>Introduction to map based applications</h2>
 		<div id="intro">
@@ -251,7 +250,7 @@
 			</ul>
 
 
-			<p>An example of an file structure. It is really just an example, you can organize your files however you like. Don't worry about what these files are, because you are going to create them yourself in part 3. As said before this chapther can be handy to look back at when you don't know where to put your code.
+			<p>An example of a file structure follows below. It is really just an example, you can organize your files however you like. Don't worry about what these files are, because you are going to create them yourself in part 3. As said before this chapther can be handy to look back at when you don't know where to put your code.
 			</p>
 			<table border="1">
 				<tr> <th>file</th> <th>part</th> <th>desc</th> </tr>
@@ -259,7 +258,7 @@
 				<tr> <td>road_network.py</td> <td>Map OP</td> <td>Stores all road information.</td> </tr>
 				<tr> <td>store.py</td> <td>Map OP</td> <td>Contains classes that can store different types, e.g.nodes or edges.</td> </tr>
 				<tr> <td>views.py</td> <td>Map App</td> <td>The outer function, called when the page is loaded.</td> </tr>
-				<tr> <td>mapapp.html</td> <td>Map Vis</td> <td>A template that takes information and visualises it, intro to templates comes in chapter 3</td> </tr>
+				<tr> <td>mapapp.html</td> <td>Map Vis</td> <td>A template that takes information and visualises it, intro to templates comes in chapter 3.</td> </tr>
 			</table>
 		</div>
 
@@ -295,7 +294,7 @@
 			<p> If you are using your own UNIX (Linux, Mac) system then you need to install <a href="https://docs.djangoproject.com/en/dev/topics/install/">Django 1.4.1</a> by yourself. If you are a windows user you have to find out how to set up django yourself. Check how to install it <a href="https://docs.djangoproject.com/en/dev/topics/install/">here</a>.</p>
 
 			<h5 class="taskcount">Create the <code>lmap</code> project</h5>
-			The following command creates a Django project called <code>lmap</code>:
+			The following command creates a Django project called lmap:
 			<code>django-admin.py startproject lmap</code>
 
 			<h5 class="taskcount">Explore project files</h5> 
@@ -947,9 +946,9 @@
 			<h4 class="milecount">Store all the edges    <img src="all_the_roads.jpg" style="width: 7%; height: 7%" alt="all_the"></h4>
 			To store all roads, we suggest that you create a new class EdgeSet which contains all edges. Between all connected we have to create an edge which is going to be stored in a list of edges.
 
-			<!--<h3 class="count"><a id="a_must_be_updated2">TODO: Create a new title for each major milestone</a></h3>-->
+			<!--<h3 class="count"><a id="a_must_be_updated2">TOFO: Create a new title for each major milestone</a></h3>-->
 
-			<!-- TODO: For each major milestone, create a new section with a title, write a short introduction, then have a list of minor milestones. -->
+			<!-- TOFO: For each major milestone, create a new section with a title, write a short introduction, then have a list of minor milestones. -->
 			<a id="a_shortest_path"></a>
 			<h3 class="milecount">Shortest path</h3>
 			<i>Implement a shortest path algorithm together with appropriate unit tests. Now might be a good time to try a test-driven development methodology <a href="http://en.wikipedia.org/wiki/Test-driven_development">test-driven development methodology</a>, where you start by defining the test cases and then develop the code until it passes all the test cases. It is of course possible to start with a few initial test cases which are then extended together with the code they test.</i>
@@ -1120,41 +1119,42 @@
 			
 			<p>If you are not already using an adjacency list instead of matrix, then change it. An adjacency list is a list where each element is representing a node and all elements in the list are a list of all neighboors. The dictionary now becomes very handy since you can use the node id as key to a list conataining all neighboors to that node.</p>
 
-			<table class="center">
+
+			<table border=0 align="center">
 				<tr>
-					<td class="center">
-						<img src="http://www.utm.edu/departments/math/graph/gifs/kbrgraph.gif" alt="graph">
+					<td align="center">
+							<img src="http://www.utm.edu/departments/math/graph/gifs/kbrgraph.gif" border=0>
 					</td>
-					<td class="center">
-						<img src="http://upload.wikimedia.org/wikipedia/commons/5/5d/Konigsberg_bridges.png"  alt="konigsberg_bridge">
+					<td align="center">
+						<img src="http://upload.wikimedia.org/wikipedia/commons/5/5d/Konigsberg_bridges.png" border=0>
 					</td>
 				</tr>
 				<tr>
-					<td class="center">Just a simple graph.</td>
-					<td class="center">The graph is acually representing<br>the seven bridges of <a href="http://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg">Königsberg</a>.</td>
+					<td align="center">Just a simple graph.</td>
+					<td align="center">The graph is acually representing<br>the seven bridges of Königsberg.</td>
 				</tr>
 				<tr>
-					<td class="center">
-						<table border="1" >		
-							<tr> <td> </td> <th>A</th>		<th>B</th> 		<th>C</th> 		<th>D</th> </tr>
-							<tr> <th>A</th> <td>0</td>		<td>1</td> 		<td>1</td> 		<td>2</td> </tr>
-							<tr> <th>B</th> <td>1</td>		<td>0</td> 		<td>inf</td> 	<td>3</td> </tr>
-							<tr> <th>C</th> <td>1</td>		<td>inf</td> 	<td>0</td> 		<td>3</td> </tr>
-							<tr> <th>D</th> <td>2</td>		<td>3</td> 		<td>3</td>		<td>0</td> </tr>
-						</table>
+					<td align="center">
+					<table border="1" >		
+						<tr> <td> </td> <th>A</th>		<th>B</th> 		<th>C</th> 		<th>D</th> </tr>
+						<tr> <th>A</th> <td>0</td>		<td>1</td> 		<td>1</td> 		<td>2</td> </tr>
+						<tr> <th>B</th> <td>1</td>		<td>0</td> 		<td>inf</td> 	<td>3</td> </tr>
+						<tr> <th>C</th> <td>1</td>		<td>inf</td> 	<td>0</td> 		<td>3</td> </tr>
+						<tr> <th>D</th> <td>2</td>		<td>3</td> 		<td>3</td>		<td>0</td> </tr>
+					</table>
 					</td>
-					<td class="center">
+					<td align="center">
 						<table border="1">
-							<tr> <th>A</th> <td>(B, 1)</td>	<td>(C, 1)</td> <td>(D, 2)</td> </tr>
-							<tr> <th>B</th> <td>(A, 1)</td>	<td>(D, 3)</td> <td>	  </td> </tr>
-							<tr> <th>C</th> <td>(A, 1)</td> <td>(D, 3)</td>	<td>      </td> </tr>
-							<tr> <th>D</th> <td>(A, 2)</td> <td>(B, 3)</td> <td>(C, 3)</td> </tr>
+							<tr> <th>A</th> <td>(B, 1)</td>		<td>(C, 1)</td> 		<td>(D, 2)</td> 	 </tr>
+							<tr> <th>B</th> <td>(A, 1)</td>		<td>(D, 3)</td> </tr>
+							<tr> <th>C</th> <td>(A, 1)</td>		<td>(D, 3)</td> </tr>
+							<tr> <th>D</th> <td>(A, 2)</td>		<td>(B, 3)</td> 		<td>(C, 3)</td> </tr>
 						</table>
 					</td>	
 				</tr>
 				<tr>
-					<td class="center">Matrix representation of the graph</td>
-					<td class="center">List representation of the graph</td>
+					<td align="center">Matrix representation of the graph</td>
+					<td align="center">List representation of the graph</td>
 				</tr>
 			</table><br>
 
