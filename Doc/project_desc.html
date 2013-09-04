@@ -104,20 +104,38 @@
 		margin-right: auto 
 	}
 
-	#wrap { width:500px; margin:0 auto; }
-	#main { 
+	#main {
 		overflow:auto;
 		width: 80%;
 		float: left;
 		padding:10px;
+		padding-top:0px;
 	}
 	#sidebar { 
-		margin-bottom: -5000px; 
-		padding-bottom: 5000px; 
 		float:right; 
 		width: 15%;
+		
 		padding:10px;
+
+		margin-top: 20px;
+		margin-left: 0px;
+
 		height:auto;
+
+		border: solid 2px black;
+		background-color:#FFCC99;
+	}
+	table.center{
+		 border=0 
+		 text-align:center
+	}
+	div.top{
+		margin-top: 20px;
+		margin-bottom: 5px;
+		
+		padding-left: 10px;
+		padding-right: 10px;
+		
 		border: solid 2px black;
 		background-color:#FFCC99;
 	}
@@ -126,10 +144,6 @@
 		margin: 1em 0; 
 		border:1px 
 		solid #FF9933;
-
-
-	}
-	div.note {
 		padding-left:65px;
 		background:url("note.png") .8em .8em no-repeat;
 		background-color:#FFCC99;
@@ -174,8 +188,10 @@
 
 	</div>
 	<div id="main">
-		<!--<script>print_file("hello_world.py")</script>-->
-		<h1 class="countheads">TDDD63 Project: Map-based Applications</h1>		
+		<div class="top">
+			<h1>TDDD63 Project: Map-based Applications</h1>		
+		</div>
+		<h1 class="countheads"></h1><!-- Inits the counter-->
 
 		<a id="a_intro"></a>
 		<h2>Introduction to map based applications</h2>
@@ -226,7 +242,7 @@
 			<p>It's okay to not understand it at first glance. The purpose of this chapter is to make it easier to understand how the project is going to be organised. You can look at this chapter again when you fell unsure of how to structure your code.</p>
 
 
-			<img class="high" src="grafisk_oversikt.jpg" style="display: block;" alt="graphical_overview" width="60%" height="60%">
+			<img class="high" src="grafisk_oversikt.jpg" style="display: block;" alt="graphical_overview" width="1000">
 
 			<p>
 				Almost everything you are going to code is on the server side. The application is divided in three parts.
@@ -238,7 +254,7 @@
 			</ul>
 
 
-			<p>An example of an file structure. It is really just an example, you can organize your files however you like. Don't worry about what these files are, because you are going to create them yourself in part 3. As said before this chapther can be handy to look back at when you don't know where to put your code.
+			<p>An example of a file structure follows below. It is really just an example, you can organize your files however you like. Don't worry about what these files are, because you are going to create them yourself in part 3. As said before this chapther can be handy to look back at when you don't know where to put your code.
 			</p>
 			<table border="1">
 				<tr> <th>file</th> <th>part</th> <th>desc</th> </tr>
@@ -246,7 +262,7 @@
 				<tr> <td>road_network.py</td> <td>Map OP</td> <td>Stores all road information.</td> </tr>
 				<tr> <td>store.py</td> <td>Map OP</td> <td>Contains classes that can store different types, e.g.nodes or edges.</td> </tr>
 				<tr> <td>views.py</td> <td>Map App</td> <td>The outer function, called when the page is loaded.</td> </tr>
-				<tr> <td>mapapp.html</td> <td>Map Vis</td> <td>A template that takes information and visualises it, intro to templates comes in chapter 3</td> </tr>
+				<tr> <td>mapapp.html</td> <td>Map Vis</td> <td>A template that takes information and visualises it, intro to templates comes in chapter 3.</td> </tr>
 			</table>
 		</div>
 
@@ -282,7 +298,7 @@
 			<p> If you are using your own UNIX (Linux, Mac) system then you need to install <a href="https://docs.djangoproject.com/en/dev/topics/install/">Django 1.4.1</a> by yourself. If you are a windows user you have to find out how to set up django yourself. Check how to install it <a href="https://docs.djangoproject.com/en/dev/topics/install/">here</a>.</p>
 
 			<h5 class="taskcount">Create the <code>lmap</code> project</h5>
-			The following command creates a Django project called <code>lmap</code>:
+			The following command creates a Django project called lmap:
 			<code>django-admin.py startproject lmap</code>
 
 			<h5 class="taskcount">Explore project files</h5> 
@@ -371,10 +387,10 @@
 			<div class=note>
 				<p class=note-title>Debugging tips:</p>
 				<p class=noindent>If something goes wrong you need to find out what the problem is. Often you do that by checking the values the relevant variables. This can be done in several ways.  Some of the alternatives are listed below.</p> 
+				<a id="debug_print.py"></a>
 				<ol>
 					<li>Using <code>print</code> is a very easy way to debug in Python. It simply prints a given value to the console. If you are running a web server it will print the output in the same terminal as the server is running in.</li>
 
-					<a id="debug_print.py"></a>
 					<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/debug_print.py"></script>
 
 					<li>As you may already have seen, the Django error view contains a lot of information. It contains all the variables and their values. You can get this information by adding <code>assert(False)</code> anywhere in your code. This will cause the program to "crash" and show all the information about the current view. Try it out in your hello world view! Add <code>assert(false)</code> just before <code>return HttpResponse("Hello world")</code> and reload the page<br><br></li>
@@ -458,11 +474,12 @@
 
 			<p>Create a view called <code>mapapp</code> in the file <code>views.py</code> with the following code. The code creates a context associating the key <code>NOW</code> with the current date and time, instantiates the template <code>map/mapapp.html</code> and returns it as a response to an HTTP request.</p>
 
-			<a id="mapapp.py"></a>
-			<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/mapapp.py"></script>
+			<a id="mapapp_time.py"></a>
+			<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/mapapp_time.py"></script>
 
 			<p>You also need to associate a URL with the view, this is done by adding <code>('^mapapp/$', mapapp),</code> to <code>urlpatterns</code> in the file <code>lmap/urls.py</code>.</p>
 
+			<a id="intro_to_templates"></a>
 			<div class="note">
 				<p class="note-title">A short introduction to templates</p>
 				<p>A template is a basically a regular HTML page but with some tweaks. They can include tags which django evaluates into html-code.</p>
@@ -885,7 +902,7 @@
 			<p>The following code parses the file <code>linkoping_map.osm</code> in the same directory as the view code, extracts all nodes in a rectangle corresponding to the area between the E-house and the physics building, and adds the list of nodes to the context used to render the map.</p>
 
 			<a id="mapapp.py"></a>
-			<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/mappapp.py"></script>
+			<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/mapapp.py"></script>
 
 
 			<h5 class="taskcount">Extend the template to display a set of markers</h5>
@@ -900,13 +917,9 @@
 		</div>
 
 		<a id="a_project_main"></a>
-		<h2>Main Phase: Assisting a User to Get from A to B</h2>
+		<h2>Assisting a User to Get from A to B</h2>
 		<div id="project_main">
-			<p>
-				Congratulations, you have now learned how to create a web application displaying a map, how to extract data from the Open Street map project, store it in a data structure and display it in your web application.  Equipped with this, you will now create more advanced map-based web applications.
-				<br><br>
-				The first step is to extend your web application to assist a user to find her way between two locations.  This is the basis for direction and route finding applications such as those provided by Google and Apple.
-			</p>
+			<p>Congratulations, you have now learned how to create a web application displaying a map, how to extract data from the Open Street map project, store it in a data structure and display it in your web application.  Equipped with this, you will now create more advanced map-based web applications.<br><br>The first step is to extend your web application to assist a user to find her way between two locations.  This is the basis for direction and route finding applications such as those provided by Google and Apple.</p>
 
 			<p>The image below is showing how the finished product could look like, of course yours are going to be prettier.</p>
 
@@ -920,7 +933,7 @@
 
 			<a id="a_store_road_data"></a>
 			<h3 class="milecount">Store The Road Data</h3>
-			<p>You have already extracted the nodes from the osm data, but to be able to find the shortest path you also have to find out what roads there are. The osm data also contains road data and purpose of this milestone is to extract that data.</p>
+			<p><i>You have already extracted the nodes from the osm data, but to be able to find the shortest path you also have to find out what roads there are. The osm data also contains road data and purpose of this milestone is to extract that data.</i></p>
 
 			<h4 class="milecount">Store an edge</h4>
 			Create a data structure to store roads and appropriate unit tests. Make sure that your code passes all the unit tests. A suggestion is to create a data type called <code>Edge</code> that stores a single edge. An edge is a directed connection between two nodes so a road would contain a lot of edges.
@@ -937,20 +950,12 @@
 			<h4 class="milecount">Store all the edges    <img src="all_the_roads.jpg" style="width: 7%; height: 7%" alt="all_the"></h4>
 			To store all roads, we suggest that you create a new class EdgeSet which contains all edges. Between all connected we have to create an edge which is going to be stored in a list of edges.
 
-			<div class=note>
-				<p class=note-title>Show the roads on the map!</p>
-				By having the structure above it becomes straight forward to create a Django template for iterating through all roads and for each road create a polyline by iterating through all coordinates and adding each coordinate to the polyline. To help you, we provide the following example JavaScript code:
+			<!--<h3 class="count"><a id="a_must_be_updated2">TOFO: Create a new title for each major milestone</a></h3>-->
 
-				<a id="polyline.js"></a>
-				<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/polyline.js"></script>
-			</div>
-
-			<!--<h3 class="count"><a id="a_must_be_updated2">TODO: Create a new title for each major milestone</a></h3>-->
-
-			<!-- TODO: For each major milestone, create a new section with a title, write a short introduction, then have a list of minor milestones. -->
+			<!-- TOFO: For each major milestone, create a new section with a title, write a short introduction, then have a list of minor milestones. -->
 			<a id="a_shortest_path"></a>
 			<h3 class="milecount">Shortest path</h3>
-			Implement a shortest path algorithm together with appropriate unit tests. Now might be a good time to try a test-driven development methodology <a href="http://en.wikipedia.org/wiki/Test-driven_development">test-driven development methodology</a>, where you start by defining the test cases and then develop the code until it passes all the test cases. It is of course possible to start with a few initial test cases which are then extended together with the code they test.
+			<i>Implement a shortest path algorithm together with appropriate unit tests. Now might be a good time to try a test-driven development methodology <a href="http://en.wikipedia.org/wiki/Test-driven_development">test-driven development methodology</a>, where you start by defining the test cases and then develop the code until it passes all the test cases. It is of course possible to start with a few initial test cases which are then extended together with the code they test.</i>
 
 			<h4 class="milecount">Create a mathematical graph</h4>
 			Create a data structure to store connections between locations and the lengths of these connections. The usual way to model interconnected locations that are a certain distance apart is by using a (combinatorial) graph. Read up on:
@@ -998,13 +1003,13 @@
 					<tr>	<td>3652</td>	<td>66.4</td>		</tr>
 				</table>
 
-				<p>As you can see the algorithm start to take a serious amount of time at around 1000 nodes. There are improvements to make e.g. using a heap instead of a matrix or create an abstract graph of only the crossings. But we leave them out for now and focus on getting a working shortest path application for a small area. In section 4.2. you can choose the extension project which includes speeding up the algoritm.</p>
+				<p>As you can see the algorithm start to take a serious amount of time at around 1000 nodes. There are improvements to make e.g. using a heap instead of a matrix or create an abstract graph of only the crossings. But we leave them out for now and focus on getting a working shortest path application for a small area. In section 6. you can choose the extension project which includes speeding up the algoritm.</p>
 			</div>
 
 			<a id="a_shortest_distance"></a>
-			<h3 class="milecount">Find and display the shortest distance</h3> 
-			Extend the map application to find and display the shortest <b>distance</b> between two locations.
-			<h4 class="milecount">Fitting title</h4>
+			<h3 class="milecount">Display the shortest distance</h3> 
+			<i>Now when you have calculated the shortest distance, it would be interesting to know how long it is. Extend the map application to find and display the shortest <b>distance</b> between two locations.</i>
+			<h4 class="milecount">Add start and end coordinates</h4>
 			Extend the application to allow entering the coordinates of the start and destination by clicking on the map. To achieve this you have to do at least the following:
 			<ol>
 				<li> 
@@ -1053,14 +1058,22 @@
 			</ul>
 
 			<a id="a_display_path"></a>
-			<h3 class="milecount">Find and display the shortest path</h3>
-			Extend the map application to find and display the shortest <b>path</b> between two locations.
+			<h3 class="milecount">Display the shortest path</h3>
+			<i>It would also be good to know what path to follow if you want to take the shortest one. Extend the map application to find and display the shortest <b>path</b> between two locations.</i>
 
 			<h4 class="milecount">Get the shortest path</h4> 
 			Extract the shortest path from the output of your shortest path algorithm. Remember to extend the unit tests by adding new test cases.
 
 			<h4 class="milecount">Visualize the shortest path</h4>
-			Extend the application to display the computed shortest path on the map using, for example, the code developed as part of the previous milestones.
+			Extend the application to display the computed shortest path on the map using, the code snippet below shows how you can use the Google Maps API to draw a line on the map. Combine this knowledge with what you learned in <a href="#intro_to_templates">"A short introduction to templates"</a> in section 4.1.
+
+			<div class=note>
+				<p class=note-title>Show the roads on the map!</p>
+				By having the structure above it becomes straight forward to create a Django template for iterating through all roads and for each road create a polyline by iterating through all coordinates and adding each coordinate to the polyline. To help you, we provide the following example JavaScript code:
+
+				<a id="polyline.js"></a>
+				<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/polyline.js"></script>
+			</div>
 
 			Most applications that provide directions give the user some alternatives to choose from. Extend the map application to find alternative routes between two locations.
 			<ol>
@@ -1106,45 +1119,46 @@
 
 			<a id="speed_improvements"></a>
 			<h3 class="projcount">Speed improvements to the shortest path application:</h3>
-			<p>As stated in section 4.1. using a matrix is pretty unefficient for sparse graphs. You can do some improvements to speed up the algorithm.</p>
+			<p>As stated in section 5. using a matrix is pretty unefficient for sparse graphs. You can do some improvements to speed up the algorithm.</p>
 			
 			<p>If you are not already using an adjacency list instead of matrix, then change it. An adjacency list is a list where each element is representing a node and all elements in the list are a list of all neighboors. The dictionary now becomes very handy since you can use the node id as key to a list conataining all neighboors to that node.</p>
 
-			<table class="center">
+
+			<table style="margin: 0px auto;">
 				<tr>
-					<td class="center">
-						<img src="http://www.utm.edu/departments/math/graph/gifs/kbrgraph.gif" alt="graph">
+					<td style="text-align:center">
+							<img src="http://www.utm.edu/departments/math/graph/gifs/kbrgraph.gif" alt="simple_graph">
 					</td>
-					<td class="center">
-						<img src="http://upload.wikimedia.org/wikipedia/commons/5/5d/Konigsberg_bridges.png"  alt="konigsberg_bridge">
+					<td style="text-align:center">
+						<img src="http://upload.wikimedia.org/wikipedia/commons/5/5d/Konigsberg_bridges.png" alt="konigsberg_bridges">
 					</td>
 				</tr>
 				<tr>
-					<td class="center">Just a simple graph.</td>
-					<td class="center">The graph is acually representing<br>the seven bridges of <a href="http://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg">Königsberg</a>.</td>
+					<td style="text-align:center">Just a simple graph.</td>
+					<td style="text-align:center">The graph is acually representing<br>the seven bridges of Königsberg.</td>
 				</tr>
 				<tr>
-					<td class="center">
-						<table border="1" >		
-							<tr> <td> </td> <th>A</th>		<th>B</th> 		<th>C</th> 		<th>D</th> </tr>
-							<tr> <th>A</th> <td>0</td>		<td>1</td> 		<td>1</td> 		<td>2</td> </tr>
-							<tr> <th>B</th> <td>1</td>		<td>0</td> 		<td>inf</td> 	<td>3</td> </tr>
-							<tr> <th>C</th> <td>1</td>		<td>inf</td> 	<td>0</td> 		<td>3</td> </tr>
-							<tr> <th>D</th> <td>2</td>		<td>3</td> 		<td>3</td>		<td>0</td> </tr>
-						</table>
+					<td>
+					<table border="1" style="margin: 0px auto;">		
+						<tr> <td> </td> <th>A</th>		<th>B</th> 		<th>C</th> 		<th>D</th> </tr>
+						<tr> <th>A</th> <td>0</td>		<td>1</td> 		<td>1</td> 		<td>2</td> </tr>
+						<tr> <th>B</th> <td>1</td>		<td>0</td> 		<td>inf</td> 	<td>3</td> </tr>
+						<tr> <th>C</th> <td>1</td>		<td>inf</td> 	<td>0</td> 		<td>3</td> </tr>
+						<tr> <th>D</th> <td>2</td>		<td>3</td> 		<td>3</td>		<td>0</td> </tr>
+					</table>
 					</td>
-					<td class="center">
-						<table border="1">
+					<td>
+						<table border="1" style="margin: 0px auto;">
 							<tr> <th>A</th> <td>(B, 1)</td>	<td>(C, 1)</td> <td>(D, 2)</td> </tr>
-							<tr> <th>B</th> <td>(A, 1)</td>	<td>(D, 3)</td> <td>	  </td> </tr>
-							<tr> <th>C</th> <td>(A, 1)</td> <td>(D, 3)</td>	<td>      </td> </tr>
-							<tr> <th>D</th> <td>(A, 2)</td> <td>(B, 3)</td> <td>(C, 3)</td> </tr>
+							<tr> <th>B</th> <td>(A, 1)</td>	<td>(D, 3)</td> <td></td>		</tr>
+							<tr> <th>C</th> <td>(A, 1)</td>	<td>(D, 3)</td> <td></td>		</tr>
+							<tr> <th>D</th> <td>(A, 2)</td>	<td>(B, 3)</td> <td>(C, 3)</td> </tr>
 						</table>
 					</td>	
 				</tr>
 				<tr>
-					<td class="center">Matrix representation of the graph</td>
-					<td class="center">List representation of the graph</td>
+					<td style="text-align:center"> Matrix representation of the graph</td>
+					<td style="text-align:center"> List representation of the graph</td>
 				</tr>
 			</table><br>
 
