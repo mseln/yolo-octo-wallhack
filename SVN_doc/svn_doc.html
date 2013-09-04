@@ -104,98 +104,7 @@
 			<code>apt-get install subversion</code>
 			<p>om du kör ubuntu eller debian d.v.s. För installation på andra system, se <a href="http://subversion.apache.org/packages.html">http://subversion.apache.org/</a></p>
 		</div>
-
-		<p>Det första som måste göras är att checka ut själva repon till en mapp på din dator. För att göra detta, kör kommandot:</p>
-		<code>svn checkout &lt;path to repo&gt; &lt;where you want to store the repo&gt;</code>
-		<p>Sedan borde du få upp: <code>Checked out revision X.</code> där X markerar vilken revision du är på.</p>
-		<p>Nu ska alla filer som finns i repon ha laddats ned till den mapp du angav och du kan börja modifiera dem som du vill.</p> När känner dig redo för att skicka in det arbete du nyss gjort, kan du börja med att skriva <code>svn status</code>. Då kommer du se något liknande:</p>
-
-		<div class="code">
-			stalinpard@stalinpard:~/Desktop/svn_ex$ vim a.txt <br>
-			stalinpard@stalinpard:~/Desktop/svn_ex$ svn status<br>
-			<font color="#999999">
-				M       a.txt
-			</font>
-		</div>
-
-		<p>
-			<code>M</code> står för modified och efter följer filnamnet på vilken fil som har modifierats.
-		</p>
-
-		<p>
-			För att sedan ladda upp den måste du göra en <code>commit</code>. Kör kommandot: <code>commit -m 'sammanfattning av ändringar'</code>. <code>-m</code> flaggan betyder att man skickar in ett meddelande tillsammans med committen. Nedan följer ett exempel på hur det kan se ut.
-		</p>
-
-		<div class="code">
-			stalinpard@stalinpard:~/Desktop/svn_ex$ svn commit -m 'modified a.txt'<br>
-			<font color="#999999">
-				Sending        a.txt<br>
-				Transmitting file data .<br>
-				Committed revision 3.<br>
-			</font>
-		</div>
-
-		<p>
-			Nu är filen a.txt uppladdad till repon och andra har möjligheten att ladda ned den från en annan dator. För att se hur det fungerar låtsas vi nu att du är den andra personen. <b>VIKTIGT! innan du börjar jobba med projektet måste du uppdatera din lokala mapp med vad dina medarbetare gjort. Kör <code>update</code> för att uppdatera mappen.</b> om du inte gör detta kan konflikter uppstå. Sedan är det bara att köra på som vanligt. Observera att en konflikt uppstår om två användare redigerar samma fil samtidigt, men om de håller på med olika filer är det lungt.
-		</p>
-
-		<div class="note">
-			<p class="note-title">Vad ska jag göra om jag råkar ladda upp något felaktigt</p>
-			<p>
-				Försök inte att återställa den senaste "commiten" utan åtgärda felet och gör en ny "commit". En bra ide kan ju vara att skicka med meddelande om att man råkade göra ett fel som nu är åtgärdat.
-			</p>
-		</div>
-
-		<div class="note">
-			<p class="note-title">ÅNEJ! jag glömde <code>update</code> och får en conflict när jag ska göra en commit.</p>
-			<p>
-				Nedan följer hur det typiskt ser ut om man har fått en konflikt:
-			</p>
-			<div class="code"> 
-				stalinpard@stalinpard:~/Desktop/svn_ex$ svn commit -m 'modified a.txt' <br>
-				<font color="#999999">
-					Sending        a.txt <br>
-					svn: Commit failed (details follow): <br>
-					svn: File '/trunk/a.txt' is out of date <br>
-				</font>
-			</div>
-			<p>
-				Lös detta genom att köra update (som så klart kommer klaga, men ger oss möjlighet att lösa konflikten). Nedan så löses konflikten genom att säga att filen på datorn är den som ska sparas och skriver över den i repon. Detta gör man genom att ange <code>mc</code> (förkortning för mine-conflict). Annars kan man även välja att skriva över filen på datorn med den i repon, då väljer man <code>tc</code> (förkortning för their-conflict) istället.
-			</p> 
-			<div class="code"> 
-				stalinpard@stalinpard:~/Desktop/svn_ex$ svn update <br>
-				<font color="#999999">
-					Conflict discovered in 'a.txt'. <br>
-					Select: (p) postpone, (df) diff-full, (e) edit, <br>
-					(mc) mine-conflict, (tc) theirs-conflict, <br>
-					(s) show all options: <font color="#FFFFFF">df</font> <br>
-					--- .svn/text-base/a.txt.svn-base       Wed Sep  4 17:48:32 2013 <br>
-					+++ .svn/tmp/a.txt.3.tmp        Wed Sep  4 18:01:18 2013 <br>
-					@@ -1 +1,6 @@ <br>
-					-1+1=3 <br>
-					+&lt;&lt;&lt;&lt;&lt;&lt;&lt; .mine <br>
-					+1+1=2 <br>
-					+ <br>
-					+======= <br>
-					+1+2=3 <br>
-					+&gt;&gt;&gt;&gt;&gt;&gt;&gt; .r7 <br>
-					Select: (p) postpone, (df) diff-full, (e) edit, (r) resolved, <br>
-					(mc) mine-conflict, (tc) theirs-conflict, <br>
-					(s) show all options: <font color="#FFFFFF">mc</font> <br>
-					G    a.txt <br>
-					Updated to revision 7. <br>
-				</font>
-				stalinpard@stalinpard:~/Desktop/svn_ex$ svn commit -m 'modified a.txt' <br>
-				<font color="#999999">
-					Sending        a.txt <br>
-					Transmitting file data . <br>
-					Committed revision 8. <br>
-				</font>
-			</div>
-			<p>
-				Om du vill veta mer om hur man kan lösa konflikter, kan du kolla in den officiella dokumentationen <a href="http://www.tortoisesvn.net/docs/nightly/TortoiseSVN_en/tsvn-dug-conflicts.html">här</a>
-			</p>
-		</div>
+		
 		
 		<h3>Hur gör jag för att...</h3>
 		<h4>Hämta ett repo</h4>
@@ -254,18 +163,6 @@
 			</font>
 		</div>
 
-		<h4>Ladda upp det arbete jag har gjort till repon</h4>
-		<p>
-			Kör kommandot <code>svn commit -m '&lt;ditt meddelande&gt;'</code>
-		</p>
-		<div class="code">
-			stalinpard@stalinpard:~/Desktop/svn_ex$ svn commit -m 'removed b.txt'<br>
-			<font color="#999999">
-				Deleting       b.txt<br>
-				<br>
-				Committed revision 10.
-			</font>
-		</div>
 		<h4>Hämta det som min arbetskamrat laddat upp</h4>
 		<p>
 			Kör kommandot <code>svn update</code>
@@ -277,6 +174,80 @@
 				Updated to revision 10.
 			</font>
 		</div>
+
+		<h4>Ladda upp det arbete jag har gjort till repon</h4>
+
+		<p>
+			Kör kommandot <code>svn commit -m '&lt;ditt meddelande&gt;'</code>
+		</p>
+		<div class="code">
+			stalinpard@stalinpard:~/Desktop/svn_ex$ svn commit -m 'removed b.txt'<br>
+			<font color="#999999">
+				Deleting       b.txt<br>
+				<br>
+				Committed revision 10.
+			</font>
+		</div>
+
+		<div class="note">
+			<p class="note-title">Vad ska jag göra om jag råkar ladda upp något felaktigt</p>
+			<p>
+				Försök inte att återställa den senaste "commiten" utan åtgärda felet och gör en ny "commit". En bra ide kan ju vara att skicka med meddelande om att man råkade göra ett fel som nu är åtgärdat.
+			</p>
+		</div>
+
+		<div class="note">
+			<p class="note-title">ÅNEJ! jag glömde <code>update</code> och får en conflict när jag ska göra en commit.</p>
+			<p>
+				Nedan följer hur det typiskt ser ut om man har fått en konflikt:
+			</p>
+			<div class="code"> 
+				stalinpard@stalinpard:~/Desktop/svn_ex$ svn commit -m 'modified a.txt' <br>
+				<font color="#999999">
+					Sending        a.txt <br>
+					svn: Commit failed (details follow): <br>
+					svn: File '/trunk/a.txt' is out of date <br>
+				</font>
+			</div>
+			<p>
+				Lös detta genom att köra update (som så klart kommer klaga, men ger oss möjlighet att lösa konflikten). Nedan så löses konflikten genom att säga att filen på datorn är den som ska sparas och skriver över den i repon. Detta gör man genom att ange <code>mc</code> (förkortning för mine-conflict). Annars kan man även välja att skriva över filen på datorn med den i repon, då väljer man <code>tc</code> (förkortning för their-conflict) istället.
+			</p> 
+			<div class="code"> 
+				stalinpard@stalinpard:~/Desktop/svn_ex$ svn update <br>
+				<font color="#999999">
+					Conflict discovered in 'a.txt'. <br>
+					Select: (p) postpone, (df) diff-full, (e) edit, <br>
+					(mc) mine-conflict, (tc) theirs-conflict, <br>
+					(s) show all options: <font color="#FFFFFF">df</font> <br>
+					--- .svn/text-base/a.txt.svn-base       Wed Sep  4 17:48:32 2013 <br>
+					+++ .svn/tmp/a.txt.3.tmp        Wed Sep  4 18:01:18 2013 <br>
+					@@ -1 +1,6 @@ <br>
+					-1+1=3 <br>
+					+&lt;&lt;&lt;&lt;&lt;&lt;&lt; .mine <br>
+					+1+1=2 <br>
+					+ <br>
+					+======= <br>
+					+1+2=3 <br>
+					+&gt;&gt;&gt;&gt;&gt;&gt;&gt; .r7 <br>
+					Select: (p) postpone, (df) diff-full, (e) edit, (r) resolved, <br>
+					(mc) mine-conflict, (tc) theirs-conflict, <br>
+					(s) show all options: <font color="#FFFFFF">mc</font> <br>
+					G    a.txt <br>
+					Updated to revision 7. <br>
+				</font>
+				stalinpard@stalinpard:~/Desktop/svn_ex$ svn commit -m 'modified a.txt' <br>
+				<font color="#999999">
+					Sending        a.txt <br>
+					Transmitting file data . <br>
+					Committed revision 8. <br>
+				</font>
+			</div>
+			<p>
+				Om du vill veta mer om hur man kan lösa konflikter, kan du kolla in den officiella dokumentationen <a href="http://www.tortoisesvn.net/docs/nightly/TortoiseSVN_en/tsvn-dug-conflicts.html">här</a>
+			</p>
+		</div>
+
+		
 
 		<h2>Konkreta instruktioner TDDD63 samt TDDD73</h2>
 
