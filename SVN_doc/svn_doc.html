@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>TDDD63 SVN intro</title>
+
+	<style>
+	body {
+		margin:25px;
+		padding:25px;
+		background-color:#FFEBD6;
+	}
+
+	div.note { 
+		padding:.8em 1em .8em; 
+		margin: 1em 0; 
+		border:1px 
+		solid #FF9933;
+	}
+	div.note {
+		padding-left:65px;
+		background:url("note.png") .8em .8em no-repeat;
+		background-color:#FFCC99;
+	}
+	.note-title {
+		color: #487858;
+		font-weight: bold;
+		margin-bottom: 0 !important;
+		margin-top: 0 !important;
+	}
+	</style>
+</head>
+
+<body>
+	<div id="main">
+		<h1 class="countheads">TDDD63 SVN intro</h1>		
+
+		<p>
+			<h3>Ordlista</h3> 
+			<ul>
+				<li>repo</li>
+			</ul>
+		</p>
+
+		<h2>Kort om versions hantering</h2>
+		<h3>Vad är versions hantering?</h3>
+		<p>
+			Versions hantering är ett sätt att spara ändrings historik för ett projekt, d.v.s. hur de filer som projektet är uppbyggt av förändrats med tiden. Det gör det möjligt att gå tillbaka till en tidigare version av en fil.
+		</p>
+		<p>
+			Det underlättar dessutom arbetet då flera arbetar på samma projekt, då filerna synkas med de som jobbar på projektet i princip automatiskt. De flesta versions hanteringssystem, inklusive SVN som ni kommer att använda i denna kurs, fungerar som så att när man jobbat färdigt för dagen eller känner att man klarat av ett delmoment uppdaterar man <i>repon</i> med den kod man nyss skrivit. När nästa person sedan ska arbeta med projektet så börjar den med att ladda ned de senaste uppdateringarna, från <i>repon</i>, som gjorts sedan man senast laddade ned dem.
+		</p>
+
+		<h3>Varför är versionshantering bra?</h3>
+		<p>Det finns flera anledningar till varför man vill använda ett versions hanteringssystem. Nedan följer några exempel.</p>
+		<ul>
+			<li>För att hålla koll på gamla versioner av sitt projekt.</li>
+			<li>För att det ska gå smidigt att vara flera och arbeta på samma projekt.</li>
+			<li>För fler exempel, se diskussion på <a href="http://stackoverflow.com/questions/1408450/why-should-i-use-version-control">stack overflow</a>.</li>
+		</ul>
+
+		<h3>Vad är SVN? </h3>
+		<p>
+			<a href="http://subversion.tigris.org/">SVN</a> är det versionhanteringsystem som används av IDA, d.v.s. det som ni kommer att använda er av i denna kurs. Det är ett open source projekt och är väldigt utbrett bland open source användare. Exempel på grupper som använder det är Apache, Google Code och Source Forge. (Läs mer om SVN på  <a href="http://en.wikipedia.org/wiki/Apache_Subversion">wikipedia</a>).
+		</p>
+
+		<h2>Kort intro till hur man använder subversion.</h2>
+		<p>Det första som måste göras är att checka ut själva repon till en mapp på din dator.</p>
+		<code>svn checkout "url/to/rep" "path/to/local/rep"</code>
+		<p>Sedan borde du få upp: <code>Checked out revision X.</code> där X markerar vilken revision du är på.</p>
+		<p>Nu ska alla filer som finns i repon ha laddats ned till <code>path/to/local/rep</code> och du kan börja modifiera dem som du vill.</p> När känner dig redo för att skicka in det arbete du nyss gjort, kan du börja med att skriva <code>svn status</code>. Då kommer du se något liknande:</p>
+		<code>
+			M       a.txt
+		</code>
+
+		<div class="note">
+			<p class="note-title">Vad ska jag göra om jag råkar ladda upp något felaktigt</p>
+			<p>
+				Försök inte att återställa den senaste "commiten" utan åtgärda felet och gör en ny "commit". En bra ide kan ju vara att skicka med meddelande om att man råkade göra ett fel som nu är åtgärdat.
+			</p>
+		</div> 
+		
+
+		<h2>Konkreta instruktioner TDDD63 samt TDDD73</h2>
+
+		<h2>Länktips:</h2>
+			<ul>
+				<li><a href="http://www.guyrutenberg.com/2007/10/29/creating-local-svn-repository-home-repository/">Gör ett eget lokalt repo</a>.</li>
+				<li>Diskussion om vad Trunk, Branch, Tag är på <a href="http://stackoverflow.com/questions/16142/what-do-branch-tag-and-trunk-mean-in-subversion-repositories">stackoverflow</a>.</li>
+				<li>Tree conflicts<a href="http://stackoverflow.com/questions/738367/why-am-i-getting-tree-conflicts-in-subversion">?</a></li>
+				<li><a href="http://en.wikipedia.org/wiki/Revision_control">Wikipedia om version control</a></li>
+			</ul>
+		
+	</div>
+</body>
+
+</html> 
