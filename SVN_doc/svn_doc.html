@@ -58,20 +58,20 @@
 			<h1>TDDD63 SVN intro</h1>		
 		</div>
 
-		<h2>Kort om versions hantering</h2>
-		<h3>Vad är versions hantering?</h3>
+		<h2>Kort om versionshantering</h2>
+		<h3>Vad är versionshantering?</h3>
 		<p>
-			Versions hantering är ett sätt att spara ändringshistorik för ett projekt, d.v.s. hur de filer som projektet är uppbyggt av förändrats med tiden. Det gör det möjligt att gå tillbaka till en tidigare version av en fil.
+			Versionshantering är ett sätt att spara ändringshistorik för ett projekt, d.v.s. hur de filer som projektet är uppbyggt av förändrats med tiden. Det gör det möjligt att gå tillbaka till en tidigare version av en fil.
 		</p>
 		<p>
-			Det underlättar dessutom arbetet då flera arbetar på samma projekt, då filerna synkas med de som jobbar på projektet i princip automatiskt. De flesta versions hanteringssystem, inklusive SVN som ni kommer att använda i denna kurs, fungerar som så att när man jobbat färdigt för dagen eller känner att man klarat av ett delmoment uppdaterar man <i>repon</i> med den kod man nyss skrivit. När nästa person sedan ska arbeta med projektet så börjar den med att ladda ned de senaste uppdateringarna, från <i>repon</i>, som gjorts sedan man senast laddade ned dem.
+			Det underlättar dessutom arbetet då flera arbetar på samma projekt, då filerna synkas med de som jobbar på projektet i princip automatiskt. De flesta versionshanteringssystem, inklusive SVN som ni kommer att använda i denna kurs, fungerar som så att när man jobbat färdigt för dagen eller känner att man klarat av ett delmoment uppdaterar man <i>repon</i> med den kod man nyss skrivit. När nästa person sedan ska arbeta med projektet så börjar den med att ladda ned de senaste uppdateringarna, från <i>repon</i>, som gjorts sedan man senast laddade ned dem.
 		</p>
 		<p>
 			En djupare visuell introduktion till versionshantering hittar ni <a href="http://betterexplained.com/articles/a-visual-guide-to-version-control/">här</a>.
 		</p>
 
 		<h3>Varför är versionshantering bra?</h3>
-		<p>Det finns flera anledningar till varför man vill använda ett versions hanteringssystem. Nedan följer några exempel.</p>
+		<p>Det finns flera anledningar till varför man vill använda ett versionshanteringssystem. Nedan följer några exempel.</p>
 		<ul>
 			<li>För att hålla koll på gamla versioner av sitt projekt.</li>
 			<li>För att det ska gå smidigt att vara flera och arbeta på samma projekt.</li>
@@ -126,7 +126,7 @@
 			Kör du detta kommando kommer en mapp, i sökvägen du angav, att skapas och allt som repon innehåller kommer läggas till i denna mapp.
 		</p>
 		<p>
-			Notera att sökvägen är <code>file:///home/stalinpard/svnrep/example_project/trunk</code>, d.v.s en filsökväg, det är eftersom att ett lokalt repo används. Om du ska använda ett repo som ligger på en webserver så använder du en URL som du ska ha fått istället.
+			Notera att sökvägen är <code>file:///home/stalinpard/svnrep/example_project/trunk</code>, d.v.s en filsökväg, det är eftersom att ett lokalt repo används. Om du ska använda ett repo som ligger på en webserver så använder du den URL som du ska ha fått istället.
 		</p>
 		<p>
 			Repositories skapas på formen:
@@ -167,7 +167,7 @@
 		<h3>Hur gör jag för att...</h3>
 		<h4>Lägga till en fil</h4>
 		<p>
-			Om du skapar en fil i din svn mapp kommer inte den automatisk att bli versions hanterad, utan du måste säga till svn att den ska ta hand om den nya filen. Gör detta med kommandot <code>svn add &lt;file&gt;</code>. Om du kör <code>svn update</code> kommer den att visa ett <code>?</code> om du inte har lagt till den och när du har lagt till den kommer den att visa ett <code>A</code> kort för "added". Denna fil kommer att läggas till i repon nästa gång du gör en commit.
+			Om du skapar en fil i din svn mapp kommer inte den automatisk att bli versionshanterad, utan du måste säga till svn att den ska ta hand om den nya filen. Gör detta med kommandot <code>svn add &lt;file&gt;</code>. Om du kör <code>svn update</code> kommer den att visa ett <code>?</code> om du inte har lagt till den och när du har lagt till den kommer den att visa ett <code>A</code> kort för "added". Denna fil kommer att läggas till i repon nästa gång du gör en commit.
 		</p>
 		<div class="code">
 			stalinpard@stalinpard:~/Desktop/svn_ex$ touch b.txt <br>
@@ -187,7 +187,7 @@
 
 		<h4>Ta bort en fil</h4>
 		<p>
-			På samma sätt som att lägga till en fil, så kommer inte svn att sluta en versions hanterad fil om du bara tar bort den normalt. Säg till att filen inte finns längre genom att köra <code>svn add &lt;file&gt;</code>. Om du kör detta kommando, kommer file att tas bort från repon vid nästa "commit". Notera att om du kör <code>svn rm &lt;file&gt;</code> kommer filen även att tas bort från den lokala mappen, d.v.s. från din dator. Om du kör svn update kommer den att visa ett ! om du inte har sagt till svn att filen är borta, för att svn inte kan hitta filen, och när du har lagt till den kommer den att visa ett D kort för "deleted".
+			På samma sätt som att lägga till en fil, så kommer inte svn att sluta en versionshanterad fil om du bara tar bort den normalt. Säg till att filen inte finns längre genom att köra <code>svn add &lt;file&gt;</code>. Om du kör detta kommando, kommer file att tas bort från repon vid nästa "commit". Notera att om du kör <code>svn rm &lt;file&gt;</code> kommer filen även att tas bort från den lokala mappen, d.v.s. från din dator. Om du kör svn update kommer den att visa ett ! om du inte har sagt till svn att filen är borta, för att svn inte kan hitta filen, och när du har lagt till den kommer den att visa ett D kort för "deleted".
 		</p>
 		<div class="code">
 			stalinpard@stalinpard:~/Desktop/svn_ex$ rm b.txt <br>
