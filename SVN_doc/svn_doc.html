@@ -61,10 +61,13 @@
 		<h2>Kort om versions hantering</h2>
 		<h3>Vad är versions hantering?</h3>
 		<p>
-			Versions hantering är ett sätt att spara ändrings historik för ett projekt, d.v.s. hur de filer som projektet är uppbyggt av förändrats med tiden. Det gör det möjligt att gå tillbaka till en tidigare version av en fil.
+			Versions hantering är ett sätt att spara ändringshistorik för ett projekt, d.v.s. hur de filer som projektet är uppbyggt av förändrats med tiden. Det gör det möjligt att gå tillbaka till en tidigare version av en fil.
 		</p>
 		<p>
 			Det underlättar dessutom arbetet då flera arbetar på samma projekt, då filerna synkas med de som jobbar på projektet i princip automatiskt. De flesta versions hanteringssystem, inklusive SVN som ni kommer att använda i denna kurs, fungerar som så att när man jobbat färdigt för dagen eller känner att man klarat av ett delmoment uppdaterar man <i>repon</i> med den kod man nyss skrivit. När nästa person sedan ska arbeta med projektet så börjar den med att ladda ned de senaste uppdateringarna, från <i>repon</i>, som gjorts sedan man senast laddade ned dem.
+		</p>
+		<p>
+			En djupare visuell introduktion till versionshantering hittar ni <a href="http://betterexplained.com/articles/a-visual-guide-to-version-control/">här</a>.
 		</p>
 
 		<h3>Varför är versionshantering bra?</h3>
@@ -105,9 +108,11 @@
 			<p>om du kör ubuntu eller debian d.v.s. För installation på andra system, se <a href="http://subversion.apache.org/packages.html">http://subversion.apache.org/</a></p>
 		</div>
 		
-		
-		<h3>Hur gör jag för att...</h3>
 		<h4>Hämta ett repo</h4>
+		<p>
+			När SVN väl är installerat, måste du gå med i en repo. Du behöver inte oroa dig för hur man sätter upp ett repo, eftersom ni kommer få tillgång till ett färdig konfigurerat.
+		</p>
+		
 		<p>
 			Om du vill gå med i ett projekt som använder sig av subversion kan det vara bra att ta ned själva repon till din egen dator, så att du kan hålla dig uppdaterad med vad andra gör och ladda upp ditt arbete. Detta du "checkar ut det" genom att köra kommandot <code>svn checkout &lt;path to repo&gt; &lt;where you want to store the repo&gt;</code>
 		</p>
@@ -118,11 +123,48 @@
 			</font>
 		</div>
 		<p>
+			Kör du detta kommando kommer en mapp, i sökvägen du angav, att skapas och allt som repon innehåller kommer läggas till i denna mapp.
+		</p>
+		<p>
 			Notera att sökvägen är <code>file:///home/stalinpard/svnrep/example_project/trunk</code>, d.v.s en filsökväg, det är eftersom att ett lokalt repo används. Om du ska använda ett repo som ligger på en webserver så använder du en URL som du ska ha fått istället.
 		</p>
 		<p>
-			Kör du detta kommando kommer en mapp, i sökvägen du angav, att skapas och allt som repon innehåller kommer läggas till i denna mapp.
+			Repositories skapas på formen:
 		</p>
+		<p><code>
+			svn-und.ida.liu.se/courses/TDDC69/2012-1-LABBAR_OCH_PROJEKT/grupp_a-10
+		</code></p>
+		<p>
+			där "a" är vad gruppen döpts till i WebReg och 10 är ett
+			löpnummer.  Det går alltså att få t.ex.
+		</p>
+		<p><code>
+			svn-und.ida.liu.se/courses/TDDD73/2013-1-LABBAR/grupp_d1a-XX <br>
+			svn-und.ida.liu.se/courses/TDDC69/2013-1-PROJEKT/grupp_humanoids-XX
+		</code></p>
+		<p>
+			För att kontrollera länken, ge följande kommando:
+		</p>
+		<p>
+			<code>
+		   		svn list https://svn-und.ida.liu.se/courses/TDDC69/2012-1-LABBAR_OCH_PROJEKT/grupp_a-10
+		   	</code>
+		<p>
+			Nu är du igång! Bara att börja jobba med repon, lägga till filer, modifiera filer, ta bort filer, ladda upp arbete, ta ned andras arbete...
+		</p>
+
+		<div class="note">
+			<p class="note-title">Jag vill testa göra mitt egna repo</p>
+			<p>
+				Är du mer intressad av SVN, kanske för att göra en egen för eget bruk. I så fall kan man antingen göra ett lokalt repo, som bara finns på datorn eller ett som alla med internet uppkoppling kan nå.
+			</p>
+			<ul>
+				<li><a href="http://www.guyrutenberg.com/2007/10/29/creating-local-svn-repository-home-repository/">Instruktioner för att sätta upp ett lokalt repo</a> (ganska lätt)</li>
+				<li><a href="http://queens.db.toronto.edu/~nilesh/linux/subversion-howto/">Instruktioner för att sätta upp ett globalt repo</a> (krångligare)</li>
+			</ul>
+		</div>
+
+		<h3>Hur gör jag för att...</h3>
 		<h4>Lägga till en fil</h4>
 		<p>
 			Om du skapar en fil i din svn mapp kommer inte den automatisk att bli versions hanterad, utan du måste säga till svn att den ska ta hand om den nya filen. Gör detta med kommandot <code>svn add &lt;file&gt;</code>. Om du kör <code>svn update</code> kommer den att visa ett <code>?</code> om du inte har lagt till den och när du har lagt till den kommer den att visa ett <code>A</code> kort för "added". Denna fil kommer att läggas till i repon nästa gång du gör en commit.
@@ -165,7 +207,7 @@
 
 		<h4>Hämta det som min arbetskamrat laddat upp</h4>
 		<p>
-			Kör kommandot <code>svn update</code>
+			Kör kommandot <code>svn update</code>, då kommer allt arbete som gjorts på repon sedan din senaste update att laddas ned till din dator.
 		</p>
 		<div class="code">
 			stalinpard@stalinpard:~/Desktop/svn_fx$ svn update<br>
@@ -180,6 +222,22 @@
 		<p>
 			Kör kommandot <code>svn commit -m '&lt;ditt meddelande&gt;'</code>
 		</p>
+
+		<p>Exempel: Ändrat filen a.txt.</p>
+		<div class="code">
+			stalinpard@stalinpard:~/Desktop/svn_ex$ vim a.txt <br>
+			stalinpard@stalinpard:~/Desktop/svn_ex$ svn status <br>
+			<font color="#999999">
+				M       a.txt <br>
+			</font>
+			stalinpard@stalinpard:~/Desktop/svn_ex$ svn commit -m 'modified a.txt' <br>
+			<font color="#999999">
+				Sending        a.txt <br>
+				Transmitting file data . <br>
+				Committed revision 13.
+			</font>
+		</div>
+		<p>Exempel: Tagit bort filen b.txt</p>
 		<div class="code">
 			stalinpard@stalinpard:~/Desktop/svn_ex$ svn commit -m 'removed b.txt'<br>
 			<font color="#999999">
@@ -247,17 +305,89 @@
 			</p>
 		</div>
 
-		
+		<h4>Kolla vilka filer som har ändrats</h4>
+		<p>Kör kommandot <code>svn status</code>. Nedan följer ett exempel på hur det kan se ut.</p>
+		<div class="code">
+			stalinpard@stalinpard:~/Desktop/svn_ex$ vim a.txt <br>
+			stalinpard@stalinpard:~/Desktop/svn_ex$ rm b.txt <br> 
+			stalinpard@stalinpard:~/Desktop/svn_ex$ touch f.txt <br>
+			stalinpard@stalinpard:~/Desktop/svn_ex$ svn status <br>
+			<font color="#999999">
+				?       f.txt <br>
+				M       a.txt <br>
+				!       b.txt <br>
+			</font>
+			stalinpard@stalinpard:~/Desktop/svn_ex$
+		</div>
 
-		<h2>Konkreta instruktioner TDDD63 samt TDDD73</h2>
+		<h4>Visa alla filer i repon</h4>
+		Kör kommandot <code>svn list *</code>
+		<div class="code">
+			stalinpard@stalinpard:~/Desktop/svn_ex$ svn list * <br>
+			<font color="#999999">
+				a.txt <br>
+				c.txt <br>
+				svn: 'f.txt' is not under version control
+			</font>
+		</div>
+		<p>
+			Här kan man se vilka filer som finns och även se att filen f.txt inte är versionshanterad.
+		</p>
 
-		<h2>Länktips:</h2>
+		<!--Kopierat från http://www.ida.liu.se/~TDDC76/project/SVN/-->
+		<h4>Andra SVN-kommandon</h4>
+
+		<p>
+			För att se ändringshistoriken (commit-historiken):
+		</p>
+		<div class="code">
+			svn up
+			svn log
+		</div>
+		<p>
+			För att se alla ändringar sedan revision <i>rev</i>:
+		</p>
+		<div class="code">
+			svn diff -x -wup -r <i>rev</i>
+		</div>
+		<p>
+			Information om vad du kan göra med SVN och vilka kommandon som finns
+			får du med kommandot:
+		</p>
+		<div class="code">
+			svn help
+		</div>
+		<p>
+			Information om ett visst subkommando, <i>subkommando</i>, får du med ett
+			kommando på formen:
+		</p>
+		<div class="code">
+			svn help <I>subkommando</i>
+		</div>
+		<p>
+			Det finns, som delvis framgått av exempel ovan, många flaggor till 
+			subkommandona.
+		</p>
+
+		<h3>Mer om SVN</h3>
+
+		<p>
+			För mer information om SVN, se
+		</p>
+		<ul>
+			<li><a href="http://en.wikipedia.org/wiki/Subversion_%28software%29">Wikipedia om Subversion</a></li>
+			<li><a href="http://subversion.apache.org/">Subversions hemsida</a></li>
+			<li><a href="http://svnbook.red-bean.com/">Version Control with Subversion</a> - en gratis bok om hur man sätter upp och använder Subversion</li>
+		</ul>
+		<!--/Kopierat från http://www.ida.liu.se/~TDDC76/project/SVN/-->
+
+		<h3>Länktips:</h3>
 		<ul>
 			<li><a href="http://www.guyrutenberg.com/2007/10/29/creating-local-svn-repository-home-repository/">Gör ett eget lokalt repo</a>.</li>
 			<li>Diskussion om vad Trunk, Branch, Tag är på <a href="http://stackoverflow.com/questions/16142/what-do-branch-tag-and-trunk-mean-in-subversion-repositories">stackoverflow</a>.</li>
 			<li><a href="http://en.wikipedia.org/wiki/Revision_control">Wikipedia om version control</a></li>
 		</ul>
-		
+
 	</div>
 </body>
 
