@@ -64,28 +64,27 @@
 			Versionshantering är ett sätt att spara ändringshistorik för ett projekt, d.v.s. hur de filer som projektet är uppbyggt av förändrats med tiden. Det gör det möjligt att gå tillbaka till en tidigare version av en fil.
 		</p>
 		<p>
-			Det underlättar dessutom arbetet då flera arbetar på samma projekt, då filerna synkas mellan de som jobbar på projektet i princip automatiskt. De flesta versionshanteringssystem, inklusive SVN som ni kommer att använda i denna kurs, fungerar som så att när man jobbat färdigt för dagen eller känner att man klarat av ett delmoment uppdaterar man <i>repot</i> med den kod man nyss skrivit. När nästa person sedan ska arbeta med projektet så börjar den med att ladda ned de senaste uppdateringarna, från <i>repot</i>, som gjorts sedan man senast laddade ned dem.  Principiellt kan man se det som att det finns en server som håller reda på den aktuella koden för projektet.  En användare kan när som helst uppdatera sin lokala kopia av koden till den senaste versionen som finns på servern eller uppdatera koden på servern till den senaste versionen av användarens lokala kod.
+			Det underlättar dessutom arbetet då flera arbetar på samma projekt, då filerna synkas mellan de som jobbar på projektet i princip automatiskt. De flesta versionshanteringssystem, inklusive <a href="http://subversion.apache.org/">Subversion</a> som ni kommer att använda i denna kurs, fungerar som så att när man jobbat färdigt för dagen eller känner att man klarat av ett delmoment uppdaterar man ett <i>filarkiv</i> med den kod man nyss skrivit.  När nästa person sedan ska arbeta med projektet så börjar den med att ladda ned de senaste uppdateringarna, från <i>filarkivet</i>, som gjorts sedan man senast laddade ned dem. Alla filer som tillhör ett versionshanterat projekt lagras i ett sådant filarkiv. Detta filarkiv brukar man kalla för <i>repository</i> eller förkortat till <i>repo</i>. Principiellt kan man se det som att det finns en server som håller reda på den aktuella koden för projektet. En användare kan när som helst uppdatera sin lokala kopia av koden till den senaste versionen som finns på servern eller uppdatera koden på servern till den senaste versionen av användarens lokala kod.
 		</p>
 		<p>
 			En mer grundläggande visuell introduktion till versionshantering hittar ni <a href="http://betterexplained.com/articles/a-visual-guide-to-version-control/">här</a>.
 		</p>
 
 		<h3>Varför är versionshantering bra?</h3>
-		<p>Det finns flera anledningar att använda ett versionshanteringssystem. Nedan följer några exempel.</p>
+		<p>Det finns flera anledningar till att använda ett versionshanteringssystem. Nedan följer några exempel.</p>
 		<ul>
 			<li>För att hålla koll på olika versioner av sitt projekt.</li>
 			<li>För att göra det smidigt att arbeta flera på samma projekt.</li>
 			<li>För fler exempel, se till exempel diskussion på <a href="http://stackoverflow.com/questions/1408450/why-should-i-use-version-control">stack overflow</a>.</li>
 		</ul>
 
-		<h3>Vad är Subversion (SVN)? </h3>
+		<h3>Vad är Subversion (SVN)?</h3>
 		<p>
-			<a href="http://subversion.tigris.org/">Subversion (SVN)</a> är det versionhanteringsystem som används av IDA, d.v.s. det som ni kommer att använda er av i kursen. Det är ett open source-projekt och väldigt utbrett bland open source-användare. Exempel på grupper som använder det är Apache, Google Code och Source Forge. (Läs mer om SVN på  <a href="http://en.wikipedia.org/wiki/Apache_Subversion">wikipedia</a>).
+			<a href="http://subversion.tigris.org/">Subversion (SVN)</a> är det versionhanteringsystem som används av IDA, d.v.s. det som ni kommer att använda er av i denna kurs. Det är ett open source projekt och är väldigt utbrett bland open source användare. Exempel på grupper som använder det är Apache, Google Code och Source Forge. (Läs mer om SVN på  <a href="http://en.wikipedia.org/wiki/Apache_Subversion">wikipedia</a>).
 		</p>
 
-		<h2>Kort intro till hur man använder SVN.</h2>
-		<h3>Komma igång!</h3>
-		<h4>Kolla om svn är installerat</h4>
+		<h2>Kort intro till hur man använder SVN</h2>
+		<h3>Kolla om svn är installerat</h3>
 		<p>
 			För att kunna använda SVN måste du ha lagt till modulen för SVN. Kontrollera dock först om du redan har SVN-modulen installerad, genom att ge följande kommando i ett terminalfönster:
 		</p>
@@ -99,7 +98,7 @@
 		</p>
 		<code>module initadd prog/subversion</code>
 		<p>
-			och logga ut.  Därefter kommer SVN att automatiskt vara tillgängligt i alla terminalfönster du öppnar.
+			och logga ut. Därefter kommer SVN att automatiskt vara tillgängligt i alla terminalfönster du öppnar.
 		</p>
 		<div class="note">
 			<p class="note-title">Kör egen dator?</p>
@@ -107,27 +106,15 @@
 			<code>sudo apt-get install subversion</code>
 			<p>om du kör ubuntu eller debian d.v.s. För installation på andra system, se <a href="http://subversion.apache.org/packages.html">http://subversion.apache.org/</a></p>
 		</div>
-		
-		<h4>Hämta ett repo</h4>
+
+		<h3>Hur ett repository fungerar</h3>
+		<h4>Vad är ett repo överhuvudtaget?</h4>
 		<p>
-			När SVN väl är installerat, måste du hämta ett repo. Du behöver inte oroa dig för hur man sätter upp ett repo, eftersom ni kommer få tillgång till ett färdigkonfigurerat.
-		</p>
-		
-		<p>
-			Om du vill delta i ett projekt som använder sig av subversion måste du först hämta hem repot till din egen dator, så att du kan hålla dig uppdaterad med vad andra gör och ladda upp ditt eget arbete. Detta kallas att "checka ut", och det gör du genom att köra kommandot <code>svn checkout &lt;path to repo&gt; &lt;where you want to store the repo&gt;</code>
-		</p>
-		<div class="code">
-			stalinpard@stalinpard:~/Desktop/svn_ex$ svn checkout file:///home/stalinpard/svnrep/example_project/trunk /home/stalinpard/Desktop/svn_ex/ <br>
-			<font color="#999999">
-				Checked out revision 10.
-			</font>
-		</div>
-		<p>
-			Kör du detta kommando kommer en mapp, i sökvägen du angav, att skapas och allt som repot innehåller kommer läggas till i denna mapp.
+			Ett repository är ett filsystem som finns på en server tillgänglig via internet eller som finns på en lokal dator. I den här kursen kommer vi dock använda den första varianten. Detta filsystem är versionshanterat så att alla gamla versioner av filer sparas. Ett repository kan innehålla alla sorts filer precis som på det filsystem som du använder på din dator.
 		</p>
 		<h4>Hur kommer man åt ett repo?</h4>
 		<p>
-			Notera att sökvägen är <code>file:///home/stalinpard/svnrep/example_project/trunk</code>, d.v.s en filsökväg, det är eftersom ett lokalt repo används. Om du ska använda ett repo som ligger på en webbserver så använder du en URL istället.
+			Varje repo identifieras av en URL som man använder för att få tillgång till repot. Har man URLen kan t.ex. man kolla vilka filer som finns i denna repo (görs med <code>svn list &lt;URL to repo&gt;</code>), om man har tillgång till den d.v.s. De repot som ni kommer få är lösenordsskyddat för att inte vem som helst ska kunna se er kod.
 		</p>
 		<h4>Hur kommer jag åt mitt repo i den här kursen?</h4>
 		<p>
@@ -187,13 +174,13 @@
 			Nu är du igång! Bara att börja jobba med repot, lägga till filer, modifiera filer, ta bort filer, ladda upp arbete, ta ned andras arbete...
 		</p>
 		<p>
-			Nu är du igång! Bara att börja jobba med repot, lägga till filer, modifiera filer, ta bort filer, ladda upp arbete, ta ned andras arbete...
+			<a href="http://svnbook.red-bean.com/en/1.6/svn.ref.svn.c.checkout.html">Mer info...</a>
 		</p>
 
 		<div class="note">
-			<p class="note-title">Jag vill testa att göra mitt egna repo</p>
+			<p class="note-title">Jag vill testa göra mitt egna repo</p>
 			<p>
-				Är du mer intressad av SVN, kanske för att göra ett repo för eget bruk. I så fall kan man antingen göra ett lokalt repo, som bara finns på datorn eller ett som alla med Internetuppkoppling kan nå.
+				Är du mer intressad av SVN, kanske för att göra ett repo för eget bruk. I så fall kan du antingen göra ett lokalt repo, som bara finns på din dator, eller ett som alla med internet uppkoppling kan nå.
 			</p>
 			<ul>
 				<li><a href="http://www.guyrutenberg.com/2007/10/29/creating-local-svn-repository-home-repository/">Instruktioner för att sätta upp ett lokalt repo</a> (ganska lätt)</li>
@@ -204,7 +191,7 @@
 		<h2>Hur gör jag för att...</h2>
 		<h3>Lägga till en fil</h3>
 		<p>
-			Filer du skapar i mappen där repot ligger kommer inte automatiskt att bli versionshanterade, utan du måste säga till svn att den ska ta hand om de nya filerna. Gör detta med kommandot <code>svn add &lt;file&gt;</code>. Om du kör <code>svn update</code> kommer den att visa ett <code>?</code> om du inte har lagt till den och när du har lagt till den kommer den att visa ett <code>A</code>, som betyder "added". Denna fil kommer att läggas till i repot nästa gång du gör en commit.
+			Filer du skapar i mappen där repot ligger kommer inte automatiskt att bli versionshanterade, utan du måste säga till svn att den ska ta hand om de nya filerna. Gör detta med kommandot <code>svn add &lt;file&gt;</code>. Om du kör <code>svn status</code> kommer den att visa ett <code>?</code> om du inte har lagt till den och när du har lagt till den kommer den att visa ett <code>A</code>, som betyder "added". Denna fil kommer att läggas till i repot nästa gång du gör en commit.
 		</p>
 
 		<div class="code">
@@ -231,7 +218,7 @@
 		<h3>Ta bort en fil</h3>
 		<b>För att ta bort en fil använd <code>svn rm &lt;file&gt;</code> istället för bara <code>rm &lt;file&gt;</code></b>
 		<p>
-			På samma sätt som att lägga till en fil, så kommer inte svn att ta bort en versionshanterad fil om du bara tar bort den lokalt. Säg till SVN att filen inte längre finns genom att köra <code>svn rm &lt;fil&gt;</code>. Om du kör detta kommando, kommer fil att tas bort från repot vid nästa "commit". Notera att om du kör <code>svn rm &lt;fil&gt;</code> kommer filen även att tas bort från den lokala mappen, d.v.s. från din dator. Om du kör svn update kommer den att visa ett ! om du inte har sagt till svn att filen är borta, för att svn inte kan hitta filen, och när du har lagt till den kommer den att visa ett D, som står för "deleted".
+			På samma sätt som att lägga till en fil, så kommer inte SVN att sluta versionshantera en fil om du bara tar bort den normalt. Ta bort en fil genom att köra <code>svn rm &lt;file&gt;</code>. Om du kör detta kommando, kommer filen att tas bort från repot vid nästa "commit". Notera att om du kör detta kommando kommer filen även att tas bort från den lokala mappen, d.v.s. från din dator. 
 		</p>
 		<div class="code">
 			stalinpard@stalinpard:~/Desktop/svn_ex$ svn rm shortest_path.py <br>
@@ -254,7 +241,7 @@
 
 		<h3>Hämta det som min arbetskamrat laddat upp</h3>
 		<p>
-			Kör kommandot <code>svn update</code>, då kommer allt arbete som gjorts på repot sedan din senaste update att laddas ned till din dator.
+			Kör kommandot <code>svn update</code>. Då kommer allt arbete som gjorts på repot sedan din senaste update att laddas ned till din dator.
 		</p>
 		<div class="code">
 			stalinpard@stalinpard:~/Desktop/svn_fx$ svn update<br>
@@ -268,7 +255,8 @@
 		</p>
 
 
-		<h4>Ladda upp det arbete jag har gjort till repot</h4>
+
+		<h3>Ladda upp det arbete jag har gjort till repot</h3>
 
 		<p>
 			Kör kommandot <code>svn commit -m '&lt;ditt meddelande&gt;'</code><br>
@@ -328,37 +316,25 @@
 				svn: File '/trunk/store.py' is out of date <br>
 			</div>
 			<p>
-				Lös detta genom att köra update (som så klart kommer klaga, men ger oss möjlighet att lösa konflikten). Nedan så löses konflikten genom att säga att filen på datorn är den som ska sparas och skriver över den i repot. Detta gör man genom att ange <code>mc</code> (förkortning för mine-conflict). Annars kan man även välja att skriva över filen på datorn med den i repot, då väljer man <code>tc</code> (förkortning för their-conflict) istället.
-			</p> 
-			<div class="code"> 
-				stalinpard@stalinpard:~/Desktop/svn_ex$ svn update <br>
-				<font color="#999999">
-					Conflict discovered in 'a.txt'. <br>
-					Select: (p) postpone, (df) diff-full, (e) edit, <br>
-					(mc) mine-conflict, (tc) theirs-conflict, <br>
-					(s) show all options: <font color="#FFFFFF">df</font> <br>
-					--- .svn/text-base/a.txt.svn-base       Wed Sep  4 17:48:32 2013 <br>
-					+++ .svn/tmp/a.txt.3.tmp        Wed Sep  4 18:01:18 2013 <br>
-					@@ -1 +1,6 @@ <br>
-					-1+1=3 <br>
-					+&lt;&lt;&lt;&lt;&lt;&lt;&lt; .mine <br>
-					+1+1=2 <br>
-					+ <br>
-					+======= <br>
-					+1+2=3 <br>
-					+&gt;&gt;&gt;&gt;&gt;&gt;&gt; .r7 <br>
-					Select: (p) postpone, (df) diff-full, (e) edit, (r) resolved, <br>
-					(mc) mine-conflict, (tc) theirs-conflict, <br>
-					(s) show all options: <font color="#FFFFFF">mc</font> <br>
-					G    a.txt <br>
-					Updated to revision 7. <br>
-				</font>
-				stalinpard@stalinpard:~/Desktop/svn_ex$ svn commit -m 'modified a.txt' <br>
-				<font color="#999999">
-					Sending        a.txt <br>
-					Transmitting file data . <br>
-					Committed revision 8. <br>
-				</font>
+				Lös detta genom att köra update (som så klart kommer klaga, men ger oss möjlighet att lösa konflikten). Nedan så löses konflikten genom att välja alternativet postpone (p). 
+			</p>
+			<div class="code">
+				stalinpard@stalinpard:~/Desktop/svn_fx$ svn update <br>
+				Conflict discovered in 'store.py'. <br>
+				Select: (p) postpone, (df) diff-full, (e) edit, <br>
+				(mc) mine-conflict, (tc) theirs-conflict, <br>
+				(s) show all options: p <br>
+				C    store.py <br>
+				Updated to revision 23. <br>
+				Summary of conflicts: <br>
+				Text conflicts: 1 <br>
+			</div>
+			<p>
+				Om vi kör <code>ls</code> så kommer vi se att nya filer har skapats. *.mine är den fil som nyss redigerades på den lokala datorn. *.r22 och *.r23 är de filer som denna får en konflikt med. Dessa kommer alltid att vara på formen *.rx där x är vilken revision som dom kommer ifrån.
+			</p>
+			<div class="code">
+				stalinpard@stalinpard:~/Desktop/svn_fx$ ls <br>
+				dijkstra.py  store.py  store.py.mine  store.py.r22  store.py.r23 <br>
 			</div>
 			<p>
 				Även den gamla filen finns kvar (store.py), men om vi öppnar den kommer vi se att den har förändrats där det har blivit konflikt. Du kan öppna filen i vilken texteditor du vill.
@@ -479,7 +455,8 @@
 		</p>
 
 
-		<h4>Visa alla filer i repot</h4>
+
+		<h3>Visa alla filer i repot</h3>
 		Kör kommandot <code>svn list *</code>
 		<div class="code">
 			stalinpard@stalinpard:~/Desktop/svn_ex$ svn list * <br>
@@ -503,6 +480,7 @@
 			För att se ändringshistoriken (commit-historiken):
 		</p>
 		<div class="code">
+			svn up <br>
 			svn log
 		</div>
 		<p>
@@ -514,6 +492,9 @@
 		<div class="code">
 			svn diff -x -wup -r <i>rev</i>
 		</div>
+		<p>
+			<a href="http://svnbook.red-bean.com/en/1.6/svn.ref.svn.c.diff.html">Mer info...</a>
+		</p>
 		<p>
 			Information om vad du kan göra med SVN och vilka kommandon som finns:
 		</p>
