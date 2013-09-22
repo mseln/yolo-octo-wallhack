@@ -17,8 +17,8 @@ class TestSelectNodes(unittest.TestCase):
 
     def test_empty_clip_nodes(self):
         nodes = NodeSet()
-        nodes.add(1, (-10, -10))
-        nodes.add(2, (-5, -5))
+        nodes.add(1, -10, -10)
+        nodes.add(2, -5, -5)
 
         selected_nodes = select_nodes_in_rectangle(nodes, 0, 10, 0, 10)
         self.assertFalse(selected_nodes.nodes)
@@ -31,8 +31,8 @@ class TestSelectNodes(unittest.TestCase):
         # Create 100 random nodes
         nodes = NodeSet()
         for i in range(100):
-            nodes.add(i, (random.randint(-180, 180), 
-                           random.randint(-90, 90)))
+            nodes.add(i, random.randint(-180, 180), 
+                      random.randint(-90, 90))
 
         # Randomly choose the min and max latitude and longitude
         min_lat = random.randint(-90, 90)
@@ -42,7 +42,7 @@ class TestSelectNodes(unittest.TestCase):
         
         # Extract all nodes within the randomly generated rectangle
         selected_nodes = select_nodes_in_rectangle(nodes, min_lat, max_lat, 
-                                   min_lng, max_lng)
+                                                   min_lng, max_lng)
 
         # Make sure that all nodes that should be inside are inside
         for n in nodes.nodes.values():

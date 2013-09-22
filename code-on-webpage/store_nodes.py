@@ -9,11 +9,8 @@ class NodeSet:
         self.bounds["min_lng"] = 180
         self.bounds["max_lng"] = -180
 
-    def add(self, id, node):
-        lat = node[0]
-        lng = node[1]
-
-        self.nodes[id] = Node(lat, lng)
+    def add(self, id, lat, lng):
+        self.nodes[id] = Node(id, lat, lng)
         self.bounds["min_lat"] = min(self.bounds["min_lat"], lat)
         self.bounds["min_lng"] = min(self.bounds["min_lng"], lng)
         self.bounds["max_lat"] = max(self.bounds["max_lat"], lat)
