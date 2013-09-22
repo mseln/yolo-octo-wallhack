@@ -1,7 +1,7 @@
 #---------------------------------------------------------------
 # POST_parser.py
 # Object that parses and stores content from request.POST
-# in django.
+# in Django.
 #---------------------------------------------------------------
 # Usage:
 #   post = POST_parser(request)
@@ -12,7 +12,6 @@ def get_float(request, id):
     value = request.POST.get(id)
     # Check that it's possible to convert input to float.
     try:
-        float(value)
         return float(value)
     except (TypeError, ValueError):
         return None
@@ -24,7 +23,7 @@ def get_str(request, id):
 
 class POST_parser:
     def __init__(self, request):
-        # You can here chose which variables you want to
+        # You can choose what variables you want to
         # get from POST and what to call them.
         self.lat1 = get_float(request, 'lat1')
         self.lng1 = get_float(request, 'lng1')

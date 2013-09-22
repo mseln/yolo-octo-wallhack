@@ -1,7 +1,7 @@
 def extract_osm_edges(f_name):
     # Parse the supplied OSM file
-    obj = GetRoutes()
     parser = make_parser()
+    obj = GetRoutes()
     parser.setContentHandler(obj)
     parser.parse(f_name)
 

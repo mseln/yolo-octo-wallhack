@@ -930,14 +930,14 @@
 
 			<p>The goal of this part of the project is to develop a web application that assists a user to get from a location A to a location B. To achieve this, the application should allow a user to select two locations on a map, compute the shortest path between these locations and display the path on the map.  To compute the shortest path you also need to create a data structure storing information about which locations are connected and the distances between them as well as populate it with real map data.</p>
 
-			<p>This part into milestones. If you follow them you are going to have a good foundation to extend the project later on.</p>
+			<p>This part is divided into four milestones. When you have completed them you will have a good foundation to extend the project later on.</p>
 
 			<a id="a_store_road_data"></a>
 			<h3 class="milecount">Store The Road Data</h3>
-			<p><i>You have already extracted the nodes from the osm data, but to be able to find the shortest path you also have to find out what roads there are. The osm data also contains road data and purpose of this milestone is to extract that data.</i></p>
+			<p><i>You have already extracted the nodes from the OSM data, but to be able to find the shortest path you also have to find out what roads there are. The OSM data also contains road data and the purpose of this milestone is to extract this information.</i></p>
 
 			<h4 class="milecount">Store an edge</h4>
-			Create a data structure to store roads and appropriate unit tests. Make sure that your code passes all the unit tests. A suggestion is to create a data type called <code>Edge</code> that stores a single edge. An edge is a directed connection between two nodes so a road would contain a lot of edges.
+			Create a data structure to store roads and a set of appropriate unit tests. Make sure that your code passes all the unit tests. A suggestion is to create a data type called <code>Edge</code> that stores a single edge. An edge is a directed connection between two nodes so a road would consist of many edges.
 
 			<a id="edge.py"></a>
 			<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/edge.py"></script>
@@ -949,7 +949,7 @@
 			<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/extract_osm_edges.py"></script>
 
 			<h4 class="milecount">Store all the edges    <img src="all_the_roads.jpg" style="width: 7%; height: 7%" alt="all_the"></h4>
-			To store all roads, we suggest that you create a new class EdgeSet which contains all edges. Between all connected we have to create an edge which is going to be stored in a list of edges.
+			To store all roads, we suggest that you create a new class EdgeSet which contains all edges. Between each pair of connected nodes we have to create an edge which is going to be stored in a list of edges.
 
 			<!--<h3 class="count"><a id="a_must_be_updated2">TOFO: Create a new title for each major milestone</a></h3>-->
 
@@ -978,21 +978,21 @@
 				</li>
 			</ul>
 
-			<h4 class="milecount">Implement it in python</h4>
+			<h4 class="milecount">Implement it in Python</h4>
 			<p>Implement your chosen data structure in Python and make sure you have appropriate test cases.</p>
 
-			<p>Then populate the data structure with data from Open Street Map. To do this you will have to decide how to calculate the geographical distance between two nodes that are part of a road. Since Earth is not flat, the distance between two points on the map cannot simply be calculated as the two dimensional Euclidean distance. One way is to use the haversine formula, as in the following Python code snippet:</p>
+			<p>Populate the data structure with data from Open Street Map. To do this you will have to decide how to calculate the geographical distance between two nodes that are part of a road. Since the Earth is not flat, the distance between two points on the map cannot simply be calculated as the two dimensional Euclidean distance. One way is to use the haversine formula, as in the following Python code snippet:</p>
 
 			<a id="haversine.py"></a>
 			<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/haversine.py"></script>
 
 			<h4 class="milecount">Implement the shortest path algorithm</h4>
-			<p>Implement a provable optimal algorithm to compute the shortest path between two locations using the graph data structure together with appropriate test cases (you do not have to prove that it is optimal). You should write your own code implementing and testing an existing algorithm, There are many algorithms for finding the shortest path between two nodes in an edge weighted graph. For this project we suggest you start out by implementing(<a href="http://en.wikipedia.org/wiki/Dijkstra's_algorithm">Dijkstra's algorithm</a>).</p>
+			<p>Implement a provably optimal algorithm to compute the shortest path between two locations using the graph data structure together with appropriate test cases (you do not have to prove that it is optimal). You should write your own code implementing and testing an existing algorithm, There are many algorithms for finding the shortest path between two nodes in an edge weighted graph. For this project we suggest you start out by implementing <a href="http://en.wikipedia.org/wiki/Dijkstra's_algorithm">Dijkstra's algorithm</a>.</p>
 
 			<div class=note>
 				<p class=note-title>Note on running time:</p>
 
-				<p>Dijkstras algorithm for an adjacency matrix is not the most optimal, for graphs that has more than 1000 nodes it becomes time consuming. Below is a table of how the number of nodes is proportional to the running time. The <a href="http://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#Running_time">time complexity</a> for dijkstra is O(V^2) but can be improved.</p>
+				<p>Dijkstras algorithm for an adjacency matrix is not the most optimal, for graphs that has more than 1000 nodes it becomes quite slow. Below is a table of how the running time is proportional to the number of nodes. The <a href="http://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#Running_time">time complexity</a> for Dijkstra is O(V^2) but can be improved.</p>
 
 				<table border="1">
 					<tr>	<th>Nodes</th>	<th>Time (s)</th>	</tr>
@@ -1004,7 +1004,7 @@
 					<tr>	<td>3652</td>	<td>66.4</td>		</tr>
 				</table>
 
-				<p>As you can see the algorithm start to take a serious amount of time at around 1000 nodes. There are improvements to make e.g. using a heap instead of a matrix or create an abstract graph of only the crossings. But we leave them out for now and focus on getting a working shortest path application for a small area. In section 6. you can choose the extension project which includes speeding up the algoritm.</p>
+				<p>As you can see the algorithm starts to take a serious amount of time at around 1000 nodes. There are improvements to make e.g. using a heap instead of a matrix or create an abstract graph of only the crossings. But we leave them out for now and focus on getting a working shortest path application for a small area. In the next part of the project, you can choose to speed up the algorithm.</p>
 			</div>
 
 			<a id="a_shortest_distance"></a>
@@ -1021,7 +1021,7 @@
 					javascript-coder.com</a>.
 				</li>
 				<li>
-					Process the content of the form in the view. To when you press the "Go" button, you are directed to the same page. The content of the form is sent by <a href="http://en.wikipedia.org/wiki/POST_%28HTTP%29">POST</a> and is avaible from django's <a href="https://docs.djangoproject.com/en/dev/ref/request-response/#django.http.HttpRequest.POST">request.POST</a>.<br><br>
+					Process the content of the form in the view. So when you press the "Go" button, you are directed to the same page. The content of the form is sent by <a href="http://en.wikipedia.org/wiki/POST_%28HTTP%29">POST</a> and is available in Django as <a href="https://docs.djangoproject.com/en/dev/ref/request-response/#django.http.HttpRequest.POST">request.POST</a>.<br><br>
 
 					Below is some code for an object that handles POST requests. <i>Note: all the values are defined in the initialization, when the object is first defined i.e. nothing happens with the values in the object until the "Go" button is pressed</i>
 					<a id="POST_parser.py"></a>
@@ -1033,9 +1033,9 @@
 
 					<div class=note>
 						<p class=note-title>try: ... except: ... !?</p>
-						<p>What does the try: ... except: ... statement above do? It is purpose is to test if something is possible to do, in this case convert a string to float. If it wouldn't be possible, an <a href="http://docs.python.org/2/tutorial/errors.html#exceptions">exception</a> would be thrown. If you don't handle the exception the program will crash, which is pretty bad.</p>
+						<p>What does the try: ... except: ... statement above do? Its purpose is to test if something is possible to do, in this case convert a string to float. If it isn't possible, an <a href="http://docs.python.org/2/tutorial/errors.html#exceptions">exception</a> is thrown. If you don't handle the exception the program will crash, which is pretty bad.</p>
 
-						<p>So how does it work? The program tries <code>(try:)</code> something, if it succeds, good! else handle the exception <code>(except:)</code> e.g. <code>print("Err: Conversion is not possible")</code></p>
+						<p>So how does it work? The program tries <code>(try:)</code> something, if it succeds, good! else handle the exception <code>(except:)</code> e.g. <code>print("Err: Conversion is not possible")</code>.</p>
 					</div>
 
 				</li>
@@ -1066,7 +1066,7 @@
 			Extract the shortest path from the output of your shortest path algorithm. Remember to extend the unit tests by adding new test cases.
 
 			<h4 class="milecount">Visualize the shortest path</h4>
-			Extend the application to display the computed shortest path on the map using, the code snippet below shows how you can use the Google Maps API to draw a line on the map. Combine this knowledge with what you learned in <a href="#intro_to_templates">"A short introduction to templates"</a> in section 4.1.
+			Extend the application to display the computed shortest path on the map, the code snippet below shows how you can use the Google Maps API to draw a line on the map. Combine this knowledge with what you learned in <a href="#intro_to_templates">"A short introduction to templates"</a> in section 4.1.
 
 			<div class=note>
 				<p class=note-title>Show the roads on the map!</p>
