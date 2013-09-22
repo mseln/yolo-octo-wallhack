@@ -5,7 +5,6 @@ from mapvis.views import hello
 # from django.contrib import admin
 # admin.autodiscover()
 
-
 urlpatterns = patterns('',
                        url('^hello/$', hello),
                        # Examples:

@@ -237,9 +237,9 @@
 		<a id="a_overview"></a>
 		<h2>Overview</h2>
 		<div id="overview">
-			<p>Below is an overview of the map application that you are going to produce. It is showing how the information is flowing in the project (when you are browsing the web-page) and what third party resources that you are going to use e.g. the google maps api.</p> 
+			<p>Below is an overview of the map application that you are going to produce. It is showing how the information is flowing in the project (when you are browsing the web-page) and what third party resources that you are going to use e.g. the Google Maps API.</p> 
 
-			<p>It's okay to not understand it at first glance. The purpose of this chapter is to make it easier to understand how the project is going to be organised. You can look at this chapter again when you fell unsure of how to structure your code.</p>
+			<p>It is okay to not understand it at first glance. The purpose of this chapter is to make it easier to understand how the project is going to be organised. You can look at this chapter again when you fell unsure of how to structure your code.</p>
 
 
 			<img class="high" src="grafisk_oversikt.jpg" style="display: block;" alt="graphical_overview" width="1000">
@@ -248,20 +248,20 @@
 				Almost everything you are going to code is on the server side. The application is divided in three parts.
 			</p>
 			<ul>
-				<li><b>Map Application:</b> Handles Map Op and Map Vis, it does also get information from POST</li>
-				<li><b>Map Operations API:</b> Does the map caluculatins, e.g. shortest path</li>
-				<li><b>Map Visualation API:</b> Takes the information that Map Op returns and visualises that data, e.g. the shortest path.</li>
+				<li><b>Map Application:</b> The core of the application, coordinates the work using the Map Op API and the Map Vis API based on POSTed information.</li>
+				<li><b>Map Operations API:</b> Provides a set of operations on maps, such as computing the shortest path.</li>
+				<li><b>Map Visualation API:</b> Provides functionality to visualize map information, such as a shortest path.</li>
 			</ul>
 
 
-			<p>An example of a file structure follows below. It is really just an example, you can organize your files however you like. Don't worry about what these files are, because you are going to create them yourself in part 3. As said before this chapther can be handy to look back at when you don't know where to put your code.
+			<p>Below an example file structure is shown. It is only an example, you may organize your files differently. Don't worry about what these files are, because you are going to create them yourself in part 3. As said before, it is useful to look back to this chapter when you need an overview of the application and when you feel uncertain about where to put your code.
 			</p>
 			<table border="1">
 				<tr> <th>file</th> <th>part</th> <th>desc</th> </tr>
-				<tr> <td>algorithms.py</td> <td>Map OP</td> <td>Various algorithms e.g. that calculate the distance between two nodes.</td> </tr>
-				<tr> <td>road_network.py</td> <td>Map OP</td> <td>Stores all road information.</td> </tr>
-				<tr> <td>store.py</td> <td>Map OP</td> <td>Contains classes that can store different types, e.g.nodes or edges.</td> </tr>
-				<tr> <td>views.py</td> <td>Map App</td> <td>The outer function, called when the page is loaded.</td> </tr>
+				<tr> <td>algorithms.py</td> <td>Map Op</td> <td>Contains useful algorithms such as calculating the distance between two nodes.</td> </tr>
+				<tr> <td>road_network.py</td> <td>Map Op</td> <td>Stores all road information.</td> </tr>
+				<tr> <td>store.py</td> <td>Map Op</td> <td>Contains classes for storing data such as nodes and edges.</td> </tr>
+				<tr> <td>views.py</td> <td>Map App</td> <td>The "main" function, called when the page is loaded.</td> </tr>
 				<tr> <td>mapapp.html</td> <td>Map Vis</td> <td>A template that takes information and visualises it, intro to templates comes in chapter 3.</td> </tr>
 			</table>
 		</div>
@@ -281,7 +281,7 @@
 				<li> Explore Open Street Map data</li>
 				<li> Display Open Street Map data on the map in your web application</li>
 			</ol>
-			<p> When you have reached the last milestone you will have a web application that displays data from Open Street Map on a map using the Google Maps API. </p>
+			<p> When you have completed the last milestone you will have a web application that displays data from Open Street Map on a map using the Google Maps API. </p>
 
 			<h3 class="count"><a id="a_django">Creating a Web Application with Django</a></h3>
 			<p>The goal of this milestone is to create a basic web application using the Django framework. Django is a Python framework for creating websites. It is very easy to get started with and provides all the functionality needed for this project.</p>
@@ -295,14 +295,14 @@
 
 			<p>To automatically load the module every time you create a new terminal execute the command <code>module initadd /home/TDDD63/modulefiles/tddd63-maps</code> once.  This does not load the module into any already created terminals, including the terminal where you executed the command.</p>
 
-			<p> If you are using your own UNIX (Linux, Mac) system then you need to install <a href="https://docs.djangoproject.com/en/dev/topics/install/">Django 1.4.1</a> by yourself. If you are a windows user you have to find out how to set up django yourself. Check how to install it <a href="https://docs.djangoproject.com/en/dev/topics/install/">here</a>.</p>
+			<p> If you are using your own UNIX (Linux, Mac) system then you need to install <a href="https://docs.djangoproject.com/en/dev/topics/install/">Django 1.5.x</a> by yourself. If you are a windows user you have to find out how to set up django yourself. Check how to install it <a href="https://docs.djangoproject.com/en/dev/topics/install/">here</a>.</p>
 
 			<h5 class="taskcount">Create the <code>lmap</code> project</h5>
 			The following command creates a Django project called lmap:
 			<code>django-admin.py startproject lmap</code>
 
 			<h5 class="taskcount">Explore project files</h5> 
-			Explore the file structure created by Django and read about what the files are <a href="http://docs.djangoproject.com/en/1.4/intro/tutorial01/#creating-a-project">here</a>.
+			Explore the file structure created by Django and read about what the files are <a href="http://docs.djangoproject.com/en/1.5/intro/tutorial01/#creating-a-project">here</a>.
 
 			<h5 class="taskcount">Start a web server</h5> 
 			<p>To test your application you need to start a web server.  Django comes with a development server which you can use. Change into the outer <code>lmap</code> directory, if you haven't already, and run the command <code>python3 manage.py runserver 0.0.0.0:80XY</code>, where <i>X</i> is your group number (1-6) and <i>Y</i> is a number that each group assigns to each student in their group (0-9). The command starts the development web server and informs you about potential problems and the URL of the server. To get the URL, find the line "Development server is running at <i>URL</i>".</p>
@@ -332,7 +332,7 @@
 			<h5 class="taskcount">Read about the database configuration</h5>
 
 			<p>Read more about the database options at
-				<a href="http://docs.djangoproject.com/en/1.4/intro/tutorial01/#database-setup">docs.djangoproject.com</a>.
+				<a href="http://docs.djangoproject.com/en/1.5/intro/tutorial01/#database-setup">docs.djangoproject.com</a>.
 			</p>
 
 			<h5 class="taskcount">Create the database and initial tables</h5>
@@ -348,17 +348,17 @@
 			<h5 class="taskcount">Projects vs. Apps</h5>
 
 			<p>Read about the differences between a project and an app at
-				<a href="https://docs.djangoproject.com/en/1.4/intro/tutorial01/#creating-models">docs.djangoproject.com</a>.
+				<a href="https://docs.djangoproject.com/en/1.5/intro/tutorial01/#creating-models">docs.djangoproject.com</a>.
 			</p>
 
 			<h5 class="taskcount">Create the mapvis app</h5>
 
-			<p>Change directories to the <code>lmap</code> directory so that you are in the directory with <code>manage.py</code>. To create the <code>mapvis</code> app, execute the command <code>python manage.py startapp mapvis</code>.
+			<p>Change directories to the <code>lmap</code> directory so that you are in the directory with <code>manage.py</code>. To create the <code>mapvis</code> app, execute the command <code>python3 manage.py startapp mapvis</code>.
 			</p>
 
 			<h5 class="taskcount">Explore app files</h5> 
 
-			<p>Explore the file structure created by Django and read about what the files are <a href="https://docs.djangoproject.com/en/1.4/intro/tutorial01/#creating-models">here</a>.</p>
+			<p>Explore the file structure created by Django and read about the files <a href="https://docs.djangoproject.com/en/1.5/intro/tutorial01/#creating-models">here</a>.</p>
 
 
 			<h4 class="exercise">Make your app generate a web page</h4>
@@ -386,14 +386,16 @@
 
 			<div class=note>
 				<p class=note-title>Debugging tips:</p>
-				<p class=noindent>If something goes wrong you need to find out what the problem is. Often you do that by checking the values the relevant variables. This can be done in several ways.  Some of the alternatives are listed below.</p> 
+				<p class=noindent>If something goes wrong you need to find out what the problem is. Often you do that by checking the values of relevant variables. This can be done in several ways.  Some of the alternatives are listed below.</p> 
 				<a id="debug_print.py"></a>
 				<ol>
-					<li>Using <code>print</code> is a very easy way to debug in Python. It simply prints a given value to the console. If you are running a web server it will print the output in the same terminal as the server is running in.</li>
+					<li>Using <code>print</code> is a very easy way to debug in Python. It simply prints a given value to the console. If you are running a web server it will print the output in the terminal where you started the server.</li>
 
+<!-- COMMENT: I don't think this example adds anything. 
 					<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/debug_print.py"></script>
+-->
 
-					<li>As you may already have seen, the Django error view contains a lot of information. It contains all the variables and their values. You can get this information by adding <code>assert(False)</code> anywhere in your code. This will cause the program to "crash" and show all the information about the current view. Try it out in your hello world view! Add <code>assert(false)</code> just before <code>return HttpResponse("Hello world")</code> and reload the page<br><br></li>
+					<li>As you may already have seen, the Django error view contains a lot of information. It contains all the variables and their values. You can get this information by adding <code>assert(False)</code> anywhere in your code. This will cause the program to "crash" and show all the information about the current view. Try it out in your hello world view! Add <code>assert(False)</code> just before <code>return HttpResponse("Hello world")</code> and reload the page<br><br></li>
 
 					<li>Python also has a built-in debugger called <code>pdb</code>. A debugger makes it possible to step trough the code one step at a time and see what goes on at each step. Read <a href="http://stackoverflow.com/questions/4228637/getting-started-with-the-python-debugger-pdb">getting started with pdb</a> to learn more about pdb.</li>
 				</ol>
@@ -417,7 +419,7 @@
 				</li>
 			</ol>
 
-			<p>The file will now look something like this:</p>
+			<p>The file will then look something like this:</p>
 
 			<a id="hello_world_url.py"></a>
 			<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/hello_world_url.py"></script>
@@ -425,10 +427,10 @@
 				Now you can start the development web server and open the page <i>URL</i>/hello in your web browser. Congratulations, you have now generated a web page using Python!
 			</p>
 
-			<p>If you haven't already, read about what this code does <a href="http://www.djangobook.com/en/2.0/chapter03.html">here</a>.</p>
+			<p>If you haven't already, read about what the code does <a href="http://www.djangobook.com/en/2.0/chapter03.html">here</a>.</p>
 
 			<h5 class="taskcount">Create a view that generates a page showing the current time</h5>
-			<p>It is important to emphasize that the view function you just created is a plain Python function which generates a string, which is interpreted as a <a href="http://en.wikipedia.org/wiki/HTML">HTML</a> page by your browser.</p>
+			<p>It is important to emphasize that the view function you just created is a plain Python function which generates a string, which is interpreted as an <a href="http://en.wikipedia.org/wiki/HTML">HTML</a> page by your browser.</p>
 
 			<p>The hello view you created returns a static string. Let us make it a bit more interesting by including the current date and time. This means that every time your reload the page a new string is generated (unless you reload it faster than the resolution of the clock, but then you have to be pretty darn fast).</p>
 
@@ -438,7 +440,7 @@
 			<a id="hello_world_time.py"></a>
 			<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/hello_world_time.py"></script>
 
-			<p><i>Note: If you are wondering why the application are showing the wrong time, it is probaly because you haven't set up the right timezone. How to fix that you have to find out yourself, it is a good excercise</i></p>
+			<p><i>Note: If you are wondering why the application are showing the wrong time, it is probaly because you haven't set up the right timezone. How to fix that you have to find out yourself, it is a good excercise</i>.</p>
 
 			<p>If you still have a hard time understanding what the code snippets above do. Take some time and read through the whole <a href="http://www.djangobook.com/en/2.0/chapter03.html">Views and URLconfs</a> from django book.</p>
 
@@ -470,7 +472,7 @@
 
 			<h5 class="taskcount">Create a view rendering a page from the template</h5>
 
-			<p>A template is basically a text file where some parts are interpreted as variables and macros which are expanded to generate several different instances of the text. To generate an instance of a template it is instantiated with a <i>context</i> which is basically a Python dictionary. </p>
+			<p>A template is basically a text file where some parts are interpreted as variables and macros which are expanded to generate several different instances of the text. To generate an instance of a template instantiate it with a <i>context</i> which is basically a Python dictionary. </p>
 
 			<p>Create a view called <code>mapapp</code> in the file <code>views.py</code> with the following code. The code creates a context associating the key <code>NOW</code> with the current date and time, instantiates the template <code>map/mapapp.html</code> and returns it as a response to an HTTP request.</p>
 
@@ -482,15 +484,14 @@
 			<a id="intro_to_templates"></a>
 			<div class="note">
 				<p class="note-title">A short introduction to templates</p>
-				<p>A template is a basically a regular HTML page but with some tweaks. They can include tags which django evaluates into html-code.</p>
+				<p>A template is basically a regular HTML page with some extra features. It can include tags which Django evaluates into HTML code.</p>
 
-				<p> A template contains tags and variables which the renderer evaluates into basic html.</p>
+				<p> A template contains tags and variables which the renderer evaluates into basic HTML.</p>
 				<ul>
-					<li>
-						Variables: The following statement will be evaluated to the value of the variable in the double curly brackets 
+					<li>Variables: The following statement is evaluated to the value of the variable in double curly brackets 
 						<pre>{{ foo }}</pre>
 
-						<p>Dot lookups can be summarized like this: when the template system encounters a dot in a variable name, it tries the following lookups, in this order:</p>
+					<p>When the template system encounters a dot in a variable name, e.g. <pre>{{ foo.bar }}</pre>, it tries the following lookups, in this order:</p>
 
 						<ol>
 							<li> Dictionary lookup (e.g., <code>foo["bar"]</code>) </li>
@@ -499,11 +500,11 @@
 							<li> List-index lookup (e.g., <code>foo[2]</code>) </li>
 						</ol>
 
-						<p>The system uses the first lookup type that works. It’s short-circuit logic.</p>
+						<p>The system uses the first lookup type that works.</p>
 					</li>
 
 					<li>
-						Tags: A tag tells the renderer to eveluate the expression, it can be for loops, if statements and there is a lot of other templates to be found in the <a href="http://www.djangobook.com/en/2.0/chapter04.html">djangobook</a>.
+						Tags: A tag tells the renderer to eveluate the expression, it can be for loops, if statements, or other things. For examples see the <a href="http://www.djangobook.com/en/2.0/chapter04.html">Django book ch 4</a>.
 						<pre>{% for foo in bar %} ... {% endfor %}</pre>
 						<pre>{% if foo > 10 %} ... {% endif %}</pre> 
 					</li>
@@ -515,14 +516,14 @@
 				</ul>
 
 
-				<p>Look at the example below. A good excercise could be to make a new app (<code>python3 manage.py startapp bobbin_lace</code>). </p>
+				<p>Look at the example below. A good excercise is to make a new app (<code>python3 manage.py startapp bobbin_lace</code>). </p>
 
 				<p>In <code>bobbin_lace/views.py</code> paste the code below.</p>
 
 				<a id="template_ex.py"></a>
 				<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/template_ex.py"></script>
 
-				<p>In the folder <code>templates</code> create a new folder <code>bobbin_lace</code> and create a new file into that folder which you name <code>memb_reg.html</code> and paste the following code.</p>
+				<p>In the folder <code>templates</code> create a new folder <code>bobbin_lace</code> and create a new file in that folder which you name <code>memb_reg.html</code> and paste the following code.</p>
 
 				<a id="memb_reg.html"></a>
 				<script src="http://gist-it.appspot.com/github/mseln/yolo-octo-wallhack/blob/master/code-on-webpage/memb_reg.html"></script>
@@ -531,13 +532,13 @@
 
 				<p>A few tiny tasks:</p>
 				<ul>
-					<li>Goto the webpage you just created (<a href="http://127.0.0.1:8000/bobbin_lace/memb_reg/">http://127.0.0.1:8000/bobbin_lace/memb_reg/</a>)</li>
-					<li>Right click somewhere on the webpage and chose "View Page Source". Figure out what the renderer do.</li>
-					<li> Send the string "Hello World!" as context from the view and print it on the web page with only uppercase characters. (psst, upper)...</li>
+					<li>Go to the newly created webpage (<a href="http://127.0.0.1:8000/bobbin_lace/memb_reg/">http://127.0.0.1:8000/bobbin_lace/memb_reg/</a>).</li>
+					<li>Right click somewhere on the webpage and chose "View Page Source". Figure out what the renderer does.</li>
+					<li> Send the string "Hello World!" as the context from the view and print it on the web page with only uppercase characters. (psst, upper)...</li>
 				</ul>
 
 
-				<p>This was just a short intro and you will most likely need more information on templates later on. A good source is <a href="http://www.djangobook.com/en/2.0/chapter04.html">Django Book ch 4</a>.</p>
+				<p>This was just a short intro and you will most likely need more information on templates later on. A good source is <a href="http://www.djangobook.com/en/2.0/chapter04.html">Django book ch 4</a>.</p>
 			</div>
 
 			<h5 class="taskcount">Create a page template</h5>
@@ -553,7 +554,7 @@
 
 			<h5 class="taskcount">Associate the mapapp view with the site root</h5>
 
-			<p>Now you should know enough to be able to create a URL pattern that associates the <code>mapapp</code> view with the site root.  If you need advice, read <a href="http://www.djangobook.com/en/2.0/chapter03.html">djangobook chapter03</a>.</p>
+			<p>Now you should know enough to be able to create a URL pattern that associates the <code>mapapp</code> view with the site root.  If you need advice, read <a href="http://www.djangobook.com/en/2.0/chapter03.html">Django book ch 3</a>.</p>
 
 			<h5 class="taskcount">Play around with views and templates</h5>
 
@@ -886,7 +887,7 @@
 
 			<p>Now that you know how to create unit tests create one for the <code>Node</code> class. There should be for example be tests to make sure that the latitudes and longitudes are always within their bounds. Create both hand made test cases as well as randomly generated test cases. You can read more about latitudes and longitudes <a href="http://en.wikipedia.org/wiki/Geographic_coordinate_system">here</a>.</p>
 
-			<a href="http://www.diveintopython.net/unit_testing/">Dive into python</a> has a great introduction to unittesting. It's really worth reading.
+			<a href="http://www.diveintopython.net/unit_testing/">Dive into python</a> has a great introduction to unittesting. It is really worth reading.
 			<div class=note>
 				<p class=note-title>Run all test files with one command</p>
 				<p>To run all unit test files, cd to the folder containing all unittests and execute the command <code>python3 -m unittest discover</code>. The command automatically discovers all files starting with "test" and searches them for test classes.</p>
@@ -1032,7 +1033,7 @@
 
 					<div class=note>
 						<p class=note-title>try: ... except: ... !?</p>
-						<p>What does the try: ... except: ... statement above do? It's purpose is to test if something is possible to do, in this case convert a string to float. If it wouldn't be possible, an <a href="http://docs.python.org/2/tutorial/errors.html#exceptions">exception</a> would be thrown. If you don't handle the exception the program will crash, which is pretty bad.</p>
+						<p>What does the try: ... except: ... statement above do? It is purpose is to test if something is possible to do, in this case convert a string to float. If it wouldn't be possible, an <a href="http://docs.python.org/2/tutorial/errors.html#exceptions">exception</a> would be thrown. If you don't handle the exception the program will crash, which is pretty bad.</p>
 
 						<p>So how does it work? The program tries <code>(try:)</code> something, if it succeds, good! else handle the exception <code>(except:)</code> e.g. <code>print("Err: Conversion is not possible")</code></p>
 					</div>
@@ -1162,7 +1163,7 @@
 				</tr>
 			</table><br>
 
-			The upper image to the left is showing a simple graph. The weight of the edges are the distance between the nodes, approximatly 1, 2 resp. 3 units. Actually the graph is an abstraction of the bridges in <a href="http://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg">Königsberg</a> shown in the picture to the right. Below are two graphs. The one to the left is the matrix representation of the graph and the one to the left is the list representation, where every node has a list containing it's neighboors as a pair (neighboor, weight).
+			The upper image to the left is showing a simple graph. The weight of the edges are the distance between the nodes, approximatly 1, 2 resp. 3 units. Actually the graph is an abstraction of the bridges in <a href="http://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg">Königsberg</a> shown in the picture to the right. Below are two graphs. The one to the left is the matrix representation of the graph and the one to the left is the list representation, where every node has a list containing it is neighboors as a pair (neighboor, weight).
 			<br><br>
 			Implement dijkstra using a heap instead making lookup of min-element take constant "O(1)" instead of linear time "O(n)". Article about <a href="https://www.udacity.com/wiki/cs215/unit5solutions-1">dijkstra using a heap</a>.
 
