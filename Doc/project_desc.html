@@ -1093,13 +1093,13 @@
 		<a id="a_extend"></a>
 		<h2 class="count">Extending Your Application Further</h2>
 		<div id="extend">
-			After you have completed all these tasks, you have accomplished a lot. You have created and tested a graph data structure, populated it with data from the Open Street Map project, implemented and tested a shortest path algorithm, created a web application where a user can select multiple locations (and map these locations into nodes in the graph), displayed single and multiple paths in the web application, and more.
+			After you have completed all the tasks in the previous 5 chapters, you have accomplished a lot. You have created and tested a graph data structure, populated it with data from the Open Street Map project, implemented and tested a shortest path algorithm, created a web application where a user can select multiple locations (and map these locations into nodes in the graph), displayed single and multiple paths in the web application, and more.
 
 			What you have done so far provides you with both a set of components for more advanced map-based applications as well as an understanding of some of the basic issues involved in map-based applications. Now you will extend your application further or develop new applications starting from the code you already have. This is a very open ended project with many possibilities to create exciting map-based applications. Below are some example suggestions that you can chose from and extend as you like. You are also welcome to suggest your own improvements.
 
 			<a id="smaller_improvements"></a>
 			<h3 class="projcount">Smaller improvements to the shortest path application:</h3>
-			<p>The application you have made so far is a bare minimum of a path finding application, below are a few things listed that makes your application more user friendly and usable.</p>
+			<p>The application you have made so far is a bare minimum of a path finding application, below are a few things will make your application more user friendly and usable.</p>
 			<ul>
 				<li> 
 					Add speed to the edges and let the user ask for the fastest way rather than the shortest. Can you provide better choices by minimizing the number of crossings that the user needs to pass?
@@ -1120,9 +1120,9 @@
 
 			<a id="speed_improvements"></a>
 			<h3 class="projcount">Speed improvements to the shortest path application:</h3>
-			<p>As stated in section 5. using a matrix is pretty unefficient for sparse graphs. You can do some improvements to speed up the algorithm.</p>
+			<p>As stated in section 5, using a matrix is pretty inefficient for sparse graphs. You can do some improvements to speed up the algorithm.</p>
 			
-			<p>If you are not already using an adjacency list instead of matrix, then change it. An adjacency list is a list where each element is representing a node and all elements in the list are a list of all neighboors. The dictionary now becomes very handy since you can use the node id as key to a list conataining all neighboors to that node.</p>
+			<p>If you are not already using an adjacency list instead of a matrix, then change it. An adjacency list is a list where each element is representing a node and the elements in the list are the neighboors of this node. A dictionary becomes very handy since you can use the node id as key to a list conataining all neighboors to that node.</p>
 
 
 			<table style="margin: 0px auto;">
@@ -1163,16 +1163,17 @@
 				</tr>
 			</table><br>
 
-			The upper image to the left is showing a simple graph. The weight of the edges are the distance between the nodes, approximatly 1, 2 resp. 3 units. Actually the graph is an abstraction of the bridges in <a href="http://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg">Königsberg</a> shown in the picture to the right. Below are two graphs. The one to the left is the matrix representation of the graph and the one to the left is the list representation, where every node has a list containing it is neighboors as a pair (neighboor, weight).
+			The upper image to the left is showing a simple graph. The weight of the edges are the distances between the nodes, approximatly 1, 2 and 3 units. Actually the graph is an abstraction of the bridges in <a href="http://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg">Königsberg</a> shown in the picture to the right. Below are two graphs. The one to the left is the matrix representation of the graph and the one to the right is the list representation, where every node has a list containing its neighboors as pairs (neighboor, weight).
 			<br><br>
-			Implement dijkstra using a heap instead making lookup of min-element take constant "O(1)" instead of linear time "O(n)". Article about <a href="https://www.udacity.com/wiki/cs215/unit5solutions-1">dijkstra using a heap</a>.
+			Implement Dijkstra using a heap, which makes lookup of the min-element take constant "O(1)" instead of linear time "O(n)". An article about <a href="https://www.udacity.com/wiki/cs215/unit5solutions-1">Dijkstra using a heap</a>.
 
-			Only consider nodes that contain a crossing. Since if there is a node with only one edge in to it and one from it you only have one path to choose i.e. consider that node in the calculation of the shortest path would be of no use.
+			Only consider nodes that contain a crossing. Since if a node only has one edge in to it and one from it you only have one path to choose from.
 
 			<a id="apsp"></a>
 			<h3 class="projcount">All pairs shortest path</h3>
-			<p><a href="http://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm">Floyd-Warshall algorithm</a> is an algorithm to compute all shortest path between all pairs of nodes. The algorithm is really easy to implement.</p> 
+			<p><a href="http://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm">Floyd-Warshall algorithm</a> is an algorithm to compute every shortest path between each pair of nodes. The algorithm is really easy to implement.</p> 
 			<p>Read about the algorithm and answer these questions:</p>
+<p> Now do the following:</p>
 			<ol>
 				<li>What is the time complexity?</li>
 				<li>Estimate a maximum number of nodes the algorithm can handle in a reasonable amount of time</li>
@@ -1188,13 +1189,13 @@
 					Extend the map application to display all the paths.
 				</li>
 			</ol>
-			<p>You can store the precalculated paths in a database, to make the application really fast. If you want to do that improvment, check out the extension project "Using a database".</p>
+			<p>You can store the precalculated paths in a database, to make the application really fast. If you want to do that, check out the extension project "Using a database" below.</p>
 
 			<a id="database"></a>
 			<h3 class="projcount">Using a database</h3>
-			<p>Almost all web applications in the world wide web world uses databases. By using a database, it is possible to precalculate a lot of things by storing information from previous searches, making the searching much more efficient. Another advantage is that you as the admin of the website can look at statistics about what the users do, exactly like Google and Facebook.</p>
+			<p>Almost all web applications in the World Wide Web uses databases. By using a database, it is possible to precalculate a lot of things by storing information from previous searches, making the searching much more efficient. Another advantage is that you as the admin of the website can look at statistics about what the users do, exactly like Google and Facebook.</p>
 
-			<p>Currently all the data is stored in memory and if you reload the page then all the data is loaded again. Extend the application to store all the data in a database instead. This makes the data persistent and potentially improves the efficiency of the application. This is also a good exercise since all modern web applications are database driven.  To get started we suggest that you read about <a href="http://www.djangobook.com/en/2.0/chapter05.html">Models</a> in the Django book. Try to move as much functionality into the database as possible, for example by replacing ClipNodes with a database query.</p>
+			<p>Currently all the data is stored in memory and if you reload the page then all the data is loaded again. Extend the application to store all the data in a database instead. This makes the data persistent and potentially improves the efficiency of the application. This is also a good exercise since all modern web applications are database-driven.  To get started we suggest that you read about <a href="http://www.djangobook.com/en/2.0/chapter05.html">Models</a> in the Django book. Try to move as much functionality into the database as possible, for example by replacing NodeSet with a database query.</p>
 
 			<p>Create an application which lets users record their current or planned future location. This can be used to see where your friends were last seen and potentially where to look for them.  Maybe you can connect the central schedule database to your application to show where you should be depending on what courses you take?</p>
 
@@ -1206,7 +1207,7 @@
 			<h3 class="projcount">Build a beer pipeline!</h3>
 			<p>You have been given the task of building a beer pipeline by connecting plastic tubes to provide all your friends with beer directly from HG. Since you are thirsty you want to minimize the total amount of plastic tubes that you have to connect before finishing the project. </p>
 
-			<p>Extend the map application to allow a user to select a set of end points and then find the edges along which the pipeline should be built so that the total length of the pipeline is minimized and display the result on the map. You can make this problem easier or harder depending on how much freedom you consider to be allowed when constructing the pipeline. The simpler version is to only build the pipeline along existing roads. To make the problem harder, and the total length of the pipeline shorter, you can allow new nodes to be added. If you allow new nodes then you can start by ignoring buildings and then add these later. The more accurate you want the result, the more complicated it becomes.</p>
+			<p>Extend the map application to allow a user to select a set of end points and then find the edges along which the pipeline should be built so that the total length of the pipeline is minimized and display the result on the map. You can make this problem easier or harder depending on how much freedom you consider to be allowed when constructing the pipeline. The simpler version is to only build the pipeline along existing roads. To make the problem harder, and the total length of the pipeline shorter, you can allow new nodes to be added. If you allow new nodes then you can start by ignoring buildings and then add these later. The more accurate you want the result to be, the more complicated it becomes.</p>
 
 			<a id="geocaching"></a>
 			<h3 class="projcount">Help a geocacher</h3>
