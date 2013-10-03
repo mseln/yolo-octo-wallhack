@@ -291,9 +291,9 @@
 
 			<h5 class="taskcount">Load the <code>tddd63 maps module </code></h5>
 
-			<p>If you are using IDA's Solaris system, then you need to load a module with Django and other software that you need for this project.  The name of the module is <code>tddd63-maps</code>.  To load it into your current terminal use the command <br> <code>module add home/TDDD63/modulefiles/tddd63-maps</code>. </p>
+			<p>If you are using IDA's Solaris system, then you need to load a module with Django and other software that you need for this project.  The name of the module is <code>tddd63-maps</code>. To load it into your current terminal use the command <br> <code>module add prog/django</code>. </p>
 
-			<p>To automatically load the module every time you create a new terminal execute the command <code>module initadd /home/TDDD63/modulefiles/tddd63-maps</code> once.  This does not load the module into any already created terminals, including the terminal where you executed the command.</p>
+			<p>To automatically load the module every time you create a new terminal execute the command <code>module initadd prog/django</code> once.  This does not load the module into any already created terminals, including the terminal where you executed the command.</p>
 
 			<p> If you are using your own UNIX (Linux, Mac) system then you need to install <a href="https://docs.djangoproject.com/en/dev/topics/install/">Django 1.5.x</a> by yourself. If you are a windows user you have to find out how to set up django yourself. Check how to install it <a href="https://docs.djangoproject.com/en/dev/topics/install/">here</a>.</p>
 
@@ -316,7 +316,7 @@
 
 			<h5 class="taskcount">Update database configuration</h5> 
 
-			<p>To configure Django to use an SQLite database open the file <code>lmap/settings.py</code>, find the variable <code>DATABASES</code>, assign the variable <code>'ENGINE'</code> the value <code>'django.db.backends.sqlite3'</code>, and change the value of <code>'NAME'</code> to <code>os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'lmap.sqlite3').replace( '\\', '/' )</code>. </p>
+			<p>To configure Django to use an SQLite database open the file <code>lmap/settings.py</code>, find the variable <code>DATABASES</code>, assign the variable <code>'ENGINE'</code> the value <code>'django.db.backends.sqlite3'</code>, and change the value of <code>'NAME'</code> to <code>os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'lmap.sqlite3').replace( '\\', '/' ),</code>. You will also need to import os, simply add <code>import os</code> at the top of the settings file.</p>
 
 			<div class=note>
 				<p class=note-title>What does this mysterious expression mean?</p>
@@ -504,7 +504,7 @@
 							<li> Dictionary lookup (e.g., <code>foo["bar"]</code>) </li>
 							<li> Attribute lookup (e.g., <code>foo.bar</code>) </li>
 							<li> Method call (e.g., <code>foo.bar()</code>) </li>
-							<li> List-index lookup (e.g., <code>foo[2]</code>) </li>
+							<li> List-index lookup (e.g., <code>foo[2]</code>) <i>if you would have written foo.2 so to say.</i></li>
 						</ol>
 
 						<p>The system uses the first lookup type that works.</p>
